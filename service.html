@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Auzem'Beers & Sons</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f8f7f4;
+            margin: 0;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%);
+            color: white;
+            padding: 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            min-height: 70px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            padding: 0 20px;
+        }
+        .logo-block {
+            display: flex;
+            align-items: center;
+        }
+        .logo-img {
+            height: 48px;
+            width: auto;
+            margin-right: 16px;
+            display: block;
+        }
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #f4a261;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #f4a261;
+        }
+        .main-content {
+            max-width: 1100px;
+            margin: 100px auto 40px;
+            padding: 0 20px 40px 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 1.5rem;
+            color: #2c1810;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #f4a261;
+        }
+        .degust-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+        .bar-img {
+            flex: 1 1 300px;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.13);
+            width: 100%;
+            object-fit: cover;
+            margin: 0 auto;
+        }
+        .degust-content {
+            flex: 2 1 350px;
+        }
+        .degust-list {
+            margin: 1rem 0 1.5rem 0;
+            padding-left: 20px;
+        }
+        .degust-list li {
+            margin-bottom: 0.7rem;
+            font-size: 1.08rem;
+        }
+        .visit-note {
+            background: #f4a261;
+            color: #fff;
+            padding: 0.7rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 1.02rem;
+        }
+        .location-section {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .location-section h3 {
+            color: #8b4513;
+            margin-bottom: 1rem;
+        }
+        .tarif-info {
+            background: #ffe5b4;
+            color: #8b4513;
+            padding: 0.6rem 1.2rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: inline-block;
+            font-size: 1rem;
+        }
+        .stock-placeholder {
+            border: 2px dashed #f4a261;
+            background: #fff8eb;
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin-bottom: 1.2rem;
+            color: #8b4513;
+        }
+        .contact-invite {
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #f4a261;
+            color: #2c1810;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(244, 162, 97, 0.18);
+            margin-top: 1.2rem;
+        }
+        .cta-button:hover {
+            background: #e76f51;
+            color: #fff;
+        }
+        @media (max-width: 900px) {
+            .degust-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .degust-content {
+                margin-top: 1.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .main-content { margin-top: 80px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-block">
+                <img src="logo.jpg" alt="logo" class="logo-img">
+                <span class="logo-text">Auzem'Beers & Sons</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#accueil">Accueil</a></li>
+                <li><a href="produits.html">Nos Produits</a></li>
+                <li><a href="index.html#apropos">À Propos</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+        <!-- Dégustations -->
+        <h2 class="section-title">Dégustations à la Brasserie</h2>
+        <div class="degust-bar">
+            <img src="Bar.jpg" alt="Bar de la brasserie" class="bar-img">
+            <div class="degust-content">
+                <p>
+                    Deux fois par mois, la brasserie ouvre ses portes pour des moments conviviaux autour de la bière artisanale et des produits du terroir.
+                </p>
+                <ul class="degust-list">
+                    <li>Bières pressions fraîches</li>
+                    <li>Bières bouteilles de la gamme</li>
+                    <li>Assiette de charcuterie locale</li>
+                    <li>License 3 : Get 27, vins</li>
+                    <li>Gâteaux apéritifs</li>
+                    <li>Eau plate et pétillante</li>
+                    <li>Boissons non alcoolisées</li>
+                </ul>
+                <span class="visit-note">
+                    Visite des installations possible selon l'activité du bar et la disponibilité de l'équipe.
+                </span>
+            </div>
+        </div>
+
+        <!-- Location de tireuses et fûts -->
+        <div class="location-section">
+            <h3>Location de Tireuses à Bière & Fûts</h3>
+            <p>
+                Nous proposons la location de tireuses à bière professionnelles et de fûts pour tous vos événements : mariages, anniversaires, fêtes, séminaires...
+            </p>
+            <div class="tarif-info">
+                Tarifs à venir prochainement.
+            </div>
+            <div class="stock-placeholder">
+                <strong>Détails des fûts utilisés & stocks disponibles :</strong><br>
+                <em>Cette section sera bientôt complétée avec la liste des fûts disponibles et leurs caractéristiques.</em>
+            </div>
+            <div class="contact-invite">
+                Pour toute demande de devis ou commande, contactez-nous prochainement par email (à venir) ou dès maintenant via <a href="https://www.instagram.com/ericauzemery/" target="_blank" style="color:#f4a261; font-weight:600;">Instagram</a>.
+            </div>
+            <a href="index.html#contact" class="cta-button">Un devis ? Faites une commande</a>
+        </div>
+    </main>
+</body>
+</html>
