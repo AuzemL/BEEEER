@@ -113,81 +113,6 @@
             height: 4px;
             background: #f4a261;
         }
-        .avis-list {
-            display: flex;
-            flex-direction: column;
-            gap: 2.2rem;
-            margin: 2.5rem 0;
-        }
-        .avis-card {
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 3px 20px rgba(0,0,0,0.08);
-            padding: 2rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            transition: box-shadow 0.3s, transform 0.3s;
-        }
-        .avis-card:hover {
-            box-shadow: 0 8px 30px rgba(244,162,97,0.12);
-            transform: scale(1.01);
-        }
-        .avis-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .avis-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #4caf50;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: #fff;
-        }
-        .avis-info {
-            display: flex;
-            flex-direction: column;
-        }
-        .avis-nom {
-            font-weight: bold;
-            font-size: 1.08rem;
-            color: #2c1810;
-        }
-        .avis-meta {
-            font-size: 0.97rem;
-            color: #888;
-        }
-        .avis-stars {
-            color: #FFD600;
-            font-size: 1.2rem;
-            margin: 0.2rem 0;
-        }
-        .avis-texte {
-            font-size: 1.09rem;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-        .avis-photos {
-            display: flex;
-            gap: 1rem;
-            margin-top: 0.5rem;
-            flex-wrap: wrap;
-        }
-        .avis-photos img {
-            width: 120px;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-        }
         .commentaire {
             background: #f4a261;
             color: #fff;
@@ -220,25 +145,11 @@
             color: #fff;
         }
         @media (max-width: 700px) {
-            .avis-card {
-                padding: 1.2rem 0.5rem;
-            }
             .main-content {
                 margin-top: 80px;
             }
-            .avis-photos img {
-                width: 90px;
-                height: 65px;
-            }
         }
         @media (max-width: 500px) {
-            .avis-card {
-                padding: 0.7rem 0.2rem;
-            }
-            .avis-photos img {
-                width: 70px;
-                height: 50px;
-            }
             .logo-text { font-size: 1.1rem; }
             .logo-img { height: 36px; }
         }
@@ -271,32 +182,9 @@
         <a class="btn-avis" href="https://search.google.com/local/writereview?placeid=ChIJ1aHHFogFVA0RO_i8vqROBAI" target="_blank">
             Laissez un avis
         </a>
-        <div class="avis-list">
-            <!-- Exemple d'avis client -->
-            <div class="avis-card">
-                <div class="avis-header">
-                    <div class="avis-avatar" style="background:#4caf50;">P</div>
-                    <div class="avis-info">
-                        <span class="avis-nom">Philippe De</span>
-                        <span class="avis-meta">20 avis · 23 photos</span>
-                        <span class="avis-stars">★★★★★</span>
-                        <span class="avis-meta">il y a 2 ans · Visité en mars 2023</span>
-                    </div>
-                </div>
-                <div class="avis-texte">
-                    Étant invité à une St Patrick (et que la Guinness on connaît),<br>
-                    J’ai proposé une dégustation de bière locale (6 km).<br>
-                    Quelle belle surprise !<br>
-                    Toute la gamme nous a étonné par la maîtrise des levures et de ses assemblages donnant des amertumes maîtrisées et goûteuses.<br>
-                    De la bière d’Épicurien pour les épicuriens.
-                </div>
-                <div class="avis-photos">
-                    <img src="https://pplx-res.cloudinary.com/image/private/user_uploads/40364014/d7bff215-87b6-4c95-8d2e-4f0f08a03c26/image.jpg" alt="Dégustation de bières">
-                    <img src="https://pplx-res.cloudinary.com/image/private/user_uploads/40364014/d7bff215-87b6-4c95-8d2e-4f0f08a03c26/image.jpg" alt="Bouteilles de bières">
-                </div>
-            </div>
-            <!-- Ajoutez ici d'autres avis clients si besoin -->
-        </div>
+        <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+        <div class="elfsight-app-7e79bb42-20c6-4d3b-a261-4e1c4ee854e3" data-elfsight-app-lazy></div>
         <div class="commentaire">
             Vos avis nous font vivre !<br>
             N'hésitez pas à nous en faire part !<br>
