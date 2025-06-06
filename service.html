@@ -312,13 +312,207 @@
                 <em>Cette section sera bientôt complétée avec la liste des fûts disponibles et leurs caractéristiques.</em>
             </div>
             <div class="calendar-section">
-                <h4>Calendrier des disponibilités (jusqu'à juillet 2026)</h4>
-                <div id="Booking_Calendars_Container"></div>
-                <div style="margin-top:1rem; color:#8b4513; font-size:1rem;">
-                    <span style="font-weight:bold;">Légende :</span>
-                    <span style="margin-left:1em; background:#f4a261; color:#fff; border-radius:6px; padding:2px 8px;">Réservé</span>
-                    <span style="margin-left:1em;">Libre</span>
-                </div>
+    <h4>Calendrier des disponibilités (jusqu'à juillet 2026)</h4>
+    <div id="calendar-nav">
+        <button id="prev-month" aria-label="Mois précédent">&lt;</button>
+        <span id="month-label"></span>
+        <button id="next-month" aria-label="Mois suivant">&gt;</button>
+    </div>
+    <div id="calendar-container"></div>
+    <div style="margin-top:1rem; color:#8b4513; font-size:1rem;">
+        <span style="font-weight:bold;">Légende :</span>
+        <span style="margin-left:1em; background:#f4a261; color:#fff; border-radius:6px; padding:2px 8px;">Réservé</span>
+        <span style="margin-left:1em;">Libre</span>
+    </div>
+</div>
+
+<style>
+#calendar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.2rem;
+}
+#calendar-nav button {
+    background: #f4a261;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#calendar-nav button:hover {
+    background: #e76f51;
+}
+#month-label {
+    font-size: 1.2rem;
+    color: #8b4513;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.calendar-month {
+    max-width: 500px;
+    margin: 0 auto;
+}
+.weekdays, .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+.weekday {
+    color: #8b4513;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 0 4px 0;
+    letter-spacing: 1px;
+    background: #f8f7f4;
+    border-radius: 4px;
+    font-size: 1.05rem;
+}
+.day {
+    text-align: center;
+    padding: 10px 0;
+    margin: 2px;
+    background: #fff;
+    border-radius: 6px;
+    font-size: 1.08rem;
+    cursor: default;
+    border: 1px solid transparent;
+    transition: background 0.2s, color 0.2s;
+    position: relative;
+}
+.day.empty {
+    background: transparent;
+    cursor: default;
+    border: none;
+}
+.day.reserved {
+    background: #f4a261;
+    color: #fff;
+    font-weight: bold;
+    border: 1.5px solid #e76f51;
+}
+.day.reserved::after {
+    content: "📦";
+    position: absolute;
+    right: 8px;
+    top: 7px;
+    font-size: 1rem;
+}
+@media (max-width: 600px) {
+    .calendar-month { max-width: 100%; }
+    .weekdays, .days { font-size: 0.95rem; }
+}
+</style>
+
+<script>
+const months = [
+    'Janvier', 'Février', 'Mars', 'Avril',
+    'Mai', 'Juin', 'Juillet', 'Août',
+    'Septembre', 'Octobre', 'Novembre', 'Décembre'
+];
+const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+const startMonth = new Date().getMonth();
+const startYear = new Date().getFullYear();
+const endMonth = 6; // Juillet (0-based)
+const endYear = 2026;
+
+let currentMonth = startMonth;
+let currentYear = startYear;
+
+// Réservations à afficher
+const reservations = [
+    { year: 2025, month: 6, day: 12, title: "Réservé : 2 fûts, 1 tireuse" } // Juillet = 6 (0-based)
+];
+
+function isReserved(year, month, day) {
+    return reservations.find(
+        r => r.year === year && r.month === month && r.day === day
+    );
+}
+
+function getMonthRange() {
+    let monthsList = [];
+    for(let y = startYear; y <= endYear; y++) {
+        let mStart = (y === startYear) ? startMonth : 0;
+        let mEnd = (y === endYear) ? endMonth : 11;
+        for(let m = mStart; m <= mEnd; m++) {
+            monthsList.push({year: y, month: m});
+        }
+    }
+    return monthsList;
+}
+const monthsRange = getMonthRange();
+
+function renderCalendar(year, month) {
+    const cal = [];
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    let startDay = firstDay.getDay(); // 0=dimanche
+    startDay = (startDay === 0) ? 6 : startDay - 1; // 0=lundi
+
+    // Header
+    let html = `<div class="calendar-month">`;
+    html += `<div class="weekdays">${days.map(d => `<div class="weekday">${d}</div>`).join('')}</div><div class="days">`;
+
+    // Empty days
+    for(let i = 0; i < startDay; i++) {
+        html += `<div class="day empty"></div>`;
+    }
+    // Days
+    for(let d = 1; d <= lastDay.getDate(); d++) {
+        let reserved = isReserved(year, month, d);
+        if(reserved) {
+            html += `<div class="day reserved" title="${reserved.title}">${d}</div>`;
+        } else {
+            html += `<div class="day">${d}</div>`;
+        }
+    }
+    // Empty days at end
+    let totalCells = startDay + lastDay.getDate();
+    for(let i = totalCells; i < 42; i++) {
+        html += `<div class="day empty"></div>`;
+    }
+    html += `</div></div>`;
+    return html;
+}
+
+function updateCalendar() {
+    document.getElementById('month-label').textContent = `${months[currentMonth]} ${currentYear}`;
+    document.getElementById('calendar-container').innerHTML = renderCalendar(currentYear, currentMonth);
+    // Disable prev/next if at min/max
+    const min = monthsRange[0];
+    const max = monthsRange[monthsRange.length - 1];
+    document.getElementById('prev-month').disabled = (currentYear === min.year && currentMonth === min.month);
+    document.getElementById('next-month').disabled = (currentYear === max.year && currentMonth === max.month);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    updateCalendar();
+    document.getElementById('prev-month').onclick = function() {
+        if(currentMonth === 0) {
+            currentMonth = 11;
+            currentYear--;
+        } else {
+            currentMonth--;
+        }
+        updateCalendar();
+    };
+    document.getElementById('next-month').onclick = function() {
+        if(currentMonth === 11) {
+            currentMonth = 0;
+            currentYear++;
+        } else {
+            currentMonth++;
+        }
+        updateCalendar();
+    };
+});
+</script>
             </div>
             <div class="contact-invite">
                 Pour toute demande de devis ou commande, contactez-nous prochainement par email (à venir) ou dès maintenant via <a href="https://www.instagram.com/ericauzemery/" target="_blank" style="color:#f4a261; font-weight:600;">Instagram</a>.
