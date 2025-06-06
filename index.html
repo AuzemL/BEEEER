@@ -117,28 +117,40 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(44, 24, 16, 0.7), rgba(139, 69, 19, 0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23d4a574" width="1200" height="600"/><circle fill="%23c49460" cx="200" cy="150" r="50"/><circle fill="%23b8854d" cx="800" cy="400" r="80"/><rect fill="%23a67440" x="400" y="200" width="400" height="200" rx="20"/></svg>');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
+    position: relative;
+    background: linear-gradient(rgba(44, 24, 16, 0.7), rgba(139, 69, 19, 0.7));
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-        }
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 480px;
+    height: 480px;
+    max-width: 80vw;
+    max-height: 80vw;
+    transform: translate(-50%, -50%);
+    background: url('Logo.jpg') no-repeat center center;
+    background-size: contain;
+    opacity: 0.13; /* Ajuste l'opacité ici */
+    filter: blur(0.5px) drop-shadow(0 2px 8px #2c1810aa);
+    z-index: 1;
+    pointer-events: none;
+}
 
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
 
         .cta-button {
             display: inline-block;
