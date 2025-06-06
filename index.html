@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auzem'Beers & Sons - Brasserie Locale des Landes</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         * {
             margin: 0;
@@ -30,7 +31,6 @@
             min-height: 70px;
             background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%);
             color: white;
-            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
@@ -42,12 +42,40 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 70px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .logo {
+        .logo-block {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            margin-right: 16px;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(44,24,16,0.15);
+            transition: transform 0.2s;
+            background: #fff;
+        }
+        .logo-img:hover {
+            transform: scale(1.05) rotate(-3deg);
+            box-shadow: 0 4px 16px rgba(244,162,97,0.30);
+        }
+
+        .logo-text {
             font-size: 1.8rem;
             font-weight: bold;
             color: #f4a261;
+            line-height: 1;
+            white-space: nowrap;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(44,24,16,0.09);
         }
 
         .nav-links {
@@ -60,11 +88,31 @@
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.3s, border-bottom 0.3s;
+            font-size: 1rem;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: #f4a261;
+            border-bottom: 2px solid #f4a261;
+        }
+
+        /* Hamburger for mobile */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: 16px;
+        }
+        .bar {
+            width: 25px;
+            height: 3px;
+            background: #f4a261;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.3s;
         }
 
         /* Hero Section */
@@ -107,7 +155,8 @@
 
         .cta-button:hover {
             background: #e76f51;
-            transform: translateY(-3px);
+            color: #fff;
+            transform: translateY(-3px) scale(1.03);
             box-shadow: 0 6px 20px rgba(244, 162, 97, 0.4);
         }
 
@@ -153,13 +202,14 @@
             padding: 2rem;
             text-align: center;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s, box-shadow 0.3s;
             border: 3px solid transparent;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
             border-color: #f4a261;
+            box-shadow: 0 8px 30px rgba(244,162,97,0.09);
         }
 
         .product-card.in-stock {
@@ -271,11 +321,12 @@
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(244,162,97,0.09);
         }
 
         .service-icon {
@@ -334,22 +385,31 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 900px) {
+            .about-content, .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-
+            .hamburger {
+                display: flex;
+            }
             .hero-content h1 {
                 font-size: 2.5rem;
             }
-
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
             .about-images {
                 grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 500px) {
+            .logo-text {
+                font-size: 1.1rem;
+            }
+            .logo-img {
+                height: 36px;
             }
         }
 
@@ -378,14 +438,22 @@
 <body>
     <!-- Header -->
     <header>
-        <nav class="container">
-            <img src="Logo.jpg" alt="Logo" style="height:48px; width:auto; margin-right:16px; display:block;"> Auzem'Beers & Sons</div>
-            <ul class="nav-links">
-                <li><a href="#accueil">Accueil</a></li>
+        <nav>
+            <div class="logo-block">
+                <img src="Logo.jpg" alt="Logo de la brasserie" class="logo-img">
+                <span class="logo-text">Auzem'Beers & Sons</span>
+            </div>
+            <div class="hamburger" id="hamburger" aria-label="Ouvrir le menu" tabindex="0">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Accueil</a></li>
                 <li><a href="produits.html">Nos Produits</a></li>
-                <li><a href="#apropos">À Propos</a></li>
+                <li><a href="index.html#apropos">À Propos</a></li>
                 <li><a href="service.html">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
                 <li><a href="Avis.html">Avis Clients</a></li>
             </ul>
         </nav>
@@ -406,8 +474,8 @@
             <h2 class="section-title">Notre Gamme de Produits</h2>
             <div class="product-categories">
                 <div style="text-align:center; margin-top:2rem;">
-    <a href="produits.html" class="cta-button">Voir toute la carte des bières</a>
-</div>
+                    <a href="produits.html" class="cta-button">Voir toute la carte des bières</a>
+                </div>
                 <div class="product-card in-stock">
                     <img src="Citrik.jpg" alt="Citri'K IPA" class="product-image">
                     <div class="status-badge in-stock">En Stock</div>
@@ -415,7 +483,6 @@
                     <p>Une IPA rafraîchissante aux agrumes des Landes, brassée avec du houblon local. Notes vives d'orange et de pamplemousse avec une amertume équilibrée.</p>
                     <p><strong>5,5% Vol. - 330ml</strong></p>
                 </div>
-
                 <div class="product-card seasonal">
                     <div style="width: 200px; height: 300px; background: linear-gradient(45deg, #8b4513, #d2691e); border-radius: 10px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; text-align: center;">
                         Bières<br>Saisonnières
@@ -424,7 +491,6 @@
                     <h3>Collection Saisonnière</h3>
                     <p>Découvrez nos créations limitées : Bière de Noël aux épices, Stout Impérial, Bières Trappistes et nos spécialités aux produits locaux (figues, basilic, piment d'Espelette).</p>
                 </div>
-
                 <div class="product-card coming-soon">
                     <div style="width: 200px; height: 300px; background: linear-gradient(45deg, #95a5a6, #bdc3c7); border-radius: 10px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; text-align: center;">
                         Prochains<br>Brassins
@@ -444,11 +510,8 @@
             <div class="about-content">
                 <div class="about-text">
                     <p><strong>Tout a commencé il y a 6 ans</strong> dans l'évier de notre cuisine à Taller, où Éric Auzémery a découvert sa passion pour le brassage artisanal. Ce qui n'était qu'un hobby s'est transformé en une véritable quête d'excellence et d'innovation.</p>
-                    
                     <p>Au fil des années, nous avons développé une gamme exceptionnelle de bières, des <strong>Stouts Impériaux</strong> aux <strong>bières Trappistes</strong>, en passant par nos <strong>IPA</strong> caractéristiques, nos <strong>Pilsners</strong> raffinées, nos <strong>Amber Ales</strong> complexes et nos célèbres <strong>bières de Noël</strong>.</p>
-
                     <p>Notre fierté ? L'utilisation d'ingrédients locaux des Landes qui donnent à nos bières une identité unique :</p>
-
                     <div class="ingredients-list">
                         <span class="ingredient-tag">🌿 Asperges</span>
                         <span class="ingredient-tag">🍃 Basilic</span>
@@ -456,7 +519,6 @@
                         <span class="ingredient-tag">🫐 Figues</span>
                         <span class="ingredient-tag">🌾 Houblon Local</span>
                     </div>
-
                     <p>Chaque brassin raconte l'histoire de notre terroir landais, mêlant tradition brassicole et créativité pour offrir des expériences gustatives authentiques et mémorables.</p>
                 </div>
                 <div class="about-images">
@@ -477,13 +539,11 @@
                     <h3>Location de Fûts</h3>
                     <p>Système de fûts et tireuses à bière pour vos événements, mariages, fêtes et réceptions. Installation et service professionnel inclus pour une expérience parfaite.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon">📋</div>
                     <h3>Commandes Spéciales</h3>
                     <p>Vous souhaitez une bière saisonnière non disponible ? Nous acceptons les commandes spéciales et pouvons brasser selon vos préférences et occasions particulières.</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon">🍻</div>
                     <h3>Dégustations</h3>
@@ -500,7 +560,6 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h3 style="margin-bottom: 2rem; color: #f4a261;">Retrouvez-nous</h3>
-                    
                     <div class="contact-item">
                         <span class="contact-icon">📍</span>
                         <div>
@@ -509,7 +568,6 @@
                             40260 Taller, France
                         </div>
                     </div>
-
                     <div class="contact-item">
                         <span class="contact-icon">📱</span>
                         <div>
@@ -517,7 +575,6 @@
                             <a href="https://www.instagram.com/ericauzemery/" style="color: #f4a261;">@ericauzemery</a>
                         </div>
                     </div>
-
                     <div class="contact-item">
                         <span class="contact-icon">📞</span>
                         <div>
@@ -525,7 +582,6 @@
                             Bientôt disponible
                         </div>
                     </div>
-
                     <div class="contact-item">
                         <span class="contact-icon">✉️</span>
                         <div>
@@ -534,7 +590,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="map-container">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2896.367668879891!2d-1.0873119842354654!3d43.87597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5404ba11e8fa15%3A0xa4e5cf379271e201!2s551%20Rte%20de%20Cap%20de%20Lelane%2C%2040260%20Taller%2C%20France!5e0!3m2!1sen!2ses!4v1635789456123!5m2!1sen!2ses" allowfullscreen="" loading="lazy"></iframe>
                 </div>
@@ -551,13 +606,27 @@
     </footer>
 
     <script>
+        // Hamburger menu for mobile
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        hamburger.addEventListener('keypress', (e) => {
+            if(e.key === "Enter" || e.key === " ") hamburger.click();
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                // Only smooth scroll for in-page anchors
+                const href = this.getAttribute('href');
+                if(href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
