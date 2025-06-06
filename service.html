@@ -191,6 +191,22 @@
             margin-bottom: 1.2rem;
             color: #8b4513;
         }
+        .calendar-section {
+            margin: 2.5rem 0;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+        .calendar-section h4 {
+            color: #8b4513;
+            margin-bottom: 1.3rem;
+            text-align: center;
+        }
+        #calendar-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
         .contact-invite {
             margin: 1.5rem 0 0.5rem 0;
             font-size: 1.1rem;
@@ -234,6 +250,8 @@
             .logo-img { height: 36px; }
         }
     </style>
+    <!-- Booking Calendars CSS (lightweight, open source) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Raf-sns/Booking-Calendars/dist/Booking_Calendars.min.css">
 </head>
 <body>
     <header>
@@ -293,12 +311,23 @@
                 <strong>Détails des fûts utilisés & stocks disponibles :</strong><br>
                 <em>Cette section sera bientôt complétée avec la liste des fûts disponibles et leurs caractéristiques.</em>
             </div>
+            <div class="calendar-section">
+                <h4>Calendrier des disponibilités (jusqu'à juillet 2026)</h4>
+                <div id="Booking_Calendars_Container"></div>
+                <div style="margin-top:1rem; color:#8b4513; font-size:1rem;">
+                    <span style="font-weight:bold;">Légende :</span>
+                    <span style="margin-left:1em; background:#f4a261; color:#fff; border-radius:6px; padding:2px 8px;">Réservé</span>
+                    <span style="margin-left:1em;">Libre</span>
+                </div>
+            </div>
             <div class="contact-invite">
                 Pour toute demande de devis ou commande, contactez-nous prochainement par email (à venir) ou dès maintenant via <a href="https://www.instagram.com/ericauzemery/" target="_blank" style="color:#f4a261; font-weight:600;">Instagram</a>.
             </div>
             <a href="index.html#contact" class="cta-button">Un devis ? Faites une commande</a>
         </div>
     </main>
+    <!-- Booking Calendars JS -->
+    <script src="https://cdn.jsdelivr.net/gh/Raf-sns/Booking-Calendars/dist/Booking_Calendars.min.js"></script>
     <script>
         // Hamburger menu for mobile
         const hamburger = document.getElementById('hamburger');
@@ -309,6 +338,53 @@
         hamburger.addEventListener('keypress', (e) => {
             if(e.key === "Enter" || e.key === " ") hamburger.click();
         });
+
+        // Booking Calendars initialization
+        var Element = document.getElementById('Booking_Calendars_Container');
+        var months = [
+            'Janvier', 'Février', 'Mars', 'Avril',
+            'Mai', 'Juin', 'Juillet', 'Août',
+            'Septembre', 'Octobre', 'Novembre', 'Décembre'
+        ];
+        var days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+
+        // Calculate months range: current month to July 2026 (included)
+        var today = new Date();
+        var startYear = today.getFullYear();
+        var startMonth = today.getMonth();
+        var endYear = 2026;
+        var endMonth = 6; // Juillet (0-based)
+
+        var months_range = [];
+        for (var y = startYear; y <= endYear; y++) {
+            var mStart = (y === startYear) ? startMonth : 0;
+            var mEnd = (y === endYear) ? endMonth : 11;
+            for (var m = mStart; m <= mEnd; m++) {
+                months_range.push({year: y, month: m});
+            }
+        }
+
+        // For Booking_Calendars, we use only the first and last month index for months_range
+        var firstMonth = months_range[0];
+        var lastMonth = months_range[months_range.length - 1];
+        var monthsRangeOption = [firstMonth.month, lastMonth.month];
+
+        // Only one reservation for now (12/07/2025)
+        var Options = {
+            names_months: months,
+            names_days: days,
+            months_range: false, // Show all months of the year
+            year: false, // Show multi-years
+            booked_dates : [
+                {
+                    date_start : '2025-07-12',
+                    date_end : '2025-07-12',
+                    title: 'Réservé : 2 fûts, 1 tireuse'
+                }
+            ]
+        };
+
+        Booking_calendars(Element, Options);
     </script>
 </body>
 </html>
