@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nos Bières - Auzem'Beers & Sons</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -42,6 +43,12 @@
             display: block;
             border-radius: 8px;
             background: #fff;
+            box-shadow: 0 2px 8px rgba(44,24,16,0.15);
+            transition: transform 0.2s;
+        }
+        .logo-img:hover {
+            transform: scale(1.05) rotate(-3deg);
+            box-shadow: 0 4px 16px rgba(244,162,97,0.30);
         }
         .logo-text {
             font-size: 1.8rem;
@@ -49,6 +56,8 @@
             color: #f4a261;
             line-height: 1;
             white-space: nowrap;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(44,24,16,0.09);
         }
         .nav-links {
             display: flex;
@@ -59,10 +68,28 @@
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.3s, border-bottom 0.3s;
+            font-size: 1rem;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
         }
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: #f4a261;
+            border-bottom: 2px solid #f4a261;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: 16px;
+        }
+        .bar {
+            width: 25px;
+            height: 3px;
+            background: #f4a261;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.3s;
         }
         .products-page {
             max-width: 1200px;
@@ -119,11 +146,12 @@
             border-radius: 15px;
             padding: 1.5rem;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
         }
         .product-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(244,162,97,0.09);
         }
         .product-badge {
             position: absolute;
@@ -146,7 +174,12 @@
         }
         @media (max-width: 768px) {
             .nav-links { display: none; }
+            .hamburger { display: flex; }
             .products-page { margin-top: 80px; }
+        }
+        @media (max-width: 500px) {
+            .logo-text { font-size: 1.1rem; }
+            .logo-img { height: 36px; }
         }
     </style>
 </head>
@@ -157,12 +190,18 @@
                 <img src="Logo.jpg" alt="Logo de la brasserie" class="logo-img">
                 <span class="logo-text">Auzem'Beers & Sons</span>
             </div>
-            <ul class="nav-links">
+            <div class="hamburger" id="hamburger" aria-label="Ouvrir le menu" tabindex="0">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Accueil</a></li>
-                <li><a href="produits.html">Nos Produits</a></li>
+                <li><a href="produits.html" class="active">Nos Produits</a></li>
                 <li><a href="index.html#apropos">À Propos</a></li>
-                <li><a href="index.html#services">Services</a></li>
+                <li><a href="service.html">Services</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="Avis.html">Avis Clients</a></li>
             </ul>
         </nav>
     </header>
@@ -191,7 +230,6 @@
                 <p><strong>Bière Trappiste - 7.4%</strong></p>
                 <p>Caractère monastique, notes de fruits secs et épices douces.</p>
             </div>
-            <!-- Spicy Machine (En Stock) -->
             <div class="product-item" data-status="in-stock">
                 <div class="product-badge">En Stock</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #2c1810, #8b4513);"></div>
@@ -199,7 +237,6 @@
                 <p><strong>Stout au piment d'Espelette - 9.9%</strong></p>
                 <p>Stout crémeux avec chaleur subtile du piment local.</p>
             </div>
-            <!-- la ch'ti Landais (Saisonnier) -->
             <div class="product-item" data-status="coming-soon">
                 <div class="product-badge">Bientôt</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #e67e22, #f4a261);"></div>
@@ -207,7 +244,6 @@
                 <p><strong>Bière Saisonnière</strong></p>
                 <p>Bière de saison aux saveurs du terroir landais.</p>
             </div>
-            <!-- Meli-Basil (En Stock) -->
             <div class="product-item" data-status="in-stock">
                 <div class="product-badge">En Stock</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #b7e4c7, #6ab04c);"></div>
@@ -215,7 +251,6 @@
                 <p><strong>Bière Blanche au basilic et mélisse - 6.2%</strong></p>
                 <p>Blanche fraîche, notes herbacées et citronnées.</p>
             </div>
-            <!-- Lou Bruc (Épuisé) -->
             <div class="product-item" data-status="out-of-stock">
                 <div class="product-badge">Épuisé</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #a3cef1, #4361ee);"></div>
@@ -223,7 +258,6 @@
                 <p><strong>Bière de bruyère des Landes - 5.5%</strong></p>
                 <p>Saveurs florales et légères, typiques de la bruyère.</p>
             </div>
-            <!-- Karakao (Bientôt) -->
             <div class="product-item" data-status="coming-soon">
                 <div class="product-badge">Bientôt</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #6d4c41, #ffb300);"></div>
@@ -231,7 +265,6 @@
                 <p><strong>Imperial Stout cacao, caramel beurre salé</strong></p>
                 <p>Stout intense, notes chocolat et caramel.</p>
             </div>
-            <!-- Figs beer (En Stock) -->
             <div class="product-item" data-status="in-stock">
                 <div class="product-badge">En Stock</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #a98467, #e5989b);"></div>
@@ -239,7 +272,6 @@
                 <p><strong>Bière aux figues locales</strong></p>
                 <p>Fruitée, douce, accentuée par des figues des Landes.</p>
             </div>
-            <!-- Harvest Sauvage (Épuisé) -->
             <div class="product-item" data-status="out-of-stock">
                 <div class="product-badge">Épuisé</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #bc6c25, #99582a);"></div>
@@ -247,7 +279,6 @@
                 <p><strong>Bière ambrée, houblon maison - 7.6%</strong></p>
                 <p>Ambrée puissante, houblonnée à la brasserie.</p>
             </div>
-            <!-- Amarillo'k (Bientôt) -->
             <div class="product-item" data-status="coming-soon">
                 <div class="product-badge">Bientôt</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #ffe066, #f4a261);"></div>
@@ -255,7 +286,6 @@
                 <p><strong>Bière blonde, houblon Amarillo, APA - 7%</strong></p>
                 <p>Blonde américaine, houblon Amarillo, arômes tropicaux.</p>
             </div>
-            <!-- Aspargus (En Stock) -->
             <div class="product-item" data-status="in-stock">
                 <div class="product-badge">En Stock</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #c0e218, #e1eec3);"></div>
@@ -263,7 +293,6 @@
                 <p><strong>Bière aux asperges blanches des Landes - 7.9%</strong></p>
                 <p>Originale, notes végétales et florales.</p>
             </div>
-            <!-- Whiti'k (En Stock) -->
             <div class="product-item" data-status="in-stock">
                 <div class="product-badge">En Stock</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #e0e1dd, #b5c99a);"></div>
@@ -271,7 +300,6 @@
                 <p><strong>Bière blanche - 6.9%</strong></p>
                 <p>Blanche légère, rafraîchissante, parfaite été comme hiver.</p>
             </div>
-            <!-- Lou Pan (Épuisé) -->
             <div class="product-item" data-status="out-of-stock">
                 <div class="product-badge">Épuisé</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #f5ebe0, #d6ccc2);"></div>
@@ -279,7 +307,6 @@
                 <p><strong>Bière aux résidus de pain - 5.5%</strong></p>
                 <p>Anti-gaspi, saveur céréalière et toastée.</p>
             </div>
-            <!-- Framboisi'k (Bientôt) -->
             <div class="product-item" data-status="coming-soon">
                 <div class="product-badge">Bientôt</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #f67280, #f8b195);"></div>
@@ -287,7 +314,6 @@
                 <p><strong>Bière blanche aux framboises - 4.7%</strong></p>
                 <p>Blanche acidulée, parfum intense de framboise.</p>
             </div>
-            <!-- Kiwi'k (En Stock) -->
             <div class="product-item" data-status="in-stock">
                 <div class="product-badge">En Stock</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #a8e063, #56ab2f);"></div>
@@ -295,7 +321,6 @@
                 <p><strong>Bière blanche, kiwis jaunes des Landes - 6.1%</strong></p>
                 <p>Fruité, acidulé, très rafraîchissant.</p>
             </div>
-            <!-- Porteri'k (Épuisé) -->
             <div class="product-item" data-status="out-of-stock">
                 <div class="product-badge">Épuisé</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #3e2723, #8d5524);"></div>
@@ -303,7 +328,6 @@
                 <p><strong>Bière Porter classique - 5.5%</strong></p>
                 <p>Porter anglaise, notes de café et chocolat noir.</p>
             </div>
-            <!-- Tripti'k (Bientôt) -->
             <div class="product-item" data-status="coming-soon">
                 <div class="product-badge">Bientôt</div>
                 <div class="product-image" style="background: linear-gradient(45deg, #fcbf49, #f77f00);"></div>
@@ -314,6 +338,23 @@
         </div>
     </main>
     <script>
+        // Hamburger menu for mobile
+        const hamburger = document.createElement('div');
+        hamburger.className = 'hamburger';
+        hamburger.id = 'hamburger';
+        hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+        hamburger.setAttribute('tabindex', '0');
+        hamburger.innerHTML = '<div class="bar"></div><div class="bar"></div><div class="bar"></div>';
+        document.querySelector('nav').appendChild(hamburger);
+
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        hamburger.addEventListener('keypress', (e) => {
+            if(e.key === "Enter" || e.key === " ") hamburger.click();
+        });
+
         // Filtrage des produits
         const filterBtns = document.querySelectorAll('.filter-btn');
         const productItems = document.querySelectorAll('.product-item');
