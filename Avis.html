@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avis Clients - Auzem'Beers & Sons</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -12,15 +13,14 @@
             color: #333;
         }
         header {
+            height: 70px;
+            min-height: 70px;
             background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%);
             color: white;
-            padding: 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            height: 70px;
-            min-height: 70px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         nav {
@@ -41,6 +41,14 @@
             width: auto;
             margin-right: 16px;
             display: block;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(44,24,16,0.15);
+            transition: transform 0.2s;
+        }
+        .logo-img:hover {
+            transform: scale(1.05) rotate(-3deg);
+            box-shadow: 0 4px 16px rgba(244,162,97,0.30);
         }
         .logo-text {
             font-size: 1.8rem;
@@ -48,6 +56,8 @@
             color: #f4a261;
             line-height: 1;
             white-space: nowrap;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(44,24,16,0.09);
         }
         .nav-links {
             display: flex;
@@ -58,10 +68,28 @@
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.3s, border-bottom 0.3s;
+            font-size: 1rem;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
         }
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: #f4a261;
+            border-bottom: 2px solid #f4a261;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: 16px;
+        }
+        .bar {
+            width: 25px;
+            height: 3px;
+            background: #f4a261;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.3s;
         }
         .main-content {
             max-width: 900px;
@@ -101,6 +129,11 @@
             gap: 1.2rem;
             max-width: 700px;
             margin: 0 auto;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .avis-card:hover {
+            box-shadow: 0 8px 30px rgba(244,162,97,0.12);
+            transform: scale(1.01);
         }
         .avis-header {
             display: flex;
@@ -111,7 +144,7 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: #e0e0e0;
+            background: #4caf50;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -206,6 +239,8 @@
                 width: 70px;
                 height: 50px;
             }
+            .logo-text { font-size: 1.1rem; }
+            .logo-img { height: 36px; }
         }
     </style>
 </head>
@@ -213,15 +248,20 @@
     <header>
         <nav>
             <div class="logo-block">
-                <img src="Logo.jpg" alt="logo" class="logo-img">
+                <img src="Logo.jpg" alt="Logo de la brasserie" class="logo-img">
                 <span class="logo-text">Auzem'Beers & Sons</span>
             </div>
-            <ul class="nav-links">
+            <div class="hamburger" id="hamburger" aria-label="Ouvrir le menu" tabindex="0">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html#accueil">Accueil</a></li>
                 <li><a href="produits.html">Nos Produits</a></li>
                 <li><a href="index.html#apropos">À Propos</a></li>
                 <li><a href="service.html">Services</a></li>
-                <li><a href="Avis.html">Avis Clients</a></li>
+                <li><a href="Avis.html" class="active">Avis Clients</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
@@ -232,7 +272,7 @@
             Laissez un avis
         </a>
         <div class="avis-list">
-            <!-- Dernier avis client -->
+            <!-- Exemple d'avis client -->
             <div class="avis-card">
                 <div class="avis-header">
                     <div class="avis-avatar" style="background:#4caf50;">P</div>
@@ -250,6 +290,11 @@
                     Toute la gamme nous a étonné par la maîtrise des levures et de ses assemblages donnant des amertumes maîtrisées et goûteuses.<br>
                     De la bière d’Épicurien pour les épicuriens.
                 </div>
+                <div class="avis-photos">
+                    <img src="https://pplx-res.cloudinary.com/image/private/user_uploads/40364014/d7bff215-87b6-4c95-8d2e-4f0f08a03c26/image.jpg" alt="Dégustation de bières">
+                    <img src="https://pplx-res.cloudinary.com/image/private/user_uploads/40364014/d7bff215-87b6-4c95-8d2e-4f0f08a03c26/image.jpg" alt="Bouteilles de bières">
+                </div>
+            </div>
             <!-- Ajoutez ici d'autres avis clients si besoin -->
         </div>
         <div class="commentaire">
@@ -258,5 +303,16 @@
             <span style="font-style:italic;">Brassicalement vôtre,<br>Eric, Brasseur passionné</span>
         </div>
     </main>
+    <script>
+        // Hamburger menu for mobile
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        hamburger.addEventListener('keypress', (e) => {
+            if(e.key === "Enter" || e.key === " ") hamburger.click();
+        });
+    </script>
 </body>
 </html>
