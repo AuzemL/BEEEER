@@ -5,33 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avis Clients - Auzem'Beers & Sons</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="light-theme">
+<body>
     <header>
-        <nav class="container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-beer"></i> BEEEER
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="produits.html">Produits</a></li>
-                <li><a href="commandes.html">Commandes</a></li>
-                <li><a href="service.html">Service</a></li>
-                <li><a href="FAQ.html">FAQ</a></li>
-                <li><a href="Avis.html" class="active">Avis</a></li>
-                <li><a href="compte.html"><i class="fas fa-user-circle"></i> Compte</a></li>
-            </ul>
-            <div class="nav-controls">
-                <button id="theme-toggle" class="btn-icon" title="Changer de thème">
-                    <i class="fas fa-moon"></i>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo-block">
+                    <img src="Logo.jpg" alt="Logo" class="logo-img">
+                    <span class="logo-text">Auzem'Beers & Sons</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits.html">Nos Produits</a></li>
+                    <li><a href="commandes.html">Commandez</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <li><a href="Avis.html" class="active">Avis</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+                    <a href="compte.html" class="btn-account"><i class="fas fa-user"></i> Compte</a>
+                </div>
+                <button class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </button>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section class="page-hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Bar.jpg');">
+        <section class="page-hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Bar.jpg'); height: 300px; display: flex; align-items: center; justify-content: center; color: white;">
             <div class="container text-center">
                 <h1>Avis Clients</h1>
                 <p>Ce que vous pensez de nos créations brassicoles</p>
@@ -40,70 +46,70 @@
 
         <section class="reviews-section container py-5">
             <div class="section-header text-center mb-5">
-                <h2>Votre satisfaction, notre priorité</h2>
-                <div class="rating-summary">
-                    <span class="score">4.8/5</span>
-                    <div class="stars">
+                <h2 class="section-title">Votre satisfaction, notre priorité</h2>
+                <div class="rating-summary" style="margin-top: 1rem;">
+                    <span class="score" style="font-size: 2rem; font-weight: 700; color: var(--primary);">4.8/5</span>
+                    <div class="stars" style="color: #f1c40f; font-size: 1.2rem; margin: 0.5rem 0;">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <span class="total-reviews">(128 avis vérifiés)</span>
+                    <span class="total-reviews" style="opacity: 0.7;">(128 avis vérifiés)</span>
                 </div>
             </div>
 
-            <div class="reviews-grid">
+            <div class="card-grid">
                 <article class="review-card card">
-                    <div class="review-header">
+                    <div class="review-header" style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                         <div class="user-info">
                             <strong>Jean D.</strong>
-                            <span class="badge badge-success"><i class="fas fa-check-circle"></i> Achat vérifié</span>
+                            <span style="display: block; font-size: 0.8rem; color: #27ae60;"><i class="fas fa-check-circle"></i> Achat vérifié</span>
                         </div>
-                        <div class="stars">
+                        <div class="stars" style="color: #f1c40f;">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                     <p class="review-text">"La Citrik est tout simplement exceptionnelle ! Un équilibre parfait entre l'amertume du houblon et la fraîcheur des agrumes."</p>
-                    <span class="review-date">Il y a 2 jours</span>
+                    <span class="review-date" style="display: block; margin-top: 1rem; font-size: 0.85rem; opacity: 0.6;">Il y a 2 jours</span>
                 </article>
 
                 <article class="review-card card">
-                    <div class="review-header">
+                    <div class="review-header" style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                         <div class="user-info">
                             <strong>Marie L.</strong>
-                            <span class="badge badge-success"><i class="fas fa-check-circle"></i> Achat vérifié</span>
+                            <span style="display: block; font-size: 0.8rem; color: #27ae60;"><i class="fas fa-check-circle"></i> Achat vérifié</span>
                         </div>
-                        <div class="stars">
+                        <div class="stars" style="color: #f1c40f;">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
                         </div>
                     </div>
                     <p class="review-text">"La Brassin est une très belle découverte. Très rafraîchissante pour les soirées d'été."</p>
-                    <span class="review-date">Il y a 1 semaine</span>
+                    <span class="review-date" style="display: block; margin-top: 1rem; font-size: 0.85rem; opacity: 0.6;">Il y a 1 semaine</span>
                 </article>
 
                 <article class="review-card card">
-                    <div class="review-header">
+                    <div class="review-header" style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                         <div class="user-info">
                             <strong>Thomas R.</strong>
-                            <span class="badge badge-success"><i class="fas fa-check-circle"></i> Achat vérifié</span>
+                            <span style="display: block; font-size: 0.8rem; color: #27ae60;"><i class="fas fa-check-circle"></i> Achat vérifié</span>
                         </div>
-                        <div class="stars">
+                        <div class="stars" style="color: #f1c40f;">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                     <p class="review-text">"Service de livraison impeccable. Les bières sont arrivées bien emballées et prêtes à être dégustées."</p>
-                    <span class="review-date">Il y a 2 semaines</span>
+                    <span class="review-date" style="display: block; margin-top: 1rem; font-size: 0.85rem; opacity: 0.6;">Il y a 2 semaines</span>
                 </article>
             </div>
 
-            <div class="add-review card mt-5">
+            <div class="add-review card" style="margin-top: 4rem;">
                 <h3>Laissez-nous votre avis</h3>
-                <form id="review-form">
+                <form id="review-form" style="margin-top: 1.5rem;">
                     <div class="form-group">
-                        <label>Note</label>
-                        <div class="star-rating">
+                        <label>Votre Note</label>
+                        <div class="star-rating" style="font-size: 1.5rem; color: #ddd; cursor: pointer;">
                             <i class="far fa-star" data-rating="1"></i>
                             <i class="far fa-star" data-rating="2"></i>
                             <i class="far fa-star" data-rating="3"></i>
@@ -115,82 +121,88 @@
                         <label for="comment">Commentaire</label>
                         <textarea id="comment" rows="4" placeholder="Partagez votre expérience..."></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Publier l'avis</button>
+                    <button type="button" class="cta-button" style="border: none; cursor: pointer;">Publier l'avis</button>
                 </form>
             </div>
         </section>
     </main>
 
-    <footer class="py-5">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <a href="#" class="logo"><i class="fas fa-beer"></i> BEEEER</a>
-                <p>Brasserie artisanale landaise. Passion, qualité et tradition depuis 2024.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <div class="logo-text" style="color: var(--primary-light);">Auzem'Beers & Sons</div>
+                    <p>Brasserie artisanale landaise. 551 Route de Cap de Lelane, 40260 Taller.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="produits.html">Produits</a></li>
+                        <li><a href="FAQ.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Légal</h4>
+                    <ul>
+                        <li><a href="#">Mentions Légales</a></li>
+                        <li><a href="#">CGV</a></li>
+                    </ul>
+                </div>
+                <div class="newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Recevez nos actualités.</p>
+                    <input type="email" placeholder="votre@email.com" style="margin-bottom: 0.5rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; width: 100%; padding: 10px; border-radius: 8px;">
+                    <button style="width: 100%; background: var(--primary); border: none; color: white; padding: 10px; border-radius: 8px; font-weight: 700; cursor: pointer;">S'inscrire</button>
                 </div>
             </div>
-            <div class="footer-links">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="produits.html">Produits</a></li>
-                    <li><a href="compte.html">Mon Compte</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>© 2026 Auzem'Beers & Sons. Consommez avec modération.</p>
             </div>
-            <div class="footer-newsletter">
-                <h4>Newsletter</h4>
-                <p>Recevez nos actualités et offres exclusives.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Votre email">
-                    <button type="submit" class="btn btn-primary">S'inscrire</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom container text-center">
-            <p>&copy; 2024 Auzem'Beers & Sons. Tous droits réservés.</p>
         </div>
     </footer>
 
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        
-        const savedTheme = localStorage.getItem('theme') || 'light-theme';
-        body.className = savedTheme;
-        updateIcon(savedTheme);
-
-        themeToggle?.addEventListener('click', () => {
-            const currentTheme = body.className;
-            const newTheme = currentTheme === 'light-theme' ? 'dark-theme' : 'light-theme';
-            body.className = newTheme;
-            localStorage.setItem('theme', newTheme);
-            updateIcon(newTheme);
-        });
-
-        function updateIcon(theme) {
-            const icon = themeToggle?.querySelector('i');
-            if (icon) {
-                icon.className = theme === 'light-theme' ? 'fas fa-moon' : 'fas fa-sun';
+        function toggleTheme() {
+            const body = document.body;
+            const theme = body.getAttribute('data-theme');
+            const icon = document.querySelector('.theme-toggle i');
+            if (theme === 'dark') {
+                body.removeAttribute('data-theme');
+                if(icon) icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                if(icon) icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
             }
         }
 
-        // Star rating logic
-        const stars = document.querySelectorAll('.star-rating i');
-        stars.forEach(star => {
-            star.addEventListener('click', function() {
-                const rating = this.getAttribute('data-rating');
-                stars.forEach(s => {
-                    const sRating = s.getAttribute('data-rating');
-                    if (sRating <= rating) {
-                        s.classList.remove('far');
-                        s.classList.add('fas');
-                    } else {
-                        s.classList.remove('fas');
-                        s.classList.add('far');
-                    }
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                const icon = document.querySelector('.theme-toggle i');
+                if(icon) icon.className = 'fas fa-sun';
+            }
+
+            // Star rating logic
+            const stars = document.querySelectorAll('.star-rating i');
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = this.getAttribute('data-rating');
+                    stars.forEach(s => {
+                        const sRating = s.getAttribute('data-rating');
+                        if (sRating <= rating) {
+                            s.classList.remove('far');
+                            s.classList.add('fas');
+                            s.style.color = '#f1c40f';
+                        } else {
+                            s.classList.remove('fas');
+                            s.classList.add('far');
+                            s.style.color = '#ddd';
+                        }
+                    });
                 });
             });
         });
