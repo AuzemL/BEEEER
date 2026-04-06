@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Découvrez notre gamme de bières artisanales brassées au cœur des Landes.">
-    <title>Nos Bières - Auzem'Beers & Sons</title>
+    <meta name="description" content="Découvrez notre gamme de bières artisanales brassées au cœur des Landes. IPA, Stout, Trappiste et bières de saison.">
     
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Nos Bières - Auzem'Beers & Sons">
+    <meta property="og:description" content="Explorez nos créations artisanales aux saveurs du terroir landais.">
+    <meta property="og:image" content="https://auzeml.github.io/BEEEER/Logo.jpg">
+    <meta property="og:url" content="https://auzeml.github.io/BEEEER/produits.html">
+    <meta property="og:type" content="website">
+
+    <title>Nos Bières - Auzem'Beers & Sons</title>
+
+    <!-- Preconnect for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -14,53 +23,76 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- Age Verification Modal -->
+    <div id="age-verification" class="age-modal" role="dialog" aria-modal="true" aria-labelledby="age-title">
+        <div class="age-modal-inner">
+            <svg class="age-logo" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+                <circle cx="30" cy="30" r="28" stroke="#d4a044" stroke-width="2"/>
+                <path d="M20 38 Q30 20 40 38" stroke="#d4a044" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <circle cx="30" cy="24" r="4" fill="#d4a044"/>
+            </svg>
+            <h2 id="age-title">Êtes-vous majeur ?</h2>
+            <p>Vous devez avoir l'âge légal pour consommer de l'alcool dans votre pays pour accéder à ce site.</p>
+            <div class="age-buttons">
+                <button onclick="verifyAge(true)" class="cta-button">OUI, j'ai 18 ans ou plus</button>
+                <button onclick="verifyAge(false)" class="btn-ghost">NON</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skip to content -->
+    <a href="#main-content" class="skip-link">Passer au contenu principal</a>
+
     <header id="site-header">
         <div class="container">
-            <nav>
-                <a href="index.html" class="logo-block">
-                    <img src="Logo.jpg" alt="Logo Auzem'Beers & Sons" class="logo-img">
+            <nav aria-label="Navigation principale">
+                <a href="index.html" class="logo-block" aria-label="Auzem'Beers & Sons - Accueil">
+                    <img src="Logo.jpg" alt="Logo Auzem'Beers & Sons" class="logo-img" width="50" height="50" loading="eager">
                     <span class="logo-text">Auzem'Beers & Sons</span>
                 </a>
-
-                <ul class="nav-links" id="nav-links">
+                <ul class="nav-links" id="nav-links" role="list">
                     <li><a href="index.html">Accueil</a></li>
-                    <li><a href="produits.html" class="active">Nos Produits</a></li>
+                    <li><a href="produits.html" class="active" aria-current="page">Nos Produits</a></li>
                     <li><a href="commandes.html">Commandez</a></li>
                     <li><a href="service.html">Services</a></li>
                     <li><a href="FAQ.html">FAQ</a></li>
                     <li><a href="Avis.html">Avis</a></li>
                 </ul>
-
                 <div class="nav-actions">
-                    <button class="theme-toggle" id="theme-btn" aria-label="Changer de thème">
-                        <i class="fas fa-moon"></i>
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Basculer le thème sombre/clair" id="theme-btn">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
                     </button>
                     <a href="compte.html" class="btn-account">
-                        <i class="fas fa-user-circle"></i>
+                        <i class="fas fa-user" aria-hidden="true"></i>
                         <span>Compte</span>
                     </a>
-                    <button class="hamburger" id="hamburger-btn" aria-label="Ouvrir le menu" aria-expanded="false">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                    </button>
                 </div>
+                <button class="hamburger" id="hamburger-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Ouvrir le menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
             </nav>
         </div>
     </header>
 
     <main id="main-content">
-        <section class="section-pad">
+        <section class="products-hero reveal">
             <div class="container">
                 <span class="section-label">Notre Carte</span>
-                <h1 class="section-title left">Nos Bières Artisanales</h1>
-                
-                <div class="card-grid">
-                    <!-- Citri'K -->
-                    <article class="product-card">
+                <h1>Nos Bières Artisanales</h1>
+                <p class="hero-sub">Des brassins uniques, inspirés par le terroir landais et élaborés avec passion à Taller.</p>
+            </div>
+        </section>
+
+        <section class="products-grid-section section-pad">
+            <div class="container">
+                <div class="products-grid">
+                    <!-- Product 1: Citri'K -->
+                    <article class="product-card reveal">
                         <div class="product-img-wrapper">
                             <span class="product-status status-available">En Stock</span>
-                            <img src="Citrik.jpg" alt="Bière Citri'K" class="product-img">
+                            <img src="Ch'ti Landais.jpeg" alt="Bière Citri'K - Kveik IPA" class="product-img" loading="lazy">
                         </div>
                         <div class="product-info">
                             <div class="product-meta">
@@ -68,15 +100,16 @@
                                 <span class="product-abv">5.5%</span>
                             </div>
                             <h3>Citri'K</h3>
-                            <p>IPA fruitée aux agrumes avec houblon local, amertume équilibrée.</p>
+                            <p>IPA fruitée aux agrumes avec houblon local, amertume équilibrée et notes rafraîchissantes.</p>
+                            <a href="commandes.html" class="btn-product">Commander</a>
                         </div>
                     </article>
 
-                    <!-- Carmes -->
-                    <article class="product-card">
+                    <!-- Product 2: Carmes Deri'k -->
+                    <article class="product-card reveal">
                         <div class="product-img-wrapper">
-                            <span class="product-status status-low">Bientôt</span>
-                            <img src="Carmes Derik.jpeg" alt="Bière Carmes Deri'k" class="product-img">
+                            <span class="product-status status-soon">Bientôt</span>
+                            <img src="Carmes Derik.jpeg" alt="Bière Carmes Deri'k - Trappiste" class="product-img" loading="lazy">
                         </div>
                         <div class="product-info">
                             <div class="product-meta">
@@ -84,15 +117,16 @@
                                 <span class="product-abv">7.4%</span>
                             </div>
                             <h3>Carmes Deri'k</h3>
-                            <p>Caractère monastique, notes de fruits secs et épices douces.</p>
+                            <p>Caractère monastique affirmé, notes complexes de fruits secs et épices douces pour une dégustation riche.</p>
+                            <a href="commandes.html" class="btn-product disabled">Bientôt disponible</a>
                         </div>
                     </article>
 
-                    <!-- Spicy Machine -->
-                    <article class="product-card">
+                    <!-- Product 3: Spicy Machine -->
+                    <article class="product-card reveal">
                         <div class="product-img-wrapper">
                             <span class="product-status status-available">En Stock</span>
-                            <img src="Brassin.jpg" alt="Bière Spicy Machine" class="product-img">
+                            <img src="Spicy Machine etq.jpeg" alt="Bière Spicy Machine - Stout au piment" class="product-img" loading="lazy">
                         </div>
                         <div class="product-info">
                             <div class="product-meta">
@@ -100,15 +134,16 @@
                                 <span class="product-abv">9.9%</span>
                             </div>
                             <h3>Spicy Machine</h3>
-                            <p>Stout crémeux with chaleur subtile du piment d'Espelette local.</p>
+                            <p>Stout crémeux aux notes de cacao, sublimé par la chaleur subtile du piment d'Espelette local.</p>
+                            <a href="commandes.html" class="btn-product">Commander</a>
                         </div>
                     </article>
 
-                    <!-- Whiti'k -->
-                    <article class="product-card">
+                    <!-- Product 4: Whiti'k -->
+                    <article class="product-card reveal">
                         <div class="product-img-wrapper">
                             <span class="product-status status-available">En Stock</span>
-                            <img src="Ch'ti Landais.jpeg" alt="Bière Whiti'k" class="product-img">
+                            <img src="Whiti'k etq.jpeg" alt="Bière Whiti'k - Blanche" class="product-img" loading="lazy">
                         </div>
                         <div class="product-info">
                             <div class="product-meta">
@@ -116,7 +151,8 @@
                                 <span class="product-abv">6.9%</span>
                             </div>
                             <h3>Whiti'k</h3>
-                            <p>Blanche légère, rafraîchissante, parfaite été comme hiver.</p>
+                            <p>Blanche légère et désaltérante, parfaite pour accompagner vos moments de détente, été comme hiver.</p>
+                            <a href="commandes.html" class="btn-product">Commander</a>
                         </div>
                     </article>
                 </div>
@@ -128,11 +164,15 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="footer-logo-text">Auzem'Beers & Sons</div>
-                    <p>Brasserie artisanale landaise. Brassée avec passion à Taller, nous mettons en avant les richesses de notre terroir.</p>
+                    <div class="logo-text footer-logo-text">Auzem'Beers & Sons</div>
+                    <p>Brasserie artisanale landaise.<br>551 Route de Cap de Lelane,<br>40260 Taller.</p>
                     <div class="footer-social">
-                        <a href="https://www.instagram.com/ericauzemery/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/ericauzemery/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Éric Auzémery">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" aria-label="Facebook Auzem'Beers & Sons">
+                            <i class="fab fa-facebook" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -145,82 +185,130 @@
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h4>Contact</h4>
-                    <p>551 Route de Cap de Lelane,<br>40260 Taller.</p>
+                    <h4>Horaires</h4>
+                    <p>Ouvert lors des dégustations bimensuelles et sur rendez-vous pour les commandes.</p>
                 </div>
                 <div class="newsletter">
-                    <h4>La Gazette</h4>
-                    <p>Inscrivez-vous pour nos nouveaux brassins.</p>
-                    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-                        <input type="email" placeholder="votre@email.com" aria-label="Email pour la newsletter" required>
+                    <h4>La Gazette du Brasseur</h4>
+                    <p>Recevez nos actualités et nouveaux brassins.</p>
+                    <form class="newsletter-form" onsubmit="handleNewsletter(event)" novalidate>
+                        <label for="newsletter-email" class="sr-only">Votre adresse e-mail</label>
+                        <input type="email" id="newsletter-email" name="email" placeholder="votre@email.com" autocomplete="email" required aria-required="true">
                         <button type="submit">S'abonner</button>
                     </form>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Auzem'Beers & Sons. Consommez avec modération.</p>
+                <p>© 2026 Auzem'Beers & Sons. <span>Consommez avec modération.</span></p>
             </div>
         </div>
     </footer>
 
     <script>
-        // --- Theme (sessionStorage) ---
+        // --- Theme ---
         (function() {
-            const saved = sessionStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const theme = saved || (prefersDark ? 'dark' : 'light');
-            if (theme === 'dark') document.body.setAttribute('data-theme', 'dark');
+            const saved = sessionStorage.getItem("theme");
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const theme = saved || (prefersDark ? "dark" : "light");
+            if (theme === "dark") document.body.setAttribute("data-theme", "dark");
         })();
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeBtn = document.getElementById('theme-btn');
-            const icon = themeBtn.querySelector('i');
-            
-            if (document.body.getAttribute('data-theme') === 'dark') {
-                icon.className = 'fas fa-sun';
+        function toggleTheme() {
+            const body = document.body;
+            const isDark = body.getAttribute("data-theme") === "dark";
+            const icon = document.querySelector("#theme-btn i");
+            if (isDark) {
+                body.removeAttribute("data-theme");
+                icon.className = "fas fa-moon";
+                sessionStorage.setItem("theme", "light");
+            } else {
+                body.setAttribute("data-theme", "dark");
+                icon.className = "fas fa-sun";
+                sessionStorage.setItem("theme", "dark");
             }
+        }
 
-            themeBtn.addEventListener('click', () => {
-                const isDark = document.body.getAttribute('data-theme') === 'dark';
-                if (isDark) {
-                    document.body.removeAttribute('data-theme');
-                    icon.className = 'fas fa-moon';
-                    sessionStorage.setItem('theme', 'light');
-                } else {
-                    document.body.setAttribute('data-theme', 'dark');
-                    icon.className = 'fas fa-sun';
-                    sessionStorage.setItem('theme', 'dark');
+        document.addEventListener("DOMContentLoaded", () => {
+            if (document.body.getAttribute("data-theme") === "dark") {
+                const icon = document.querySelector("#theme-btn i");
+                if (icon) icon.className = "fas fa-sun";
+            }
+        });
+
+        // --- Age Verification ---
+        function verifyAge(adult) {
+            if (adult) {
+                document.getElementById("age-verification").style.display = "none";
+                sessionStorage.setItem("age_verified", "true");
+            } else {
+                window.location.href = "https://www.google.com";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (sessionStorage.getItem("age_verified") === "true") {
+                const modal = document.getElementById("age-verification");
+                if (modal) modal.style.display = "none";
+            }
+        });
+
+        // --- Hamburger Menu ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const hamburger = document.getElementById("hamburger-btn");
+            const navLinks = document.getElementById("nav-links");
+            if (!hamburger || !navLinks) return;
+
+            hamburger.addEventListener("click", () => {
+                const isOpen = hamburger.getAttribute("aria-expanded") === "true";
+                hamburger.setAttribute("aria-expanded", String(!isOpen));
+                navLinks.classList.toggle("nav-open", !isOpen);
+                hamburger.classList.toggle("is-active", !isOpen);
+                hamburger.setAttribute("aria-label", isOpen ? "Ouvrir le menu" : "Fermer le menu");
+            });
+
+            navLinks.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", () => {
+                    hamburger.setAttribute("aria-expanded", "false");
+                    navLinks.classList.remove("nav-open");
+                    hamburger.classList.remove("is-active");
+                    hamburger.setAttribute("aria-label", "Ouvrir le menu");
+                });
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                    hamburger.setAttribute("aria-expanded", "false");
+                    navLinks.classList.remove("nav-open");
+                    hamburger.classList.remove("is-active");
                 }
             });
-
-            // --- Hamburger ---
-            const hamburger = document.getElementById('hamburger-btn');
-            const navLinks = document.getElementById('nav-links');
-            
-            hamburger.addEventListener('click', () => {
-                const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
-                hamburger.setAttribute('aria-expanded', String(!isOpen));
-                navLinks.classList.toggle('nav-open', !isOpen);
-                hamburger.classList.toggle('is-active', !isOpen);
-            });
-
-            // --- Sticky Header ---
-            const header = document.getElementById('site-header');
-            window.addEventListener('scroll', () => {
-                header.classList.toggle('scrolled', window.scrollY > 10);
-            }, { passive: true });
         });
-        
+
+        // --- Scroll Reveal ---
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("revealed");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+        document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+        // --- Sticky header shadow ---
+        const header = document.getElementById("site-header");
+        window.addEventListener("scroll", () => {
+            if (header) header.classList.toggle("scrolled", window.scrollY > 10);
+        }, { passive: true });
+
+        // --- Newsletter ---
         function handleNewsletter(e) {
             e.preventDefault();
-            const btn = e.target.querySelector('button');
-            btn.textContent = 'Merci !';
+            const btn = e.target.querySelector("button");
+            btn.textContent = "Merci !";
             btn.disabled = true;
-            setTimeout(() => {
-                btn.textContent = 'S\'abonner';
-                btn.disabled = false;
-                e.target.reset();
-            }, 3000);
+            setTimeout(() => { btn.textContent = "S'abonner"; btn.disabled = false; e.target.reset(); }, 3000);
         }
     </script>
 </body>
