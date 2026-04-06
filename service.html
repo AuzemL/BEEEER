@@ -1,184 +1,250 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang=\"fr\">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nos Services - Auzem'Beers & Sons</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
+  <meta charset=\"UTF-8\">
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+  <title>Services - Auzem'Beers & Sons</title>
+  <link rel=\"icon\" type=\"image/png\" href=\"favicon.png\">
+  <style>
+    body { font-family: 'Arial', sans-serif; background: #f8f7f4; margin: 0; color: #333; }
+    header { height: 70px; min-height: 70px; background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%); color: white; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+    nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px; }
+    .logo-block { display: flex; align-items: center; }
+    .logo-img { height: 48px; width: auto; margin-right: 16px; display: block; border-radius: 8px; background: #fff; box-shadow: 0 2px 8px rgba(44,24,16,0.15); transition: transform 0.2s; }
+    .logo-img:hover { transform: scale(1.05) rotate(-3deg); box-shadow: 0 4px 16px rgba(244,162,97,0.30); }
+    .logo-text { font-size: 1.8rem; font-weight: bold; color: #f4a261; line-height: 1; white-space: nowrap; letter-spacing: 1px; text-shadow: 1px 1px 2px rgba(44,24,16,0.09); }
+    .nav-links { display: flex; list-style: none; gap: 2rem; }
+    .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s, border-bottom 0.3s; font-size: 1rem; border-bottom: 2px solid transparent; padding-bottom: 2px; }
+    .nav-links a:hover, .nav-links a.active { color: #f4a261; border-bottom: 2px solid #f4a261; }
+    .hamburger { display: none; flex-direction: column; cursor: pointer; margin-left: 16px; }
+    .bar { width: 25px; height: 3px; background: #f4a261; margin: 4px 0; border-radius: 2px; transition: 0.3s; }
+    .main-content { max-width: 1100px; margin: 100px auto 40px; padding: 0 20px 40px 20px; }
+    .section-title { text-align: center; font-size: 2.3rem; margin-bottom: 1.5rem; color: #2c1810; position: relative; }
+    .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: #f4a261; }
+    .degust-bar { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; margin-bottom: 2.5rem; background: #fff; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); padding: 2rem; transition: box-shadow 0.3s, transform 0.3s; }
+    .degust-bar:hover { box-shadow: 0 8px 30px rgba(244,162,97,0.12); transform: scale(1.01); }
+    .bar-img { flex: 1 1 300px; max-width: 350px; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.13); width: 100%; object-fit: cover; margin: 0 auto; }
+    .degust-content { flex: 2 1 350px; }
+    .degust-list { margin: 1rem 0 1.5rem 0; padding-left: 20px; }
+    .degust-list li { margin-bottom: 0.7rem; font-size: 1.08rem; }
+    .visit-note { background: #f4a261; color: #fff; padding: 0.7rem 1.2rem; border-radius: 20px; display: inline-block; margin-top: 1rem; font-size: 1.02rem; }
+    .location-section { background: #fff; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); padding: 2rem; margin-bottom: 2.5rem; transition: box-shadow 0.3s, transform 0.3s; }
+    .location-section:hover { box-shadow: 0 8px 30px rgba(244,162,97,0.12); transform: scale(1.01); }
+    .location-section h3 { color: #8b4513; margin-bottom: 1rem; }
+    .tarif-info { background: #ffe5b4; color: #8b4513; padding: 0.6rem 1.2rem; border-radius: 10px; margin-bottom: 1rem; display: inline-block; font-size: 1rem; }
+    .stock-placeholder { border: 2px dashed #f4a261; background: #fff8eb; padding: 1.2rem; border-radius: 10px; margin-bottom: 1.2rem; color: #8b4513; }
+    .calendar-section { margin: 2.5rem 0; background: #fff; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); padding: 2rem; }
+    .calendar-section h4 { color: #8b4513; margin-bottom: 1.3rem; text-align: center; }
+    #calendar-container { max-width: 900px; margin: 0 auto; }
+    .contact-invite { margin: 1.5rem 0 0.5rem 0; font-size: 1.1rem; color: #333; }
+    .cta-button { display: inline-block; background: #f4a261; color: #2c1810; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(244, 162, 97, 0.18); margin-top: 1.2rem; }
+    .cta-button:hover { background: #e76f51; color: #fff; transform: scale(1.03); box-shadow: 0 6px 20px rgba(244, 162, 97, 0.21); }
+    @media (max-width: 900px) { .degust-bar { flex-direction: column; text-align: center; } .degust-content { margin-top: 1.5rem; } }
+    @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } .main-content { margin-top: 80px; } }
+    @media (max-width: 500px) { .logo-text { font-size: 1.1rem; } .logo-img { height: 36px; } }
+  </style>
 </head>
-<body class="light-theme">
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-beer"></i> BEEEER
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="produits.html">Produits</a></li>
-                <li><a href="commandes.html">Commandes</a></li>
-                <li><a href="service.html" class="active">Service</a></li>
-                <li><a href="FAQ.html">FAQ</a></li>
-                <li><a href="Avis.html">Avis</a></li>
-                <li><a href="compte.html"><i class="fas fa-user-circle"></i> Compte</a></li>
-            </ul>
-            <div class="nav-controls">
-                <button id="theme-toggle" class="btn-icon">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
+<body>
+  <header>
+    <nav>
+      <div class=\"logo-block\">
+        <img src=\"Logo.jpg\" alt=\"Logo de la brasserie\" class=\"logo-img\">
+        <span class=\"logo-text\">Auzem'Beers & Sons</span>
+      </div>
+      <ul class=\"nav-links\">
+        <li><a href=\"index.html#accueil\">Accueil</a></li>
+        <li><a href=\"produits.html\">Nos Produits</a></li>
+        <li><a href=\"commandes.html\">Commandez</a></li>
+        <li><a href=\"service.html\" class=\"active\">Services</a></li>
+        <li><a href=\"FAQ.html\">FAQ</a></li>
+        <li><a href=\"index.html#contact\">Contact</a></li>
+        <li><a href=\"Avis.html\">Avis Clients</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section class="page-hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Bar2.jpeg');">
-            <div class="container text-center">
-                <h1>Nos Services & Événements</h1>
-                <p>Plus qu'une brasserie, une expérience complète au cœur des Landes</p>
-            </div>
-        </section>
+  <main class=\"main-content\">
+    <h1 class=\"section-title\">Dégustations à la Brasserie</h1>
+    
+    <section class=\"degust-bar\">
+      <img src=\"Bar.jpg\" alt=\"Bar de la brasserie\" class=\"bar-img\">
+      <div class=\"degust-content\">
+        <p>Deux fois par mois, la brasserie ouvre ses portes pour des moments conviviaux autour de la bière artisanale et des produits du terroir.</p>
+        <ul class=\"degust-list\">
+          <li>Bières pressions fraîches</li>
+          <li>Bières bouteilles de la gamme</li>
+          <li>Assiette de charcuterie locale</li>
+          <li>License 3 : Get 27, vins</li>
+          <li>Gâteaux apéritifs</li>
+          <li>Eau plate et pétillante</li>
+          <li>Boissons non alcoolisées</li>
+        </ul>
+        <p class=\"visit-note\"><strong>Visite des installations possible</strong> selon l'activité du bar et la disponibilité de l'équipe.</p>
+      </div>
+    </section>
 
-        <section class="services-grid container py-5">
-            <div class="service-card card text-center p-4">
-                <i class="fas fa-truck fa-3x mb-3 text-primary"></i>
-                <h3>Livraison Locale</h3>
-                <p>Nous livrons gratuitement dans un rayon de 20km pour toute commande > 30€.</p>
-            </div>
+    <section class=\"location-section\">
+      <h3 id=\"location\">Location de Tireuses à Bière & Fûts</h3>
+      <p>Nous proposons la location de tireuses à bière professionnelles et de fûts pour tous vos événements : mariages, anniversaires, fêtes, séminaires...</p>
+      
+      <p class=\"tarif-info\">Tarifs à venir prochainement.</p>
 
-            <div class="service-card card text-center p-4">
-                <i class="fas fa-glass-cheers fa-3x mb-3 text-primary"></i>
-                <h3>Événements Privés</h3>
-                <p>Location de tireuses et fûts pour vos mariages et fêtes.</p>
-            </div>
+      <div class=\"stock-placeholder\">
+        <strong>Détails des fûts utilisés & stocks disponibles :</strong><br>
+        <em>Cette section sera bientôt complétée avec la liste des fûts disponibles et leurs caractéristiques.</em>
+      </div>
 
-            <div class="service-card card text-center p-4">
-                <i class="fas fa-users fa-3x mb-3 text-primary"></i>
-                <h3>Visite & Dégustation</h3>
-                <p>Découvrez les coulisses et dégustez nos bières au brassin.</p>
-            </div>
-        </section>
-
-        <section class="info-section container py-5">
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="card p-4 h-100">
-                        <h2 class="mb-4"><i class="fas fa-clock text-primary"></i> Horaires d'Ouverture</h2>
-                        <ul class="opening-hours list-unstyled">
-                            <li class="d-flex justify-content-between border-bottom py-2">
-                                <span>Lundi - Mardi</span>
-                                <span class="text-muted">Fermé</span>
-                            </li>
-                            <li class="d-flex justify-content-between border-bottom py-2">
-                                <span>Mercredi - Jeudi</span>
-                                <span>16:00 - 20:00</span>
-                            </li>
-                            <li class="d-flex justify-content-between border-bottom py-2">
-                                <span>Vendredi</span>
-                                <span>16:00 - 22:00</span>
-                            </li>
-                            <li class="d-flex justify-content-between border-bottom py-2 font-weight-bold">
-                                <span>Samedi</span>
-                                <span>10:00 - 22:00</span>
-                            </li>
-                            <li class="d-flex justify-content-between py-2">
-                                <span>Dimanche</span>
-                                <span>10:00 - 18:00</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card p-4 h-100">
-                        <h2 class="mb-4"><i class="fas fa-calendar-alt text-primary"></i> Agenda des Événements</h2>
-                        <div class="event-item mb-3 p-3 border-left border-primary" style="border-left-width: 4px !important;">
-                            <span class="badge badge-primary mb-2">15 Avril 2026</span>
-                            <h4>Soirée Tap Takeover</h4>
-                            <p class="mb-0 text-muted">Venez découvrir nos nouveautés en pression avec DJ Set.</p>
-                        </div>
-                        <div class="event-item mb-3 p-3 border-left border-secondary" style="border-left-width: 4px !important;">
-                            <span class="badge badge-secondary mb-2">02 Mai 2026</span>
-                            <h4>Atelier Brassage Amateur</h4>
-                            <p class="mb-0 text-muted">Apprenez à brasser votre propre bière avec nos experts.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="contact-section container py-5">
-            <div class="card p-5">
-                <h2 class="text-center mb-4">Contactez-nous</h2>
-                <form id="contact-form">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="name">Nom</label>
-                            <input type="text" id="name" class="form-control" placeholder="Votre nom" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="Votre email" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Sujet</label>
-                        <select id="subject" class="form-control">
-                            <option>Demande d'informations</option>
-                            <option>Location de matériel</option>
-                            <option>Visite de la brasserie</option>
-                            <option>Autre</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" rows="5" class="form-control" placeholder="Votre message..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Envoyer le message</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer class="py-5">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <a href="#" class="logo"><i class="fas fa-beer"></i> BEEEER</a>
-                <p>Brasserie artisanale landaise. Passion, qualité et tradition depuis 2024.</p>
-            </div>
-            <div class="footer-newsletter">
-                <h4>Newsletter</h4>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Votre email">
-                    <button type="submit" class="btn btn-primary">S'inscrire</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom container text-center">
-            <p>&copy; 2024 Auzem'Beers & Sons. Tous droits réservés.</p>
-        </div>
-    </footer>
-
-    <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
+      <div class=\"calendar-section\">
+        <h4>Calendrier des disponibilités (jusqu'à juillet 2026)</h4>
         
-        const savedTheme = localStorage.getItem('theme') || 'light-theme';
-        body.className = savedTheme;
-        updateIcon(savedTheme);
+        <div id=\"calendar-container\">
+          <div id=\"calendar-nav\">
+            <button id=\"prev-month\">&lt;</button>
+            <span id=\"month-label\"></span>
+            <button id=\"next-month\">&gt;</button>
+          </div>
+          <div id=\"calendar-display\"></div>
+        </div>
 
-        themeToggle?.addEventListener('click', () => {
-            const currentTheme = body.className;
-            const newTheme = currentTheme === 'light-theme' ? 'dark-theme' : 'light-theme';
-            body.className = newTheme;
-            localStorage.setItem('theme', newTheme);
-            updateIcon(newTheme);
-        });
+        <div style=\"margin-top: 1rem; text-align: center; font-size: 0.9rem;\">
+          <strong>Légende :</strong> 
+          <span style=\"display: inline-block; width: 12px; height: 12px; background: #f4a261; margin-left: 10px;\"></span> Réservé
+          <span style=\"display: inline-block; width: 12px; height: 12px; background: #fff; border: 1px solid #ddd; margin-left: 10px;\"></span> Libre
+        </div>
+      </div>
 
-        function updateIcon(theme) {
-            const icon = themeToggle?.querySelector('i');
-            if (icon) {
-                icon.className = theme === 'light-theme' ? 'fas fa-moon' : 'fas fa-sun';
-            }
+      <p class=\"contact-invite\">Pour toute demande de devis ou commande, contactez-nous prochainement par email (à venir) ou dès maintenant via <a href=\"https://www.instagram.com/ericauzemery/\" target=\"_blank\">Instagram</a>.</p>
+      
+      <a href=\"index.html#contact\" class=\"cta-button\">Un devis ? Faites une commande</a>
+    </section>
+  </main>
+
+  <script>
+    // Hamburger menu for mobile
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      });
+
+      hamburger.addEventListener('keypress', (e) => {
+        if(e.key === \"Enter\" || e.key === \" \") hamburger.click();
+      });
+    }
+
+    // Calendar logic
+    const months = [
+      'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+      'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+    ];
+    const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+
+    const today = new Date();
+    const startMonth = today.getMonth();
+    const startYear = today.getFullYear();
+    const endMonth = 6; // Juillet (0-based)
+    const endYear = 2026;
+
+    let currentMonth = startMonth;
+    let currentYear = startYear;
+
+    // Réservations à afficher
+    const reservations = [
+      { year: 2025, month: 6, day: 12, title: \"Réservé : 2 fûts, 1 tireuse\" } // Juillet = 6 (0-based)
+    ];
+
+    function isReserved(year, month, day) {
+      return reservations.find(
+        r => r.year === year && r.month === month && r.day === day
+      );
+    }
+
+    function renderCalendar(year, month) {
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      
+      let startDay = firstDay.getDay(); // 0=dimanche
+      startDay = (startDay === 0) ? 6 : startDay - 1; // 0=lundi
+
+      let html = '<div class=\"calendar-month\">';
+      html += '<div class=\"weekdays\">' + days.map(d => `<div class=\"weekday\">${d}</div>`).join('') + '</div>';
+      html += '<div class=\"days\">';
+
+      // Empty days
+      for(let i = 0; i < startDay; i++) {
+        html += '<div class=\"day empty\"></div>';
+      }
+
+      // Days
+      for(let d = 1; d <= lastDay.getDate(); d++) {
+        let reserved = isReserved(year, month, d);
+        if(reserved) {
+          html += `<div class=\"day reserved\" title=\"${reserved.title}\">${d}</div>`;
+        } else {
+          html += `<div class=\"day\">${d}</div>`;
         }
-    </script>
+      }
+
+      html += '</div></div>';
+      return html;
+    }
+
+    function updateCalendar() {
+      const label = document.getElementById('month-label');
+      const container = document.getElementById('calendar-display');
+      if (label && container) {
+        label.textContent = `${months[currentMonth]} ${currentYear}`;
+        container.innerHTML = renderCalendar(currentYear, currentMonth);
+        
+        document.getElementById('prev-month').disabled = (currentYear === startYear && currentMonth === startMonth);
+        document.getElementById('next-month').disabled = (currentYear === endYear && currentMonth === endMonth);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCalendar();
+      
+      const prevBtn = document.getElementById('prev-month');
+      const nextBtn = document.getElementById('next-month');
+
+      if (prevBtn && nextBtn) {
+        prevBtn.onclick = function() {
+          if(currentMonth === 0) {
+            currentMonth = 11;
+            currentYear--;
+          } else {
+            currentMonth--;
+          }
+          updateCalendar();
+        };
+
+        nextBtn.onclick = function() {
+          if(currentMonth === 11) {
+            currentMonth = 0;
+            currentYear++;
+          } else {
+            currentMonth++;
+          }
+          updateCalendar();
+        };
+      }
+    });
+  </script>
+
+  <style>
+    #calendar-nav { display: flex; justify-content: center; align-items: center; gap: 1.5rem; margin-bottom: 1.2rem; }
+    #calendar-nav button { background: #f4a261; color: #fff; border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 1.3rem; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+    #calendar-nav button:hover { background: #e76f51; }
+    #calendar-nav button:disabled { background: #ccc; cursor: default; }
+    #month-label { font-size: 1.2rem; color: #8b4513; font-weight: bold; letter-spacing: 1px; min-width: 150px; text-align: center; }
+    .weekdays, .days { display: grid; grid-template-columns: repeat(7, 1fr); }
+    .weekday { color: #8b4513; font-weight: bold; text-align: center; padding: 6px 0; background: #f8f7f4; border-radius: 4px; }
+    .day { text-align: center; padding: 10px 0; margin: 2px; background: #fff; border-radius: 6px; position: relative; border: 1px solid #eee; }
+    .day.empty { background: transparent; border: none; }
+    .day.reserved { background: #f4a261; color: #fff; font-weight: bold; border: 1.5px solid #e76f51; }
+    .day.reserved::after { content: \"📦\"; position: absolute; right: 4px; top: 2px; font-size: 0.8rem; }
+  </style>
 </body>
 </html>
