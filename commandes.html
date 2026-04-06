@@ -3,108 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Commandez vos bières artisanales Auzem'Beers & Sons. Choisissez parmi nos IPA, stouts et bières de saison.">
     <title>Commandez - Auzem'Beers & Sons</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <style>
-        body { font-family: 'Arial', sans-serif; background: #f8f7f4; margin: 0; color: #333; }
-        header { height: 70px; min-height: 70px; background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%); color: white; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3);}
-        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px;}
-        .logo-block { display: flex; align-items: center;}
-        .logo-img { height: 48px; width: auto; margin-right: 16px; display: block; border-radius: 8px; background: #fff; box-shadow: 0 2px 8px rgba(44,24,16,0.15);}
-        .logo-text { font-size: 1.8rem; font-weight: bold; color: #f4a261; line-height: 1; white-space: nowrap; letter-spacing: 1px;}
-        .nav-links { display: flex; list-style: none; gap: 2rem;}
-        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s, border-bottom 0.3s; font-size: 1rem; border-bottom: 2px solid transparent; padding-bottom: 2px;}
-        .nav-links a:hover, .nav-links a.active { color: #f4a261; border-bottom: 2px solid #f4a261;}
-        .hamburger { display: none; flex-direction: column; cursor: pointer; margin-left: 16px;}
-        .bar { width: 25px; height: 3px; background: #f4a261; margin: 4px 0; border-radius: 2px; transition: 0.3s;}
-        .main-content { max-width: 900px; margin: 110px auto 40px; padding: 0 20px 40px 20px;}
-        .section-title { text-align: center; font-size: 2.3rem; margin-bottom: 1.5rem; color: #2c1810; position: relative;}
-        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: #f4a261;}
-        .order-section { background: #fff; border-radius: 14px; box-shadow: 0 2px 10px rgba(244,162,97,0.07); margin-bottom: 2rem; padding: 2rem 1.5rem;}
-        .order-form label { font-weight: bold; color: #8b4513; display: block; margin-bottom: 0.4rem;}
-        .order-form input, .order-form select, .order-form textarea { width: 100%; padding: 0.7rem; margin-bottom: 1.3rem; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem;}
-        .order-form button { background: #f4a261; color: #2c1810; border: none; border-radius: 50px; padding: 13px 32px; font-weight: bold; font-size: 1.08rem; cursor: pointer; transition: background 0.2s;}
-        .order-form button:hover { background: #e76f51; color: #fff;}
-        .order-info { color: #8b4513; font-size: 1.07rem; margin-bottom: 1.5rem;}
-        @media (max-width: 700px) { .main-content { margin-top: 80px; } }
-        @media (max-width: 500px) { .logo-text { font-size: 1.1rem; } .logo-img { height: 36px; } }
-    </style>
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header réutilisé -->
-    <header>
-        <nav>
-            <div class="logo-block">
-                <img src="Logo.jpg" alt="Logo de la brasserie" class="logo-img">
-                <span class="logo-text">Auzem'Beers & Sons</span>
+    <!-- Age Verification Modal -->
+    <div id="age-verification" class="age-modal" role="dialog" aria-modal="true" aria-labelledby="age-title">
+        <div class="age-modal-inner">
+            <svg class="age-logo" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+                <circle cx="30" cy="30" r="28" stroke="#d4a044" stroke-width="2"/>
+                <path d="M20 38 Q30 20 40 38" stroke="#d4a044" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <circle cx="30" cy="24" r="4" fill="#d4a044"/>
+            </svg>
+            <h2 id="age-title">Êtes-vous majeur ?</h2>
+            <p>Vous devez avoir l'âge légal pour consommer de l'alcool dans votre pays pour accéder à ce site.</p>
+            <div class="age-buttons">
+                <button onclick="verifyAge(true)" class="cta-button">OUI, j'ai 18 ans ou plus</button>
+                <button onclick="verifyAge(false)" class="btn-ghost">NON</button>
             </div>
-            <div class="hamburger" id="hamburger" aria-label="Ouvrir le menu" tabindex="0">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html#accueil">Accueil</a></li>
-                <li><a href="produits.html">Nos Produits</a></li>
-                <li><a href="commandes.html" class="active">Commandez</a></li>
-                <li><a href="service.html">Services</a></li>
-                <li><a href="FAQ.html">FAQ</a></li>
-                <li><a href="Avis.html">Avis Clients</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main class="main-content">
-        <h2 class="section-title">Commandez vos bières artisanales</h2>
-        <div class="order-section">
-            <div class="order-info">
-                Remplissez ce formulaire pour commander vos bières, coffrets ou demander un devis personnalisé.<br>
-                <b>Pour toute question, contactez-nous sur Instagram ou via la page Contact.</b>
-            </div>
-            <form class="order-form">
-                <label for="nom">Nom complet</label>
-                <input type="text" id="nom" name="nom" required autocomplete="name">
-
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required autocomplete="email">
-
-                <label for="produit">Produit souhaité</label>
-                <select id="produit" name="produit" required>
-                    <option value="">Sélectionnez un produit</option>
-                    <option value="Citrik IPA">Citri'K IPA</option>
-                    <option value="Meli-Basil">Meli-Basil</option>
-                    <option value="Figs Beer">Figs Beer</option>
-                    <option value="Spicy Machine">Spicy Machine</option>
-                    <option value="Autre">Autre (précisez en commentaire)</option>
-                </select>
-
-                <label for="quantite">Quantité</label>
-                <input type="number" id="quantite" name="quantite" min="1" max="100" required>
-
-                <label for="message">Commentaire ou demande spéciale</label>
-                <textarea id="message" name="message" rows="4" placeholder="Ex : date de retrait, coffret cadeau, etc."></textarea>
-
-                <button type="submit">Envoyer la commande</button>
-            </form>
         </div>
+    </div>
+
+    <!-- Skip to content -->
+    <a href="#main-content" class="skip-link">Passer au contenu principal</a>
+
+    <header id="site-header">
+        <div class="container">
+            <nav aria-label="Navigation principale">
+                <a href="index.html" class="logo-block" aria-label="Auzem'Beers & Sons - Accueil">
+                    <img src="Logo.jpg" alt="Logo Auzem'Beers & Sons" class="logo-img" width="50" height="50" loading="eager">
+                    <span class="logo-text">Auzem'Beers & Sons</span>
+                </a>
+                <ul class="nav-links" id="nav-links" role="list">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits.html">Nos Produits</a></li>
+                    <li><a href="commandes.html" class="active" aria-current="page">Commandez</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <li><a href="Avis.html">Avis</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Basculer le thème sombre/clair" id="theme-btn">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
+                    </button>
+                    <a href="compte.html" class="btn-account">
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        <span>Compte</span>
+                    </a>
+                </div>
+                <button class="hamburger" id="hamburger-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Ouvrir le menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="section-pad reveal">
+            <div class="container">
+                <span class="section-label">Passer une commande</span>
+                <h2 class="section-title left">Commandez vos bières artisanales</h2>
+                
+                <div class="card" style="max-width: 800px; margin: 0 auto;">
+                    <p style="margin-bottom: 2rem; color: var(--text-muted);">
+                        Remplissez ce formulaire pour commander vos bières, coffrets ou demander un devis personnalisé. 
+                        <strong>Pour toute question, contactez-nous sur Instagram ou via la page Contact.</strong>
+                    </p>
+                    
+                    <form class="order-form" onsubmit="handleOrder(event)">
+                        <div class="form-group">
+                            <label for="nom">Nom complet</label>
+                            <input type="text" id="nom" name="nom" required autocomplete="name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required autocomplete="email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="produit">Produit souhaité</label>
+                            <select id="produit" name="produit" required>
+                                <option value="">Sélectionnez un produit</option>
+                                <option value="Citrik IPA">Citri'K IPA</option>
+                                <option value="Meli-Basil">Meli-Basil</option>
+                                <option value="Figs Beer">Figs Beer</option>
+                                <option value="Spicy Machine">Spicy Machine</option>
+                                <option value="Autre">Autre (précisez en commentaire)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quantite">Quantité</label>
+                            <input type="number" id="quantite" name="quantite" min="1" max="100" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Commentaire ou demande spéciale</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Ex : date de retrait, coffret cadeau, etc."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cta-button" style="width: 100%;">Envoyer la commande</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-text footer-logo-text">Auzem'Beers & Sons</div>
+                    <p>Brasserie artisanale landaise.<br>551 Route de Cap de Lelane,<br>40260 Taller.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/ericauzemery/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Éric Auzémery">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" aria-label="Facebook Auzem'Beers & Sons">
+                            <i class="fab fa-facebook" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Exploration</h4>
+                    <ul role="list">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="produits.html">Produits</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="FAQ.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Horaires</h4>
+                    <p>Ouvert lors des dégustations bimensuelles et sur rendez-vous pour les commandes.</p>
+                </div>
+                <div class="newsletter">
+                    <h4>La Gazette du Brasseur</h4>
+                    <p>Recevez nos actualités et nouveaux brassins.</p>
+                    <form class="newsletter-form" onsubmit="handleNewsletter(event)" novalidate>
+                        <label for="newsletter-email" class="sr-only">Votre adresse e-mail</label>
+                        <input type="email" id="newsletter-email" name="email" placeholder="votre@email.com" autocomplete="email" required aria-required="true">
+                        <button type="submit">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Auzem'Beers & Sons. <span>Consommez avec modération.</span></p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Hamburger menu for mobile
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-        hamburger.addEventListener('keypress', (e) => {
-            if(e.key === "Enter" || e.key === " ") hamburger.click();
+        // --- Theme ---
+        (function() {
+            const saved = sessionStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = saved || (prefersDark ? 'dark' : 'light');
+            if (theme === 'dark') document.body.setAttribute('data-theme', 'dark');
+        })();
+
+        function toggleTheme() {
+            const body = document.body;
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            const icon = document.querySelector('#theme-btn i');
+            if (isDark) {
+                body.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                sessionStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                sessionStorage.setItem('theme', 'dark');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.body.getAttribute('data-theme') === 'dark') {
+                const icon = document.querySelector('#theme-btn i');
+                if (icon) icon.className = 'fas fa-sun';
+            }
         });
 
-        // (Optionnel) Empêcher l'envoi réel du formulaire pour démo
-        document.querySelector('.order-form').addEventListener('submit', function(e){
+        // --- Age Verification ---
+        function verifyAge(adult) {
+            if (adult) {
+                document.getElementById('age-verification').style.display = 'none';
+                sessionStorage.setItem('age_verified', 'true');
+            } else {
+                window.location.href = 'https://www.google.com';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('age_verified') === 'true') {
+                const modal = document.getElementById('age-verification');
+                if (modal) modal.style.display = 'none';
+            }
+        });
+
+        // --- Hamburger Menu ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger-btn');
+            const navLinks = document.getElementById('nav-links');
+            if (!hamburger || !navLinks) return;
+
+            hamburger.addEventListener('click', () => {
+                const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+                hamburger.setAttribute('aria-expanded', String(!isOpen));
+                navLinks.classList.toggle('nav-open', !isOpen);
+                hamburger.classList.toggle('is-active', !isOpen);
+                hamburger.setAttribute('aria-label', isOpen ? 'Ouvrir le menu' : 'Fermer le menu');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('nav-open');
+                    hamburger.classList.remove('is-active');
+                    hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('nav-open');
+                    hamburger.classList.remove('is-active');
+                }
+            });
+        });
+
+        // --- Scroll Reveal ---
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // --- Sticky header shadow ---
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            if (header) header.classList.toggle('scrolled', window.scrollY > 10);
+        }, { passive: true });
+
+        // --- Newsletter ---
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.textContent = 'Merci !';
+            btn.disabled = true;
+            setTimeout(() => { btn.textContent = "S'abonner"; btn.disabled = false; e.target.reset(); }, 3000);
+        }
+
+        // --- Order Form ---
+        function handleOrder(e) {
             e.preventDefault();
             alert("Merci pour votre commande ! Nous vous contacterons rapidement.");
-            this.reset();
-        });
+            e.target.reset();
+        }
     </script>
 </body>
 </html>
