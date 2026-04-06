@@ -3,144 +3,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Foire Aux Questions - Tout savoir sur Auzem'Beers & Sons : brassage, livraison, conservation et dégustations.">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="FAQ - Auzem'Beers & Sons">
+    <meta property="og:description" content="Trouvez les réponses à vos questions sur nos bières artisanales landaises.">
+    <meta property="og:image" content="https://auzeml.github.io/BEEEER/Logo.jpg">
+    <meta property="og:url" content="https://auzeml.github.io/BEEEER/FAQ.html">
+    <meta property="og:type" content="website">
+
     <title>FAQ - Auzem'Beers & Sons</title>
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-beer"></i> BEEEER
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="produits.html">Produits</a></li>
-                <li><a href="commandes.html">Commandes</a></li>
-                <li><a href="service.html">Service</a></li>
-                <li><a href="FAQ.html" class="active">FAQ</a></li>
-                <li><a href="Avis.html">Avis</a></li>
-                <li><a href="compte.html"><i class="fas fa-user-circle"></i> Compte</a></li>
-            </ul>
-            <div class="nav-controls">
-                <button id="theme-toggle" class="btn-icon" title="Changer de thème">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-            <button class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-        </nav>
-    </header>
-
-    <main class="container py-5 mt-5">
-        <h1 class="text-center mb-5">Foire Aux Questions</h1>
-        <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
-            <div class="faq-item card mb-3" style="padding: 0; overflow: hidden;">
-                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer; background: var(--white); padding: 20px !important;">
-                    <h3 style="margin: 0;">Où sont brassées vos bières ?</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer p-3" style="display: none; padding: 20px !important; border-top: 1px solid rgba(0,0,0,0.1);">
-                    <p>Toutes nos bières sont brassées artisanalement dans notre atelier situé au cœur des Landes (40), en utilisant des méthodes traditionnelles et des ingrédients locaux autant que possible.</p>
-                </div>
-            </div>
-            <div class="faq-item card mb-3" style="padding: 0; overflow: hidden;">
-                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer; background: var(--white); padding: 20px !important;">
-                    <h3 style="margin: 0;">Proposez-vous la livraison à domicile ?</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer p-3" style="display: none; padding: 20px !important; border-top: 1px solid rgba(0,0,0,0.1);">
-                    <p>Oui, nous livrons dans toute la France via transporteur spécialisé. La livraison est offerte localement (rayon 20km) dès 30€ d'achat.</p>
-                </div>
-            </div>
-            <div class="faq-item card mb-3" style="padding: 0; overflow: hidden;">
-                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer; background: var(--white); padding: 20px !important;">
-                    <h3 style="margin: 0;">Vos bières sont-elles filtrées ou pasteurisées ?</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer p-3" style="display: none; padding: 20px !important; border-top: 1px solid rgba(0,0,0,0.1);">
-                    <p>Non, nos bières sont vivantes : elles ne sont ni filtrées ni pasteurisées afin de conserver tous leurs arômes et propriétés gustatives. Un léger dépôt de levure au fond de la bouteille est tout à fait normal.</p>
-                </div>
-            </div>
-            <div class="faq-item card mb-3" style="padding: 0; overflow: hidden;">
-                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer; background: var(--white); padding: 20px !important;">
-                    <h3 style="margin: 0;">Comment conserver mes bières ?</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer p-3" style="display: none; padding: 20px !important; border-top: 1px solid rgba(0,0,0,0.1);">
-                    <p>Nous recommandons de conserver les bouteilles debout, à l'abri de la lumière et à une température fraîche et constante (entre 10°C et 15°C).</p>
-                </div>
+    <!-- Age Verification Modal -->
+    <div id="age-verification" class="age-modal" role="dialog" aria-modal="true" aria-labelledby="age-title">
+        <div class="age-modal-inner">
+            <svg class="age-logo" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+                <circle cx="30" cy="30" r="28" stroke="#d4a044" stroke-width="2"/>
+                <path d="M20 38 Q30 20 40 38" stroke="#d4a044" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <circle cx="30" cy="24" r="4" fill="#d4a044"/>
+            </svg>
+            <h2 id="age-title">Êtes-vous majeur ?</h2>
+            <p>Vous devez avoir l'âge légal pour consommer de l'alcool dans votre pays pour accéder à ce site.</p>
+            <div class="age-buttons">
+                <button onclick="verifyAge(true)" class="cta-button">OUI, j'ai 18 ans ou plus</button>
+                <button onclick="verifyAge(false)" class="btn-ghost">NON</button>
             </div>
         </div>
+    </div>
+
+    <!-- Skip to content -->
+    <a href="#main-content" class="skip-link">Passer au contenu principal</a>
+
+    <header id="site-header">
+        <div class="container">
+            <nav aria-label="Navigation principale">
+                <a href="index.html" class="logo-block" aria-label="Auzem'Beers & Sons - Accueil">
+                    <img src="Logo.jpg" alt="Logo Auzem'Beers & Sons" class="logo-img" width="50" height="50" loading="eager">
+                    <span class="logo-text">Auzem'Beers & Sons</span>
+                </a>
+                <ul class="nav-links" id="nav-links" role="list">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits.html">Nos Produits</a></li>
+                    <li><a href="commandes.html">Commandez</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="FAQ.html" class="active" aria-current="page">FAQ</a></li>
+                    <li><a href="Avis.html">Avis</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Basculer le thème sombre/clair" id="theme-btn">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
+                    </button>
+                    <a href="compte.html" class="btn-account">
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        <span>Compte</span>
+                    </a>
+                </div>
+                <button class="hamburger" id="hamburger-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Ouvrir le menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="faq-hero reveal">
+            <div class="container">
+                <span class="section-label">Questions Fréquentes</span>
+                <h1>Foire Aux Questions</h1>
+                <p class="hero-sub">Tout ce que vous devez savoir sur nos bières, nos services et notre brasserie.</p>
+            </div>
+        </section>
+
+        <section class="faq-section section-pad">
+            <div class="container">
+                <div class="faq-container">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                            <span>Où sont brassées vos bières ?</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Toutes nos bières sont brassées artisanalement dans notre atelier situé au cœur des Landes (40), en utilisant des méthodes traditionnelles et des ingrédients locaux autant que possible. Notre brasseur, Éric Auzémery, veille personnellement à chaque étape de la production.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                            <span>Proposez-vous la livraison à domicile ?</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Oui, nous livrons dans toute la France via un transporteur spécialisé. Pour nos clients locaux dans un rayon de 20 km autour de Taller, la livraison est offerte dès 30€ d'achat.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                            <span>Vos bières sont-elles filtrées ou pasteurisées ?</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Non, nos bières sont "vivantes" : elles ne sont ni filtrées ni pasteurisées afin de conserver l'intégralité de leurs arômes et propriétés gustatives. Un léger dépôt de levure au fond de la bouteille est tout à fait normal et gage de qualité.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                            <span>Comment conserver mes bières ?</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Nous recommandons de conserver les bouteilles debout, à l'abri de la lumière directe et à une température fraîche et constante (idéalement entre 10°C et 15°C). Évitez les chocs thermiques importants.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+                            <span>Comment louer une tireuse ?</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Vous pouvez réserver une tireuse directement via notre page <a href="service.html">Services</a> ou via le formulaire de <a href="commandes.html">Commande</a>. Nous recommandons de réserver au moins 10 jours à l'avance pour garantir la disponibilité.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <div class="container footer-grid">
-            <div class="footer-logo">
-                <div class="logo-text" style="color: var(--primary-light);">Auzem'Beers & Sons</div>
-                <p>Brasserie artisanale landaise. 551 Route de Cap de Lelane, 40260 Taller.</p>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-text footer-logo-text">Auzem'Beers & Sons</div>
+                    <p>Brasserie artisanale landaise.<br>551 Route de Cap de Lelane,<br>40260 Taller.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/ericauzemery/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Éric Auzémery">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" aria-label="Facebook Auzem'Beers & Sons">
+                            <i class="fab fa-facebook" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Exploration</h4>
+                    <ul role="list">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="produits.html">Produits</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="FAQ.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Horaires</h4>
+                    <p>Ouvert lors des dégustations bimensuelles et sur rendez-vous pour les commandes.</p>
+                </div>
+                <div class="newsletter">
+                    <h4>La Gazette du Brasseur</h4>
+                    <p>Recevez nos actualités et nouveaux brassins.</p>
+                    <form class="newsletter-form" onsubmit="handleNewsletter(event)" novalidate>
+                        <label for="newsletter-email" class="sr-only">Votre adresse e-mail</label>
+                        <input type="email" id="newsletter-email" name="email" placeholder="votre@email.com" autocomplete="email" required aria-required="true">
+                        <button type="submit">S'abonner</button>
+                    </form>
+                </div>
             </div>
-            <div class="footer-links">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="produits.html">Produits</a></li>
-                    <li><a href="compte.html">Mon Compte</a></li>
-                </ul>
-            </div>
-            <div class="footer-bottom" style="width: 100%; grid-column: span 4;">
-                <p>© 2026 Auzem'Beers & Sons. Consommez avec modération.</p>
+            <div class="footer-bottom">
+                <p>© 2026 Auzem'Beers & Sons. <span>Consommez avec modération.</span></p>
             </div>
         </div>
     </footer>
 
     <script>
+        // --- Theme ---
+        (function() {
+            const saved = sessionStorage.getItem("theme");
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const theme = saved || (prefersDark ? "dark" : "light");
+            if (theme === "dark") document.body.setAttribute("data-theme", "dark");
+        })();
+
         function toggleTheme() {
             const body = document.body;
-            const theme = body.getAttribute('data-theme');
-            const icon = document.querySelector('#theme-toggle i');
-            if (theme === 'dark') {
-                body.removeAttribute('data-theme');
-                if(icon) icon.className = 'fas fa-moon';
-                localStorage.setItem('theme', 'light');
+            const isDark = body.getAttribute("data-theme") === "dark";
+            const icon = document.querySelector("#theme-btn i");
+            if (isDark) {
+                body.removeAttribute("data-theme");
+                icon.className = "fas fa-moon";
+                sessionStorage.setItem("theme", "light");
             } else {
-                body.setAttribute('data-theme', 'dark');
-                if(icon) icon.className = 'fas fa-sun';
-                localStorage.setItem('theme', 'dark');
+                body.setAttribute("data-theme", "dark");
+                icon.className = "fas fa-sun";
+                sessionStorage.setItem("theme", "dark");
             }
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.setAttribute('data-theme', 'dark');
-                const icon = document.querySelector('#theme-toggle i');
-                if(icon) icon.className = 'fas fa-sun';
+        document.addEventListener("DOMContentLoaded", () => {
+            if (document.body.getAttribute("data-theme") === "dark") {
+                const icon = document.querySelector("#theme-btn i");
+                if (icon) icon.className = "fas fa-sun";
             }
-            
-            const themeToggle = document.getElementById('theme-toggle');
-            themeToggle?.addEventListener('click', toggleTheme);
+        });
 
-            // FAQ Accordion
-            document.querySelectorAll('.faq-question').forEach(item => {
-                item.addEventListener('click', () => {
-                    const answer = item.nextElementSibling;
-                    const icon = item.querySelector('i');
-                    const isOpen = answer.style.display === 'block';
-                    
-                    document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
-                    document.querySelectorAll('.faq-question i').forEach(i => i.className = 'fas fa-chevron-down');
-                    
-                    if (!isOpen) {
-                        answer.style.display = 'block';
-                        icon.className = 'fas fa-chevron-up';
-                    }
+        // --- Age Verification ---
+        function verifyAge(adult) {
+            if (adult) {
+                document.getElementById("age-verification").style.display = "none";
+                sessionStorage.setItem("age_verified", "true");
+            } else {
+                window.location.href = "https://www.google.com";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (sessionStorage.getItem("age_verified") === "true") {
+                const modal = document.getElementById("age-verification");
+                if (modal) modal.style.display = "none";
+            }
+        });
+
+        // --- Hamburger Menu ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const hamburger = document.getElementById("hamburger-btn");
+            const navLinks = document.getElementById("nav-links");
+            if (!hamburger || !navLinks) return;
+
+            hamburger.addEventListener("click", () => {
+                const isOpen = hamburger.getAttribute("aria-expanded") === "true";
+                hamburger.setAttribute("aria-expanded", String(!isOpen));
+                navLinks.classList.toggle("nav-open", !isOpen);
+                hamburger.classList.toggle("is-active", !isOpen);
+                hamburger.setAttribute("aria-label", isOpen ? "Ouvrir le menu" : "Fermer le menu");
+            });
+
+            navLinks.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", () => {
+                    hamburger.setAttribute("aria-expanded", "false");
+                    navLinks.classList.remove("nav-open");
+                    hamburger.classList.remove("is-active");
+                    hamburger.setAttribute("aria-label", "Ouvrir le menu");
                 });
             });
+
+            document.addEventListener("click", (e) => {
+                if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                    hamburger.setAttribute("aria-expanded", "false");
+                    navLinks.classList.remove("nav-open");
+                    hamburger.classList.remove("is-active");
+                }
+            });
         });
+
+        // --- FAQ Toggle ---
+        function toggleFAQ(button) {
+            const isExpanded = button.getAttribute("aria-expanded") === "true";
+            button.setAttribute("aria-expanded", !isExpanded);
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector("i");
+            
+            if (isExpanded) {
+                answer.classList.remove("open");
+                icon.className = "fas fa-plus";
+            } else {
+                answer.classList.add("open");
+                icon.className = "fas fa-minus";
+            }
+        }
+
+        // --- Scroll Reveal ---
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("revealed");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+        document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+        // --- Sticky header shadow ---
+        const header = document.getElementById("site-header");
+        window.addEventListener("scroll", () => {
+            if (header) header.classList.toggle("scrolled", window.scrollY > 10);
+        }, { passive: true });
+
+        // --- Newsletter ---
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector("button");
+            btn.textContent = "Merci !";
+            btn.disabled = true;
+            setTimeout(() => { btn.textContent = "S'abonner"; btn.disabled = false; e.target.reset(); }, 3000);
+        }
     </script>
 </body>
-</html>
+</html>\""
