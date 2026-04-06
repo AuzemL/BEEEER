@@ -4,86 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - Auzem'Beers & Sons</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <style>
-        body { font-family: 'Arial', sans-serif; background: #f8f7f4; margin: 0; color: #333; }
-        /* Header styles identiques aux autres pages */
-        header { height: 70px; min-height: 70px; background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%); color: white; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3);}
-        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px;}
-        .logo-block { display: flex; align-items: center;}
-        .logo-img { height: 48px; width: auto; margin-right: 16px; display: block; border-radius: 8px; background: #fff; box-shadow: 0 2px 8px rgba(44,24,16,0.15);}
-        .logo-text { font-size: 1.8rem; font-weight: bold; color: #f4a261; line-height: 1; white-space: nowrap; letter-spacing: 1px;}
-        .nav-links { display: flex; list-style: none; gap: 2rem;}
-        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s, border-bottom 0.3s; font-size: 1rem; border-bottom: 2px solid transparent; padding-bottom: 2px;}
-        .nav-links a:hover, .nav-links a.active { color: #f4a261; border-bottom: 2px solid #f4a261;}
-        .hamburger { display: none; flex-direction: column; cursor: pointer; margin-left: 16px;}
-        .bar { width: 25px; height: 3px; background: #f4a261; margin: 4px 0; border-radius: 2px; transition: 0.3s;}
-        .main-content { max-width: 900px; margin: 110px auto 40px; padding: 0 20px 40px 20px;}
-        .section-title { text-align: center; font-size: 2.3rem; margin-bottom: 1.5rem; color: #2c1810; position: relative;}
-        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: #f4a261;}
-        .faq-list { margin: 2.5rem 0; }
-        .faq-item { background: #fff; border-radius: 14px; box-shadow: 0 2px 10px rgba(244,162,97,0.07); margin-bottom: 1.5rem; padding: 1.2rem 1.5rem;}
-        .faq-question { font-weight: bold; color: #8b4513; margin-bottom: 0.7rem; font-size: 1.13rem;}
-        .faq-answer { color: #333; font-size: 1.05rem;}
-        @media (max-width: 700px) { .main-content { margin-top: 80px; } }
-        @media (max-width: 500px) { .logo-text { font-size: 1.1rem; } .logo-img { height: 36px; } }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
 </head>
-<body>
-    <!-- Header réutilisé -->
+<body class="light-theme">
     <header>
-        <nav>
-            <div class="logo-block">
-                <img src="Logo.jpg" alt="Logo de la brasserie" class="logo-img">
-                <span class="logo-text">Auzem'Beers & Sons</span>
-            </div>
-            <div class="hamburger" id="hamburger" aria-label="Ouvrir le menu" tabindex="0">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html#accueil">Accueil</a></li>
-                <li><a href="produits.html">Nos Produits</a></li>
-                <li><a href="commandes.html">Commandez</a></li>
-                <li><a href="service.html">Services</a></li>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-beer"></i> BEEEER
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="produits.html">Produits</a></li>
+                <li><a href="commandes.html">Commandes</a></li>
+                <li><a href="service.html">Service</a></li>
                 <li><a href="FAQ.html" class="active">FAQ</a></li>
-                <li><a href="Avis.html">Avis Clients</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="Avis.html">Avis</a></li>
+                <li><a href="compte.html"><i class="fas fa-user-circle"></i> Compte</a></li>
             </ul>
+            <div class="nav-controls">
+                <button id="theme-toggle" class="btn-icon">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
         </nav>
     </header>
-    <main class="main-content">
-        <h2 class="section-title">FAQ - Questions fréquentes</h2>
-        <div class="faq-list">
+
+    <main class="container py-5 mt-5">
+        <h1 class="text-center mb-5">Foire Aux Questions</h1>
+
+        <div class="faq-container">
+            <div class="faq-item card mb-3">
+                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
+                    <h3>Où sont brassées vos bières ?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer p-3" style="display: none;">
+                    <p>Toutes nos bières sont brassées artisanalement dans notre atelier situé au cœur des Landes (40), en utilisant des méthodes traditionnelles et des ingrédients locaux autant que possible.</p>
+                </div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">Proposez-vous la location de tireuses à bière et de fûts ?</div>
-                <div class="faq-answer">Oui, nous proposons la location de tireuses et de fûts pour tous vos événements. Consultez la page Services pour plus d'informations et le calendrier des disponibilités.</div>
+
+            <div class="faq-item card mb-3">
+                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
+                    <h3>Proposez-vous la livraison à domicile ?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer p-3" style="display: none;">
+                    <p>Oui, nous livrons dans toute la France via transporteur spécialisé. La livraison est offerte localement (rayon 20km) dès 30€ d'achat.</p>
+                </div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">Peut-on commander vos bières en ligne ?</div>
-                <div class="faq-answer">Oui, rendez-vous sur la page <a href="commandes.html" style="color:#f4a261;"><b>Commandez</b></a> pour passer commande.</div>
+
+            <div class="faq-item card mb-3">
+                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
+                    <h3>Vos bières sont-elles filtrées ou pasteurisées ?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer p-3" style="display: none;">
+                    <p>Non, nos bières sont vivantes : elles ne sont ni filtrées ni pasteurisées afin de conserver tous leurs arômes et propriétés gustatives. Un léger dépôt de levure au fond de la bouteille est tout à fait normal.</p>
+                </div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">Organisez-vous des dégustations ou des visites ?</div>
-                <div class="faq-answer">Oui, deux fois par mois ! Retrouvez toutes les informations sur la page Services ou contactez-nous pour réserver votre place.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Comment puis-je laisser un avis ?</div>
-                <div class="faq-answer">Vous pouvez laisser un avis sur Google via la page <a href="Avis.html" style="color:#f4a261;"><b>Avis Clients</b></a> ou directement lors de votre visite.</div>
+
+            <div class="faq-item card mb-3">
+                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
+                    <h3>Comment conserver mes bières ?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer p-3" style="display: none;">
+                    <p>Nous recommandons de conserver les bouteilles debout, à l'abri de la lumière et à une température fraîche et constante (entre 10°C et 15°C).</p>
+                </div>
             </div>
         </div>
     </main>
+
+    <footer class="py-5">
+        <div class="container footer-bottom text-center">
+            <p>&copy; 2024 Auzem'Beers & Sons. L'abus d'alcool est dangereux pour la santé.</p>
+        </div>
+    </footer>
+
     <script>
-        // Hamburger menu for mobile
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        const savedTheme = localStorage.getItem('theme') || 'light-theme';
+        body.className = savedTheme;
+        updateIcon(savedTheme);
+
+        themeToggle?.addEventListener('click', () => {
+            const currentTheme = body.className;
+            const newTheme = currentTheme === 'light-theme' ? 'dark-theme' : 'light-theme';
+            body.className = newTheme;
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
         });
-        hamburger.addEventListener('keypress', (e) => {
-            if(e.key === "Enter" || e.key === " ") hamburger.click();
+
+        function updateIcon(theme) {
+            const icon = themeToggle?.querySelector('i');
+            if (icon) {
+                icon.className = theme === 'light-theme' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+        }
+
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.nextElementSibling;
+                const icon = item.querySelector('i');
+                const isOpen = answer.style.display === 'block';
+                document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+                document.querySelectorAll('.faq-question i').forEach(i => i.className = 'fas fa-chevron-down');
+                if (!isOpen) {
+                    answer.style.display = 'block';
+                    icon.className = 'fas fa-chevron-up';
+                }
+            });
         });
     </script>
 </body>
