@@ -1,250 +1,268 @@
 <!DOCTYPE html>
-<html lang=\"fr\">
+<html lang="fr">
 <head>
-  <meta charset=\"UTF-8\">
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-  <title>Services - Auzem'Beers & Sons</title>
-  <link rel=\"icon\" type=\"image/png\" href=\"favicon.png\">
-  <style>
-    body { font-family: 'Arial', sans-serif; background: #f8f7f4; margin: 0; color: #333; }
-    header { height: 70px; min-height: 70px; background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%); color: white; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-    nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px; }
-    .logo-block { display: flex; align-items: center; }
-    .logo-img { height: 48px; width: auto; margin-right: 16px; display: block; border-radius: 8px; background: #fff; box-shadow: 0 2px 8px rgba(44,24,16,0.15); transition: transform 0.2s; }
-    .logo-img:hover { transform: scale(1.05) rotate(-3deg); box-shadow: 0 4px 16px rgba(244,162,97,0.30); }
-    .logo-text { font-size: 1.8rem; font-weight: bold; color: #f4a261; line-height: 1; white-space: nowrap; letter-spacing: 1px; text-shadow: 1px 1px 2px rgba(44,24,16,0.09); }
-    .nav-links { display: flex; list-style: none; gap: 2rem; }
-    .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s, border-bottom 0.3s; font-size: 1rem; border-bottom: 2px solid transparent; padding-bottom: 2px; }
-    .nav-links a:hover, .nav-links a.active { color: #f4a261; border-bottom: 2px solid #f4a261; }
-    .hamburger { display: none; flex-direction: column; cursor: pointer; margin-left: 16px; }
-    .bar { width: 25px; height: 3px; background: #f4a261; margin: 4px 0; border-radius: 2px; transition: 0.3s; }
-    .main-content { max-width: 1100px; margin: 100px auto 40px; padding: 0 20px 40px 20px; }
-    .section-title { text-align: center; font-size: 2.3rem; margin-bottom: 1.5rem; color: #2c1810; position: relative; }
-    .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: #f4a261; }
-    .degust-bar { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; margin-bottom: 2.5rem; background: #fff; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); padding: 2rem; transition: box-shadow 0.3s, transform 0.3s; }
-    .degust-bar:hover { box-shadow: 0 8px 30px rgba(244,162,97,0.12); transform: scale(1.01); }
-    .bar-img { flex: 1 1 300px; max-width: 350px; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.13); width: 100%; object-fit: cover; margin: 0 auto; }
-    .degust-content { flex: 2 1 350px; }
-    .degust-list { margin: 1rem 0 1.5rem 0; padding-left: 20px; }
-    .degust-list li { margin-bottom: 0.7rem; font-size: 1.08rem; }
-    .visit-note { background: #f4a261; color: #fff; padding: 0.7rem 1.2rem; border-radius: 20px; display: inline-block; margin-top: 1rem; font-size: 1.02rem; }
-    .location-section { background: #fff; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); padding: 2rem; margin-bottom: 2.5rem; transition: box-shadow 0.3s, transform 0.3s; }
-    .location-section:hover { box-shadow: 0 8px 30px rgba(244,162,97,0.12); transform: scale(1.01); }
-    .location-section h3 { color: #8b4513; margin-bottom: 1rem; }
-    .tarif-info { background: #ffe5b4; color: #8b4513; padding: 0.6rem 1.2rem; border-radius: 10px; margin-bottom: 1rem; display: inline-block; font-size: 1rem; }
-    .stock-placeholder { border: 2px dashed #f4a261; background: #fff8eb; padding: 1.2rem; border-radius: 10px; margin-bottom: 1.2rem; color: #8b4513; }
-    .calendar-section { margin: 2.5rem 0; background: #fff; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); padding: 2rem; }
-    .calendar-section h4 { color: #8b4513; margin-bottom: 1.3rem; text-align: center; }
-    #calendar-container { max-width: 900px; margin: 0 auto; }
-    .contact-invite { margin: 1.5rem 0 0.5rem 0; font-size: 1.1rem; color: #333; }
-    .cta-button { display: inline-block; background: #f4a261; color: #2c1810; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(244, 162, 97, 0.18); margin-top: 1.2rem; }
-    .cta-button:hover { background: #e76f51; color: #fff; transform: scale(1.03); box-shadow: 0 6px 20px rgba(244, 162, 97, 0.21); }
-    @media (max-width: 900px) { .degust-bar { flex-direction: column; text-align: center; } .degust-content { margin-top: 1.5rem; } }
-    @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } .main-content { margin-top: 80px; } }
-    @media (max-width: 500px) { .logo-text { font-size: 1.1rem; } .logo-img { height: 36px; } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez les services de la brasserie Auzem'Beers & Sons : dégustations bimensuelles, location de tireuses professionnelles et fûts pour vos événements.">
+    
+    <title>Services - Auzem'Beers & Sons</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
-  <header>
-    <nav>
-      <div class=\"logo-block\">
-        <img src=\"Logo.jpg\" alt=\"Logo de la brasserie\" class=\"logo-img\">
-        <span class=\"logo-text\">Auzem'Beers & Sons</span>
-      </div>
-      <ul class=\"nav-links\">
-        <li><a href=\"index.html#accueil\">Accueil</a></li>
-        <li><a href=\"produits.html\">Nos Produits</a></li>
-        <li><a href=\"commandes.html\">Commandez</a></li>
-        <li><a href=\"service.html\" class=\"active\">Services</a></li>
-        <li><a href=\"FAQ.html\">FAQ</a></li>
-        <li><a href=\"index.html#contact\">Contact</a></li>
-        <li><a href=\"Avis.html\">Avis Clients</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class=\"main-content\">
-    <h1 class=\"section-title\">Dégustations à la Brasserie</h1>
-    
-    <section class=\"degust-bar\">
-      <img src=\"Bar.jpg\" alt=\"Bar de la brasserie\" class=\"bar-img\">
-      <div class=\"degust-content\">
-        <p>Deux fois par mois, la brasserie ouvre ses portes pour des moments conviviaux autour de la bière artisanale et des produits du terroir.</p>
-        <ul class=\"degust-list\">
-          <li>Bières pressions fraîches</li>
-          <li>Bières bouteilles de la gamme</li>
-          <li>Assiette de charcuterie locale</li>
-          <li>License 3 : Get 27, vins</li>
-          <li>Gâteaux apéritifs</li>
-          <li>Eau plate et pétillante</li>
-          <li>Boissons non alcoolisées</li>
-        </ul>
-        <p class=\"visit-note\"><strong>Visite des installations possible</strong> selon l'activité du bar et la disponibilité de l'équipe.</p>
-      </div>
-    </section>
-
-    <section class=\"location-section\">
-      <h3 id=\"location\">Location de Tireuses à Bière & Fûts</h3>
-      <p>Nous proposons la location de tireuses à bière professionnelles et de fûts pour tous vos événements : mariages, anniversaires, fêtes, séminaires...</p>
-      
-      <p class=\"tarif-info\">Tarifs à venir prochainement.</p>
-
-      <div class=\"stock-placeholder\">
-        <strong>Détails des fûts utilisés & stocks disponibles :</strong><br>
-        <em>Cette section sera bientôt complétée avec la liste des fûts disponibles et leurs caractéristiques.</em>
-      </div>
-
-      <div class=\"calendar-section\">
-        <h4>Calendrier des disponibilités (jusqu'à juillet 2026)</h4>
-        
-        <div id=\"calendar-container\">
-          <div id=\"calendar-nav\">
-            <button id=\"prev-month\">&lt;</button>
-            <span id=\"month-label\"></span>
-            <button id=\"next-month\">&gt;</button>
-          </div>
-          <div id=\"calendar-display\"></div>
+    <!-- Age Verification Modal -->
+    <div id="age-verification" class="age-modal" role="dialog" aria-modal="true" aria-labelledby="age-title">
+        <div class="age-modal-inner">
+            <svg class="age-logo" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+                <circle cx="30" cy="30" r="28" stroke="#d4a044" stroke-width="2"/>
+                <path d="M20 38 Q30 20 40 38" stroke="#d4a044" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <circle cx="30" cy="24" r="4" fill="#d4a044"/>
+            </svg>
+            <h2 id="age-title">Êtes-vous majeur ?</h2>
+            <p>Vous devez avoir l'âge légal pour consommer de l'alcool dans votre pays pour accéder à ce site.</p>
+            <div class="age-buttons">
+                <button onclick="verifyAge(true)" class="cta-button">OUI, j'ai 18 ans ou plus</button>
+                <button onclick="verifyAge(false)" class="btn-ghost">NON</button>
+            </div>
         </div>
+    </div>
 
-        <div style=\"margin-top: 1rem; text-align: center; font-size: 0.9rem;\">
-          <strong>Légende :</strong> 
-          <span style=\"display: inline-block; width: 12px; height: 12px; background: #f4a261; margin-left: 10px;\"></span> Réservé
-          <span style=\"display: inline-block; width: 12px; height: 12px; background: #fff; border: 1px solid #ddd; margin-left: 10px;\"></span> Libre
+    <a href="#main-content" class="skip-link">Passer au contenu principal</a>
+
+    <header id="site-header">
+        <div class="container">
+            <nav aria-label="Navigation principale">
+                <a href="index.html" class="logo-block" aria-label="Auzem'Beers & Sons - Accueil">
+                    <img src="Logo.jpg" alt="Logo Auzem'Beers & Sons" class="logo-img" width="50" height="50" loading="eager">
+                    <span class="logo-text">Auzem'Beers & Sons</span>
+                </a>
+                <ul class="nav-links" id="nav-links" role="list">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits.html">Nos Produits</a></li>
+                    <li><a href="commandes.html">Commandez</a></li>
+                    <li><a href="service.html" class="active" aria-current="page">Services</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <li><a href="Avis.html">Avis</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Basculer le thème sombre/clair" id="theme-btn">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
+                    </button>
+                    <a href="compte.html" class="btn-account">
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        <span>Compte</span>
+                    </a>
+                </div>
+                <button class="hamburger" id="hamburger-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Ouvrir le menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </nav>
         </div>
-      </div>
+    </header>
 
-      <p class=\"contact-invite\">Pour toute demande de devis ou commande, contactez-nous prochainement par email (à venir) ou dès maintenant via <a href=\"https://www.instagram.com/ericauzemery/\" target=\"_blank\">Instagram</a>.</p>
-      
-      <a href=\"index.html#contact\" class=\"cta-button\">Un devis ? Faites une commande</a>
-    </section>
-  </main>
+    <main id="main-content" class="section-pad">
+        <div class="container">
+            <span class="section-label">Nos Services</span>
+            <h1 class="section-title left">Dégustations & Événements</h1>
+            
+            <div class="reveal">
+                <section class="degust-bar card" style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; margin-bottom: 3rem; padding: 2rem; background: var(--surface);">
+                    <img src="Bar2.jpeg" alt="Espace dégustation" class="bar-img" style="flex: 1 1 300px; max-width: 450px; border-radius: var(--radius); object-fit: cover; aspect-ratio: 16/9;">
+                    <div class="degust-content" style="flex: 2 1 350px;">
+                        <h3>Nos Dégustations</h3>
+                        <p>Venez découvrir l'univers de notre brasserie artisanale lors de nos sessions bimensuelles.</p>
+                        <ul class="degust-list" style="margin: 1.5rem 0; padding-left: 1.5rem; list-style: disc;">
+                            <li>Visite guidée des installations</li>
+                            <li>Explication du processus de brassage</li>
+                            <li>Dégustation de 4 à 6 bières de saison</li>
+                            <li>Possibilité d'achat direct sur place</li>
+                        </ul>
+                        <span class="visit-note" style="background: var(--primary-light); color: var(--secondary); padding: 0.5rem 1rem; border-radius: var(--radius-full); font-weight: 600; font-size: 0.9rem; display: inline-block;">
+                            <i class="fas fa-info-circle"></i> Deux vendredis par mois, de 18h à 21h.
+                        </span>
+                    </div>
+                </section>
+            </div>
 
-  <script>
-    // Hamburger menu for mobile
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
+            <div class="reveal">
+                <section class="location-section card" style="margin-bottom: 3rem; padding: 2rem; background: var(--surface);">
+                    <h3>Location de Tireuses</h3>
+                    <p>Pour vos mariages, anniversaires ou événements associatifs, nous proposons la location de tireuses professionnelles.</p>
+                    <div class="tarif-info" style="margin: 1.5rem 0; padding: 1rem; background: var(--bg); border-radius: var(--radius); border-left: 4px solid var(--primary-light);">
+                        <strong>Tarif :</strong> 30€ le week-end (gratuit à partir de 3 fûts achetés).
+                    </div>
+                    <div class="stock-placeholder" style="border: 2px dashed var(--divider); padding: 1.5rem; border-radius: var(--radius); text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+                        <i class="fas fa-beer" style="font-size: 2rem; margin-bottom: 1rem; display: block; color: var(--primary-light);"></i>
+                        Fûts de 20L ou 30L disponibles sur réservation (minimum 10 jours à l'avance).
+                    </div>
+                    <a href="commandes.html" class="cta-button">Réserver une tireuse</a>
+                </section>
+            </div>
 
-    if (hamburger) {
-      hamburger.addEventListener('click', () => {
-        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-      });
+            <div class="reveal">
+                <section class="calendar-section card" style="padding: 2rem; background: var(--surface);">
+                    <h3>Prochaines Dates</h3>
+                    <p>Voici les prochaines sessions de dégustation à la brasserie :</p>
+                    <div style="margin-top: 1.5rem; overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; min-width: 400px;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid var(--divider);">
+                                    <th style="text-align: left; padding: 1rem;">Date</th>
+                                    <th style="text-align: left; padding: 1rem;">Événement</th>
+                                    <th style="text-align: left; padding: 1rem;">Places</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--divider);">
+                                    <td style="padding: 1rem;">12 Avril 2026</td>
+                                    <td style="padding: 1rem;">Spéciale IPA de Printemps</td>
+                                    <td style="padding: 1rem; color: #27ae60; font-weight: 600;">Disponible</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--divider);">
+                                    <td style="padding: 1rem;">26 Avril 2026</td>
+                                    <td style="padding: 1rem;">Dégustation Classique</td>
+                                    <td style="padding: 1rem; color: #e67e22; font-weight: 600;">Dernières places</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
 
-      hamburger.addEventListener('keypress', (e) => {
-        if(e.key === \"Enter\" || e.key === \" \") hamburger.click();
-      });
-    }
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-text footer-logo-text">Auzem'Beers & Sons</div>
+                    <p>Brasserie artisanale landaise.<br>551 Route de Cap de Lelane,<br>40260 Taller.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/ericauzemery/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Éric Auzémery">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" aria-label="Facebook Auzem'Beers & Sons">
+                            <i class="fab fa-facebook" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Exploration</h4>
+                    <ul role="list">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="produits.html">Produits</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="FAQ.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Horaires</h4>
+                    <p>Ouvert lors des dégustations bimensuelles et sur rendez-vous pour les commandes.</p>
+                </div>
+                <div class="newsletter">
+                    <h4>La Gazette du Brasseur</h4>
+                    <p>Recevez nos actualités et nouveaux brassins.</p>
+                    <form class="newsletter-form" onsubmit="handleNewsletter(event)" novalidate>
+                        <label for="newsletter-email" class="sr-only">Votre adresse e-mail</label>
+                        <input type="email" id="newsletter-email" name="email" placeholder="votre@email.com" autocomplete="email" required aria-required="true">
+                        <button type="submit">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Auzem'Beers & Sons. <span>Consommez avec modération.</span></p>
+            </div>
+        </div>
+    </footer>
 
-    // Calendar logic
-    const months = [
-      'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-      'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
-    ];
-    const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+    <script>
+        // --- Theme ---
+        (function() {
+            const saved = sessionStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = saved || (prefersDark ? 'dark' : 'light');
+            if (theme === 'dark') document.body.setAttribute('data-theme', 'dark');
+        })();
 
-    const today = new Date();
-    const startMonth = today.getMonth();
-    const startYear = today.getFullYear();
-    const endMonth = 6; // Juillet (0-based)
-    const endYear = 2026;
-
-    let currentMonth = startMonth;
-    let currentYear = startYear;
-
-    // Réservations à afficher
-    const reservations = [
-      { year: 2025, month: 6, day: 12, title: \"Réservé : 2 fûts, 1 tireuse\" } // Juillet = 6 (0-based)
-    ];
-
-    function isReserved(year, month, day) {
-      return reservations.find(
-        r => r.year === year && r.month === month && r.day === day
-      );
-    }
-
-    function renderCalendar(year, month) {
-      const firstDay = new Date(year, month, 1);
-      const lastDay = new Date(year, month + 1, 0);
-      
-      let startDay = firstDay.getDay(); // 0=dimanche
-      startDay = (startDay === 0) ? 6 : startDay - 1; // 0=lundi
-
-      let html = '<div class=\"calendar-month\">';
-      html += '<div class=\"weekdays\">' + days.map(d => `<div class=\"weekday\">${d}</div>`).join('') + '</div>';
-      html += '<div class=\"days\">';
-
-      // Empty days
-      for(let i = 0; i < startDay; i++) {
-        html += '<div class=\"day empty\"></div>';
-      }
-
-      // Days
-      for(let d = 1; d <= lastDay.getDate(); d++) {
-        let reserved = isReserved(year, month, d);
-        if(reserved) {
-          html += `<div class=\"day reserved\" title=\"${reserved.title}\">${d}</div>`;
-        } else {
-          html += `<div class=\"day\">${d}</div>`;
+        function toggleTheme() {
+            const body = document.body;
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            const icon = document.querySelector('#theme-btn i');
+            if (isDark) {
+                body.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                sessionStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                sessionStorage.setItem('theme', 'dark');
+            }
         }
-      }
 
-      html += '</div></div>';
-      return html;
-    }
+        // --- Age Verification ---
+        function verifyAge(adult) {
+            if (adult) {
+                document.getElementById('age-verification').style.display = 'none';
+                sessionStorage.setItem('age_verified', 'true');
+            } else {
+                window.location.href = 'https://www.google.com';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('age_verified') === 'true') {
+                const modal = document.getElementById('age-verification');
+                if (modal) modal.style.display = 'none';
+            }
+        });
 
-    function updateCalendar() {
-      const label = document.getElementById('month-label');
-      const container = document.getElementById('calendar-display');
-      if (label && container) {
-        label.textContent = `${months[currentMonth]} ${currentYear}`;
-        container.innerHTML = renderCalendar(currentYear, currentMonth);
-        
-        document.getElementById('prev-month').disabled = (currentYear === startYear && currentMonth === startMonth);
-        document.getElementById('next-month').disabled = (currentYear === endYear && currentMonth === endMonth);
-      }
-    }
+        // --- Hamburger Menu ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger-btn');
+            const navLinks = document.getElementById('nav-links');
+            if (!hamburger || !navLinks) return;
+            
+            hamburger.addEventListener('click', () => {
+                const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+                hamburger.setAttribute('aria-expanded', String(!isOpen));
+                navLinks.classList.toggle('nav-open', !isOpen);
+                hamburger.classList.toggle('is-active', !isOpen);
+            });
+        });
 
-    document.addEventListener('DOMContentLoaded', function() {
-      updateCalendar();
-      
-      const prevBtn = document.getElementById('prev-month');
-      const nextBtn = document.getElementById('next-month');
+        // --- Scroll Reveal ---
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-      if (prevBtn && nextBtn) {
-        prevBtn.onclick = function() {
-          if(currentMonth === 0) {
-            currentMonth = 11;
-            currentYear--;
-          } else {
-            currentMonth--;
-          }
-          updateCalendar();
-        };
+        // --- Sticky header shadow ---
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            if (header) header.classList.toggle('scrolled', window.scrollY > 10);
+        }, { passive: true });
 
-        nextBtn.onclick = function() {
-          if(currentMonth === 11) {
-            currentMonth = 0;
-            currentYear++;
-          } else {
-            currentMonth++;
-          }
-          updateCalendar();
-        };
-      }
-    });
-  </script>
-
-  <style>
-    #calendar-nav { display: flex; justify-content: center; align-items: center; gap: 1.5rem; margin-bottom: 1.2rem; }
-    #calendar-nav button { background: #f4a261; color: #fff; border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 1.3rem; font-weight: bold; cursor: pointer; transition: background 0.2s; }
-    #calendar-nav button:hover { background: #e76f51; }
-    #calendar-nav button:disabled { background: #ccc; cursor: default; }
-    #month-label { font-size: 1.2rem; color: #8b4513; font-weight: bold; letter-spacing: 1px; min-width: 150px; text-align: center; }
-    .weekdays, .days { display: grid; grid-template-columns: repeat(7, 1fr); }
-    .weekday { color: #8b4513; font-weight: bold; text-align: center; padding: 6px 0; background: #f8f7f4; border-radius: 4px; }
-    .day { text-align: center; padding: 10px 0; margin: 2px; background: #fff; border-radius: 6px; position: relative; border: 1px solid #eee; }
-    .day.empty { background: transparent; border: none; }
-    .day.reserved { background: #f4a261; color: #fff; font-weight: bold; border: 1.5px solid #e76f51; }
-    .day.reserved::after { content: \"📦\"; position: absolute; right: 4px; top: 2px; font-size: 0.8rem; }
-  </style>
+        // --- Newsletter ---
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.textContent = 'Merci !';
+            btn.disabled = true;
+            setTimeout(() => { btn.textContent = "S'abonner"; btn.disabled = false; e.target.reset(); }, 3000);
+        }
+    </script>
 </body>
 </html>
