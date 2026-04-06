@@ -3,45 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Auzem'Beers & Sons - Brasserie artisanale des Landes. Bières locales aux saveurs authentiques : IPA, stout, bières saisonnières. Dégustations et location de tireuses.">
+    <meta name="description" content="Auzem'Beers &amp; Sons - Brasserie artisanale des Landes. Bières locales aux saveurs authentiques : IPA, stout, bières saisonnières. Dégustations et location de tireuses.">
     
     <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Auzem'Beers & Sons - Brasserie Artisanale des Landes">
+    <meta property="og:title" content="Auzem'Beers &amp; Sons - Brasserie Artisanale des Landes">
     <meta property="og:description" content="Découvrez nos bières artisanales aux saveurs du terroir landais. IPA, stout, bières saisonnières, et bien plus.">
     <meta property="og:image" content="https://auzeml.github.io/BEEEER/Logo.jpg">
     <meta property="og:url" content="https://auzeml.github.io/BEEEER/">
     <meta property="og:type" content="website">
     
-    <title>Auzem'Beers & Sons - Brasserie Locale des Landes</title>
+    <title>Auzem'Beers &amp; Sons - Brasserie Locale des Landes</title>
     
-    <!-- Preconnect for Google Fonts (Performance optimization) -->
+    <!-- Preconnect for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
 <body>
-  <div id="age-verification" class="modal" style="display: flex; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; color: white; text-align: center; padding: 20px;">
-    <div style="max-width: 500px;">
-      <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Êtes-vous majeur ?</h2>
-      <p style="margin-bottom: 2rem; opacity: 0.8;">Vous devez avoir l'âge légal pour consommer de l'alcool dans votre pays pour accéder à ce site.</p>
-      <div style="display: flex; gap: 1rem; justify-content: center;">
-        <button onclick="verifyAge(true)" class="cta-button" style="border: none; cursor: pointer; padding: 15px 40px;">OUI</button>
-        <button onclick="verifyAge(false)" style="background: transparent; color: white; border: 2px solid white; padding: 15px 40px; border-radius: 50px; cursor: pointer; font-weight: 700;">NON</button>
+
+  <!-- Age Verification Modal -->
+  <div id="age-verification" class="age-modal" role="dialog" aria-modal="true" aria-labelledby="age-title">
+    <div class="age-modal-inner">
+      <svg class="age-logo" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+        <circle cx="30" cy="30" r="28" stroke="#d4a044" stroke-width="2"/>
+        <path d="M20 38 Q30 20 40 38" stroke="#d4a044" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="30" cy="24" r="4" fill="#d4a044"/>
+      </svg>
+      <h2 id="age-title">Êtes-vous majeur&nbsp;?</h2>
+      <p>Vous devez avoir l'âge légal pour consommer de l'alcool dans votre pays pour accéder à ce site.</p>
+      <div class="age-buttons">
+        <button onclick="verifyAge(true)" class="cta-button">OUI, j'ai 18 ans ou plus</button>
+        <button onclick="verifyAge(false)" class="btn-ghost">NON</button>
       </div>
     </div>
   </div>
 
-  <header>
+  <!-- Skip to content -->
+  <a href="#main-content" class="skip-link">Passer au contenu principal</a>
+
+  <header id="site-header">
     <div class="container">
-      <nav>
-        <a href="index.html" class="logo-block">
-          <img src="Logo.jpg" alt="Logo" class="logo-img">
-          <span class="logo-text">Auzem'Beers & Sons</span>
+      <nav aria-label="Navigation principale">
+        <a href="index.html" class="logo-block" aria-label="Auzem'Beers &amp; Sons - Accueil">
+          <img src="Logo.jpg" alt="Logo Auzem'Beers &amp; Sons" class="logo-img" width="50" height="50" loading="eager">
+          <span class="logo-text">Auzem'Beers &amp; Sons</span>
         </a>
-        <ul class="nav-links">
-          <li><a href="index.html" class="active">Accueil</a></li>
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="index.html" class="active" aria-current="page">Accueil</a></li>
           <li><a href="produits.html">Nos Produits</a></li>
           <li><a href="commandes.html">Commandez</a></li>
           <li><a href="service.html">Services</a></li>
@@ -49,10 +60,15 @@
           <li><a href="Avis.html">Avis</a></li>
         </ul>
         <div class="nav-actions">
-          <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
-          <a href="compte.html" class="btn-account"><i class="fas fa-user"></i> Compte</a>
+          <button class="theme-toggle" onclick="toggleTheme()" aria-label="Basculer le thème sombre/clair" id="theme-btn">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </button>
+          <a href="compte.html" class="btn-account">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            <span>Compte</span>
+          </a>
         </div>
-        <button class="hamburger">
+        <button class="hamburger" id="hamburger-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Ouvrir le menu">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
@@ -61,72 +77,114 @@
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-content container animate">
-      <h1>Artisans du Terroir Landais</h1>
-      <p>Tradition, innovation et passion se rencontrent pour créer des bières d'exception aux saveurs authentiques du cœur des Landes.</p>
-      <a href="produits.html" class="cta-button">Découvrir Nos Bières</a>
-    </div>
-  </section>
+  <main id="main-content">
 
-  <section class="story animate">
-    <div class="container">
-      <div class="card-grid" style="align-items: center;">
-        <div class="story-text">
-          <h2 class="section-title" style="text-align: left;">Notre Histoire</h2>
-          <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Tout a commencé il y a 6 ans à Taller. Ce qui n'était qu'un hobby dans l'évier d'une cuisine est devenu une quête d'excellence. Éric Auzémery, brasseur passionné, sublime les ingrédients locaux : asperges, basilic, piment d'Espelette et figues.</p>
-          <p style="font-size: 1.1rem;">Chaque brassin raconte l'histoire de notre terre, mêlant créativité et respect des traditions brassicoles.</p>
+    <!-- Hero -->
+    <section class="hero" aria-label="Bannière principale">
+      <div class="hero-content container reveal">
+        <p class="hero-eyebrow">Brasserie artisanale · Taller, Landes</p>
+        <h1>Artisans du<br>Terroir Landais</h1>
+        <p class="hero-sub">Tradition, innovation et passion se rencontrent pour créer des bières d'exception aux saveurs authentiques du cœur des Landes.</p>
+        <div class="hero-ctas">
+          <a href="produits.html" class="cta-button">Découvrir Nos Bières</a>
+          <a href="service.html" class="btn-ghost-light">Nos Services</a>
         </div>
-        <div class="story-image" style="position: relative;">
-          <img src="Bar2.jpeg" alt="Bar" style="width: 100%; border-radius: var(--radius); box-shadow: var(--shadow);">
-          <div style="position: absolute; bottom: -20px; right: -20px; background: var(--primary); padding: 20px; border-radius: var(--radius); color: white; font-weight: 700;">
-            6 ans d'expertise
+      </div>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span></span>
+      </div>
+    </section>
+
+    <!-- Story -->
+    <section class="story section-pad reveal" aria-labelledby="story-heading">
+      <div class="container">
+        <div class="story-grid">
+          <div class="story-text">
+            <span class="section-label">Notre Histoire</span>
+            <h2 id="story-heading" class="section-title left">Six ans de passion brassicole</h2>
+            <p>Tout a commencé il y a 6 ans à Taller. Ce qui n'était qu'un hobby dans l'évier d'une cuisine est devenu une quête d'excellence. Éric Auzémery, brasseur passionné, sublime les ingrédients locaux : asperges, basilic, piment d'Espelette et figues.</p>
+            <p>Chaque brassin raconte l'histoire de notre terre, mêlant créativité et respect des traditions brassicoles.</p>
+            <a href="produits.html" class="cta-button" style="margin-top:1.5rem; display:inline-flex;">Voir nos bières</a>
+          </div>
+          <div class="story-visual">
+            <img src="Bar2.jpeg" alt="L'intérieur du bar Auzem'Beers &amp; Sons" width="600" height="450" loading="lazy" class="story-img">
+            <div class="story-badge" aria-label="6 ans d'expertise">
+              <span class="badge-number">6</span>
+              <span class="badge-label">ans<br>d'expertise</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section style="background: var(--white);">
-    <div class="container animate">
-      <h2 class="section-title">Nos Services</h2>
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-icon"><i class="fas fa-beer"></i></div>
-          <h3>Location de Tireuses</h3>
-          <p>Système de fûts et tireuses professionnelles pour tous vos événements : mariages, fêtes et réceptions.</p>
-          <a href="service.html" style="color: var(--primary); font-weight: 700; text-decoration: none; margin-top: 1rem; display: inline-block;">En savoir plus →</a>
-        </div>
-        <div class="card">
-          <div class="card-icon"><i class="fas fa-calendar-alt"></i></div>
-          <h3>Dégustations</h3>
-          <p>Deux fois par mois, venez découvrir nos créations et visiter nos installations dans une ambiance conviviale.</p>
-          <a href="service.html" style="color: var(--primary); font-weight: 700; text-decoration: none; margin-top: 1rem; display: inline-block;">Voir les dates →</a>
-        </div>
-        <div class="card">
-          <div class="card-icon"><i class="fas fa-clipboard-list"></i></div>
-          <h3>Commandes Spéciales</h3>
-          <p>Besoin d'un brassin unique ? Nous acceptons les commandes spéciales pour vos occasions particulières.</p>
-          <a href="commandes.html" style="color: var(--primary); font-weight: 700; text-decoration: none; margin-top: 1rem; display: inline-block;">Commander →</a>
+    <!-- Services -->
+    <section class="services-section section-pad" aria-labelledby="services-heading">
+      <div class="container reveal">
+        <span class="section-label">Ce que nous proposons</span>
+        <h2 id="services-heading" class="section-title">Nos Services</h2>
+        <div class="services-grid">
+          <article class="service-card service-card--featured">
+            <img src="Bar.jpg" alt="Tireuse à bière professionnelle" width="600" height="400" loading="lazy" class="service-bg-img">
+            <div class="service-card-body">
+              <h3>Location de Tireuses</h3>
+              <p>Système de fûts et tireuses professionnelles pour tous vos événements : mariages, fêtes et réceptions.</p>
+              <a href="service.html" class="service-link">En savoir plus <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="service-card">
+            <div class="service-card-body">
+              <div class="service-icon" aria-hidden="true"><i class="fas fa-calendar-alt"></i></div>
+              <h3>Dégustations</h3>
+              <p>Deux fois par mois, venez découvrir nos créations et visiter nos installations dans une ambiance conviviale.</p>
+              <a href="service.html" class="service-link">Voir les dates <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="service-card">
+            <div class="service-card-body">
+              <div class="service-icon" aria-hidden="true"><i class="fas fa-clipboard-list"></i></div>
+              <h3>Commandes Spéciales</h3>
+              <p>Besoin d'un brassin unique ? Nous acceptons les commandes spéciales pour vos occasions particulières.</p>
+              <a href="commandes.html" class="service-link">Commander <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Ingredients -->
+    <section class="ingredients-section section-pad reveal" aria-labelledby="ingredients-heading">
+      <div class="container">
+        <span class="section-label">Le terroir dans notre verre</span>
+        <h2 id="ingredients-heading" class="section-title">Ingrédients Locaux</h2>
+        <div class="ingredients-grid">
+          <div class="ingredient-item"><span class="ingredient-icon" aria-hidden="true">🌿</span><span>Basilic</span></div>
+          <div class="ingredient-item"><span class="ingredient-icon" aria-hidden="true">🫑</span><span>Piment d'Espelette</span></div>
+          <div class="ingredient-item"><span class="ingredient-icon" aria-hidden="true">🌾</span><span>Asperges</span></div>
+          <div class="ingredient-item"><span class="ingredient-icon" aria-hidden="true">🍑</span><span>Figues</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <footer>
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-logo">
-          <div class="logo-text" style="color: var(--primary-light);">Auzem'Beers & Sons</div>
-          <p>Brasserie artisanale landaise. 551 Route de Cap de Lelane, 40260 Taller.</p>
-          <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
-            <a href="https://www.instagram.com/ericauzemery/" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-            <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+        <div class="footer-brand">
+          <div class="logo-text footer-logo-text">Auzem'Beers &amp; Sons</div>
+          <p>Brasserie artisanale landaise.<br>551 Route de Cap de Lelane,<br>40260 Taller.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/ericauzemery/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Éric Auzémery">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="#" aria-label="Facebook Auzem'Beers &amp; Sons">
+              <i class="fab fa-facebook" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
         <div class="footer-links">
           <h4>Exploration</h4>
-          <ul>
+          <ul role="list">
             <li><a href="index.html">Accueil</a></li>
             <li><a href="produits.html">Produits</a></li>
             <li><a href="service.html">Services</a></li>
@@ -135,64 +193,128 @@
         </div>
         <div class="footer-links">
           <h4>Horaires</h4>
-          <p style="opacity: 0.8; font-size: 0.9rem;">Ouvert lors des dégustations bimensuelles et sur rendez-vous pour les commandes.</p>
+          <p>Ouvert lors des dégustations bimensuelles et sur rendez-vous pour les commandes.</p>
         </div>
         <div class="newsletter">
           <h4>La Gazette du Brasseur</h4>
           <p>Recevez nos actualités et nouveaux brassins.</p>
-          <input type="email" placeholder="votre@email.com">
-          <button>S'abonner</button>
+          <form class="newsletter-form" onsubmit="handleNewsletter(event)" novalidate>
+            <label for="newsletter-email" class="sr-only">Votre adresse e-mail</label>
+            <input type="email" id="newsletter-email" name="email" placeholder="votre@email.com" autocomplete="email" required aria-required="true">
+            <button type="submit">S'abonner</button>
+          </form>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Auzem'Beers & Sons. Consommez avec modération.</p>
+        <p>&copy; 2026 Auzem'Beers &amp; Sons. <span>Consommez avec modération.</span></p>
       </div>
     </div>
   </footer>
 
   <script>
+    // --- Theme (use sessionStorage — localStorage blocked in sandboxed contexts) ---
+    (function() {
+      const saved = sessionStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved || (prefersDark ? 'dark' : 'light');
+      if (theme === 'dark') document.body.setAttribute('data-theme', 'dark');
+    })();
+
     function toggleTheme() {
       const body = document.body;
-      const theme = body.getAttribute('data-theme');
-      const icon = document.querySelector('.theme-toggle i');
-      if (theme === 'dark') {
+      const isDark = body.getAttribute('data-theme') === 'dark';
+      const icon = document.querySelector('#theme-btn i');
+      if (isDark) {
         body.removeAttribute('data-theme');
         icon.className = 'fas fa-moon';
-        localStorage.setItem('theme', 'light');
+        sessionStorage.setItem('theme', 'light');
       } else {
         body.setAttribute('data-theme', 'dark');
         icon.className = 'fas fa-sun';
-        localStorage.setItem('theme', 'dark');
-      }
-    }
-
-    function verifyAge(adult) {
-      if (adult) {
-        document.getElementById('age-verification').style.display = 'none';
-        localStorage.setItem('age_verified', 'true');
-      } else {
-        window.location.href = 'https://www.google.com';
+        sessionStorage.setItem('theme', 'dark');
       }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('theme') === 'dark') {
-        document.body.setAttribute('data-theme', 'dark');
-        document.querySelector('.theme-toggle i').className = 'fas fa-sun';
-      }
-      if (localStorage.getItem('age_verified') === 'true') {
-        document.getElementById('age-verification').style.display = 'none';
+      if (document.body.getAttribute('data-theme') === 'dark') {
+        const icon = document.querySelector('#theme-btn i');
+        if (icon) icon.className = 'fas fa-sun';
       }
     });
 
-    // Animate on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('animate');
-      });
-    }, { threshold: 0.1 });
+    // --- Age Verification ---
+    function verifyAge(adult) {
+      if (adult) {
+        document.getElementById('age-verification').style.display = 'none';
+        sessionStorage.setItem('age_verified', 'true');
+      } else {
+        window.location.href = 'https://www.google.com';
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('age_verified') === 'true') {
+        const modal = document.getElementById('age-verification');
+        if (modal) modal.style.display = 'none';
+      }
+    });
 
-    document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+    // --- Hamburger Menu ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger-btn');
+      const navLinks = document.getElementById('nav-links');
+      if (!hamburger || !navLinks) return;
+
+      hamburger.addEventListener('click', () => {
+        const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', String(!isOpen));
+        navLinks.classList.toggle('nav-open', !isOpen);
+        hamburger.classList.toggle('is-active', !isOpen);
+        hamburger.setAttribute('aria-label', isOpen ? 'Ouvrir le menu' : 'Fermer le menu');
+      });
+
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.setAttribute('aria-expanded', 'false');
+          navLinks.classList.remove('nav-open');
+          hamburger.classList.remove('is-active');
+          hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+          hamburger.setAttribute('aria-expanded', 'false');
+          navLinks.classList.remove('nav-open');
+          hamburger.classList.remove('is-active');
+        }
+      });
+    });
+
+    // --- Scroll Reveal ---
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // --- Sticky header shadow ---
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      if (header) header.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    // --- Newsletter ---
+    function handleNewsletter(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Merci !';
+      btn.disabled = true;
+      setTimeout(() => { btn.textContent = "S'abonner"; btn.disabled = false; e.target.reset(); }, 3000);
+    }
   </script>
 </body>
 </html>
