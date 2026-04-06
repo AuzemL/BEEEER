@@ -5,126 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes Commandes - Auzem'Beers & Sons</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="light-theme">
+<body>
     <header>
-        <nav class="container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-beer"></i> BEEEER
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="produits.html">Produits</a></li>
-                <li><a href="commandes.html" class="active">Commandes</a></li>
-                <li><a href="service.html">Service</a></li>
-                <li><a href="FAQ.html">FAQ</a></li>
-                <li><a href="Avis.html">Avis</a></li>
-                <li><a href="compte.html"><i class="fas fa-user-circle"></i> Compte</a></li>
-            </ul>
-            <div class="nav-controls">
-                <button id="theme-toggle" class="btn-icon">
-                    <i class="fas fa-moon"></i>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo-block">
+                    <img src="Logo.jpg" alt="Logo" class="logo-img">
+                    <span class="logo-text">Auzem'Beers & Sons</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits.html">Nos Produits</a></li>
+                    <li><a href="commandes.html" class="active">Commandez</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <li><a href="Avis.html">Avis</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+                    <a href="compte.html" class="btn-account"><i class="fas fa-user"></i> Compte</a>
+                </div>
+                <button class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </button>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
 
-    <main class="container py-5 mt-5">
-        <div class="account-header mb-5 text-center">
-            <h1>Mes Commandes</h1>
+    <main class="container" style="padding-top: 150px; min-height: 80vh;">
+        <div class="section-header text-center mb-5">
+            <h2 class="section-title">Mes Commandes</h2>
             <p>Suivez l'état de vos achats et retrouvez votre historique</p>
         </div>
 
-        <!-- Tracking Simulation -->
-        <div class="tracking-card card mb-5">
-            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center p-3">
-                <span>Commande #ABS-2026-4521</span>
-                <span>Statut : <strong>En préparation</strong></span>
-            </div>
-            <div class="card-body p-4">
-                <div class="tracking-stepper d-flex justify-content-between mb-4">
-                    <div class="step completed">
-                        <div class="step-icon"><i class="fas fa-check"></i></div>
-                        <div class="step-label">Validée</div>
-                    </div>
-                    <div class="step active">
-                        <div class="step-icon"><i class="fas fa-box-open"></i></div>
-                        <div class="step-label">Préparation</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-icon"><i class="fas fa-truck"></i></div>
-                        <div class="step-label">Expédiée</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-icon"><i class="fas fa-home"></i></div>
-                        <div class="step-label">Livrée</div>
-                    </div>
-                </div>
-                <div class="order-details border-top pt-3">
-                    <p><strong>Articles :</strong> 12x Citrik, 6x Lou Bruc</p>
-                    <p><strong>Date estimée :</strong> Mercredi 08 Avril</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="order-tabs mb-4">
-            <button class="tab-btn active" data-tab="active">En cours</button>
-            <button class="tab-btn" data-tab="history">Historique</button>
-        </div>
-
-        <div id="orders-content">
-            <!-- Simulated historical orders could go here -->
-            <div class="card p-4 text-center empty-state" style="display: none;">
-                <i class="fas fa-shopping-bag fa-3x mb-3 text-muted"></i>
-                <h3>Aucune autre commande</h3>
-                <p>Vos commandes passées apparaîtront dans l'historique.</p>
+        <div class="card" style="max-width: 800px; margin: 0 auto;">
+            <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                <thead>
+                    <tr style="border-bottom: 2px solid var(--primary-light); text-align: left;">
+                        <th style="padding: 15px;">N° Commande</th>
+                        <th style="padding: 15px;">Date</th>
+                        <th style="padding: 15px;">Statut</th>
+                        <th style="padding: 15px;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 15px;">#CMD-2026-042</td>
+                        <td style="padding: 15px;">02/04/2026</td>
+                        <td style="padding: 15px;"><span class="status-low" style="padding: 4px 10px; border-radius: 15px; font-size: 0.8rem;">En préparation</span></td>
+                        <td style="padding: 15px;">42.50 €</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 15px;">#CMD-2026-001</td>
+                        <td style="padding: 15px;">15/03/2026</td>
+                        <td style="padding: 15px;"><span class="status-available" style="padding: 4px 10px; border-radius: 15px; font-size: 0.8rem;">Livrée</span></td>
+                        <td style="padding: 15px;">28.90 €</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="produits.html" class="cta-button">Nouvelle Commande</a>
             </div>
         </div>
     </main>
 
-    <footer class="py-5">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <a href="#" class="logo"><i class="fas fa-beer"></i> BEEEER</a>
-                <p>Brasserie artisanale landaise. Passion, qualité et tradition depuis 2024.</p>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <div class="logo-text" style="color: var(--primary-light);">Auzem'Beers & Sons</div>
+                    <p>Brasserie artisanale landaise. 551 Route de Cap de Lelane, 40260 Taller.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="produits.html">Produits</a></li>
+                        <li><a href="FAQ.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Besoin d'aide ?</h4>
+                    <p style="opacity: 0.8;">Contactez notre support client pour toute question sur vos commandes.</p>
+                </div>
+                <div class="newsletter">
+                    <h4>Newsletter</h4>
+                    <button style="width: 100%; background: var(--primary); border: none; color: white; padding: 10px; border-radius: 8px; font-weight: 700; cursor: pointer;">S'inscrire</button>
+                </div>
             </div>
-            <div class="footer-links">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="produits.html">Produits</a></li>
-                    <li><a href="compte.html">Mon Compte</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>© 2026 Auzem'Beers & Sons. Consommez avec modération.</p>
             </div>
-        </div>
-        <div class="footer-bottom container text-center">
-            <p>&copy; 2024 Auzem'Beers & Sons. Tous droits réservés.</p>
         </div>
     </footer>
 
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        
-        const savedTheme = localStorage.getItem('theme') || 'light-theme';
-        body.className = savedTheme;
-        updateIcon(savedTheme);
-
-        themeToggle?.addEventListener('click', () => {
-            const currentTheme = body.className;
-            const newTheme = currentTheme === 'light-theme' ? 'dark-theme' : 'light-theme';
-            body.className = newTheme;
-            localStorage.setItem('theme', newTheme);
-            updateIcon(newTheme);
-        });
-
-        function updateIcon(theme) {
-            const icon = themeToggle?.querySelector('i');
-            if (icon) {
-                icon.className = theme === 'light-theme' ? 'fas fa-moon' : 'fas fa-sun';
+        function toggleTheme() {
+            const body = document.body;
+            const theme = body.getAttribute('data-theme');
+            const icon = document.querySelector('.theme-toggle i');
+            if (theme === 'dark') {
+                body.removeAttribute('data-theme');
+                if(icon) icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                if(icon) icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
             }
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                const icon = document.querySelector('.theme-toggle i');
+                if(icon) icon.className = 'fas fa-sun';
+            }
+        });
     </script>
 </body>
 </html>
