@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
 </head>
-<body class="light-theme">
+<body>
     <header>
         <nav class="container">
             <a href="index.html" class="logo">
@@ -27,11 +27,16 @@
                     <i class="fas fa-moon"></i>
                 </button>
             </div>
+            <button class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </nav>
     </header>
 
     <main>
-        <section class="page-hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Brassin.jpg');">
+        <section class="page-hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Brassin.jpg'); height: 300px; display: flex; align-items: center; justify-content: center; color: white;">
             <div class="container text-center">
                 <h1>Nos Créations</h1>
                 <p>Découvrez notre gamme de bières artisanales brassées avec passion dans les Landes</p>
@@ -46,68 +51,76 @@
                 <button class="btn btn-outline" data-filter="speciale">Spéciales</button>
             </div>
 
-            <div class="products-grid">
-                <!-- Citrik -->
+            <div class="card-grid">
                 <div class="product-card card" data-category="blonde">
-                    <div class="product-image">
-                        <img src="Citrik.jpg" alt="Bière Citrik">
-                        <span class="badge badge-new">Nouveau</span>
+                    <div class="product-img-wrapper">
+                        <img src="Citrik.jpg" alt="Bière Citrik" class="product-img">
+                        <span class="product-status status-available">Nouveau</span>
                     </div>
                     <div class="product-info">
+                        <div class="product-meta">
+                            <span class="product-type">Blonde Agrumes</span>
+                            <span class="product-abv">5.5%</span>
+                        </div>
                         <h3>Citrik</h3>
-                        <p class="category">Blonde Agrumes - 5.5%</p>
-                        <p class="description">Une explosion de fraîcheur aux notes de citron vert et de pamplemousse.</p>
-                        <div class="product-footer">
-                            <span class="price">3.90 €</span>
-                            <button class="btn btn-primary btn-sm"><i class="fas fa-cart-plus"></i> Ajouter</button>
+                        <p>Une explosion de fraîcheur aux notes de citron vert et de pamplemousse.</p>
+                        <div class="product-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+                            <span class="price" style="font-size: 1.2rem; font-weight: 700; color: var(--primary);">3.90 €</span>
+                            <button class="btn-account" style="border: none; cursor: pointer;"><i class="fas fa-cart-plus"></i> Ajouter</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- La Brassin -->
                 <div class="product-card card" data-category="blonde">
-                    <div class="product-image">
-                        <img src="Brassin.jpg" alt="Bière La Brassin">
+                    <div class="product-img-wrapper">
+                        <img src="Brassin.jpg" alt="Bière La Brassin" class="product-img">
                     </div>
                     <div class="product-info">
+                        <div class="product-meta">
+                            <span class="product-type">Pilsner Traditionnelle</span>
+                            <span class="product-abv">5.0%</span>
+                        </div>
                         <h3>La Brassin</h3>
-                        <p class="category">Pilsner Traditionnelle - 5.0%</p>
-                        <p class="description">Une bière légère et maltée, parfaite pour toutes les occasions.</p>
-                        <div class="product-footer">
-                            <span class="price">3.50 €</span>
-                            <button class="btn btn-primary btn-sm"><i class="fas fa-cart-plus"></i> Ajouter</button>
+                        <p>Une bière légère et maltée, parfaite pour toutes les occasions.</p>
+                        <div class="product-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+                            <span class="price" style="font-size: 1.2rem; font-weight: 700; color: var(--primary);">3.50 €</span>
+                            <button class="btn-account" style="border: none; cursor: pointer;"><i class="fas fa-cart-plus"></i> Ajouter</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Porterik -->
                 <div class="product-card card" data-category="speciale">
-                    <div class="product-image">
-                        <img src="Porterik.jpeg" alt="Bière Porterik">
+                    <div class="product-img-wrapper">
+                        <img src="Porterik.jpeg" alt="Bière Porterik" class="product-img">
                     </div>
                     <div class="product-info">
+                        <div class="product-meta">
+                            <span class="product-type">Porter Noir</span>
+                            <span class="product-abv">6.5%</span>
+                        </div>
                         <h3>Porterik</h3>
-                        <p class="category">Porter Noir - 6.5%</p>
-                        <p class="description">Des notes de café et de chocolat noir pour cette bière de caractère.</p>
-                        <div class="product-footer">
-                            <span class="price">4.20 €</span>
-                            <button class="btn btn-primary btn-sm"><i class="fas fa-cart-plus"></i> Ajouter</button>
+                        <p>Des notes de café et de chocolat noir pour cette bière de caractère.</p>
+                        <div class="product-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+                            <span class="price" style="font-size: 1.2rem; font-weight: 700; color: var(--primary);">4.20 €</span>
+                            <button class="btn-account" style="border: none; cursor: pointer;"><i class="fas fa-cart-plus"></i> Ajouter</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Lou Bruc -->
                 <div class="product-card card" data-category="ambree">
-                    <div class="product-image">
-                        <img src="Lou Bruc.jpeg" alt="Bière Lou Bruc">
+                    <div class="product-img-wrapper">
+                        <img src="Lou Bruc.jpeg" alt="Bière Lou Bruc" class="product-img">
                     </div>
                     <div class="product-info">
+                        <div class="product-meta">
+                            <span class="product-type">Ambrée des Landes</span>
+                            <span class="product-abv">6.0%</span>
+                        </div>
                         <h3>Lou Bruc</h3>
-                        <p class="category">Ambrée des Landes - 6.0%</p>
-                        <p class="description">Une ambrée équilibrée aux reflets cuivrés et notes de caramel.</p>
-                        <div class="product-footer">
-                            <span class="price">4.00 €</span>
-                            <button class="btn btn-primary btn-sm"><i class="fas fa-cart-plus"></i> Ajouter</button>
+                        <p>Une ambrée équilibrée aux reflets cuivrés et notes de caramel.</p>
+                        <div class="product-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+                            <span class="price" style="font-size: 1.2rem; font-weight: 700; color: var(--primary);">4.00 €</span>
+                            <button class="btn-account" style="border: none; cursor: pointer;"><i class="fas fa-cart-plus"></i> Ajouter</button>
                         </div>
                     </div>
                 </div>
@@ -115,78 +128,83 @@
         </section>
     </main>
 
-    <footer class="py-5">
+    <footer>
         <div class="container footer-grid">
-            <div class="footer-brand">
-                <a href="#" class="logo"><i class="fas fa-beer"></i> BEEEER</a>
-                <p>Brasserie artisanale landaise. Passion, qualité et tradition depuis 2024.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+            <div class="footer-logo">
+                <div class="logo-text" style="color: var(--primary-light);">Auzem'Beers & Sons</div>
+                <p>Brasserie artisanale landaise. 551 Route de Cap de Lelane, 40260 Taller.</p>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <a href="https://www.instagram.com/ericauzemery/" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
             <div class="footer-links">
-                <h4>Navigation</h4>
+                <h4>Exploration</h4>
                 <ul>
                     <li><a href="index.html">Accueil</a></li>
                     <li><a href="produits.html">Produits</a></li>
-                    <li><a href="compte.html">Mon Compte</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
                 </ul>
             </div>
-            <div class="footer-newsletter">
-                <h4>Newsletter</h4>
-                <p>Recevez nos actualités et offres exclusives.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Votre email">
-                    <button type="submit" class="btn btn-primary">S'inscrire</button>
-                </form>
+            <div class="footer-links">
+                <h4>Horaires</h4>
+                <p style="opacity: 0.8; font-size: 0.9rem;">Ouvert lors des dégustations bimensuelles et sur rendez-vous pour les commandes.</p>
+            </div>
+            <div class="newsletter">
+                <h4>La Gazette du Brasseur</h4>
+                <p>Recevez nos actualités et nouveaux brassins.</p>
+                <input type="email" placeholder="votre@email.com" style="margin-bottom: 0.5rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 10px; border-radius: 8px; width: 100%;">
+                <button style="width: 100%; background: var(--primary); border: none; color: white; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 700;">S'abonner</button>
             </div>
         </div>
-        <div class="footer-bottom container">
-            <p>&copy; 2024 Auzem'Beers & Sons. Tous droits réservés.</p>
-            <p class="legal-text">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>
+        <div class="footer-bottom">
+            <p>© 2026 Auzem'Beers & Sons. Consommez avec modération.</p>
         </div>
     </footer>
 
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        
-        const savedTheme = localStorage.getItem('theme') || 'light-theme';
-        body.className = savedTheme;
-        updateIcon(savedTheme);
-
-        themeToggle?.addEventListener('click', () => {
-            const currentTheme = body.className;
-            const newTheme = currentTheme === 'light-theme' ? 'dark-theme' : 'light-theme';
-            body.className = newTheme;
-            localStorage.setItem('theme', newTheme);
-            updateIcon(newTheme);
-        });
-
-        function updateIcon(theme) {
-            const icon = themeToggle?.querySelector('i');
-            if (icon) {
-                icon.className = theme === 'light-theme' ? 'fas fa-moon' : 'fas fa-sun';
+        function toggleTheme() {
+            const body = document.body;
+            const theme = body.getAttribute('data-theme');
+            const icon = document.querySelector('#theme-toggle i');
+            if (theme === 'dark') {
+                body.removeAttribute('data-theme');
+                if(icon) icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                if(icon) icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
             }
         }
 
-        // Filtering logic
-        const filterBtns = document.querySelectorAll('.filter-controls .btn');
-        const products = document.querySelectorAll('.product-card');
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                const icon = document.querySelector('#theme-toggle i');
+                if(icon) icon.className = 'fas fa-sun';
+            }
+            
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle?.addEventListener('click', toggleTheme);
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.getAttribute('data-filter');
-                products.forEach(product => {
-                    if (filter === 'all' || product.getAttribute('data-category') === filter) {
-                        product.style.display = 'block';
-                    } else {
-                        product.style.display = 'none';
-                    }
+            // Filtering logic
+            const filterBtns = document.querySelectorAll('.filter-controls .btn');
+            const products = document.querySelectorAll('.product-card');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const filter = btn.getAttribute('data-filter');
+                    products.forEach(product => {
+                        if (filter === 'all' || product.getAttribute('data-category') === filter) {
+                            product.style.display = 'block';
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
                 });
             });
         });
