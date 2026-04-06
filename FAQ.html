@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
 </head>
-<body class="light-theme">
+<body>
     <header>
         <nav class="container">
             <a href="index.html" class="logo">
@@ -23,99 +23,122 @@
                 <li><a href="compte.html"><i class="fas fa-user-circle"></i> Compte</a></li>
             </ul>
             <div class="nav-controls">
-                <button id="theme-toggle" class="btn-icon">
+                <button id="theme-toggle" class="btn-icon" title="Changer de thème">
                     <i class="fas fa-moon"></i>
                 </button>
             </div>
+            <button class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </nav>
     </header>
 
     <main class="container py-5 mt-5">
         <h1 class="text-center mb-5">Foire Aux Questions</h1>
-
-        <div class="faq-container">
-            <div class="faq-item card mb-3">
-                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
-                    <h3>Où sont brassées vos bières ?</h3>
+        <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
+            <div class="faq-item card mb-3" style="padding: 0; overflow: hidden;">
+                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer; background: var(--white); padding: 20px !important;">
+                    <h3 style="margin: 0;">Où sont brassées vos bières ?</h3>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-                <div class="faq-answer p-3" style="display: none;">
+                <div class="faq-answer p-3" style="display: none; padding: 20px !important; border-top: 1px solid rgba(0,0,0,0.1);">
                     <p>Toutes nos bières sont brassées artisanalement dans notre atelier situé au cœur des Landes (40), en utilisant des méthodes traditionnelles et des ingrédients locaux autant que possible.</p>
                 </div>
             </div>
-
-            <div class="faq-item card mb-3">
-                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
-                    <h3>Proposez-vous la livraison à domicile ?</h3>
+            <div class="faq-item card mb-3" style="padding: 0; overflow: hidden;">
+                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer; background: var(--white); padding: 20px !important;">
+                    <h3 style="margin: 0;">Proposez-vous la livraison à domicile ?</h3>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-                <div class="faq-answer p-3" style="display: none;">
+                <div class="faq-answer p-3" style="display: none; padding: 20px !important; border-top: 1px solid rgba(0,0,0,0.1);">
                     <p>Oui, nous livrons dans toute la France via transporteur spécialisé. La livraison est offerte localement (rayon 20km) dès 30€ d'achat.</p>
                 </div>
             </div>
-
-            <div class="faq-item card mb-3">
-                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
-                    <h3>Vos bières sont-elles filtrées ou pasteurisées ?</h3>
+            <div class="faq-item card mb-3" style="padding: 0; overflow: hidden;">
+                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer; background: var(--white); padding: 20px !important;">
+                    <h3 style="margin: 0;">Vos bières sont-elles filtrées ou pasteurisées ?</h3>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-                <div class="faq-answer p-3" style="display: none;">
+                <div class="faq-answer p-3" style="display: none; padding: 20px !important; border-top: 1px solid rgba(0,0,0,0.1);">
                     <p>Non, nos bières sont vivantes : elles ne sont ni filtrées ni pasteurisées afin de conserver tous leurs arômes et propriétés gustatives. Un léger dépôt de levure au fond de la bouteille est tout à fait normal.</p>
                 </div>
             </div>
-
-            <div class="faq-item card mb-3">
-                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer;">
-                    <h3>Comment conserver mes bières ?</h3>
+            <div class="faq-item card mb-3" style="padding: 0; overflow: hidden;">
+                <div class="faq-question p-3 d-flex justify-content-between align-items-center" style="cursor: pointer; background: var(--white); padding: 20px !important;">
+                    <h3 style="margin: 0;">Comment conserver mes bières ?</h3>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-                <div class="faq-answer p-3" style="display: none;">
+                <div class="faq-answer p-3" style="display: none; padding: 20px !important; border-top: 1px solid rgba(0,0,0,0.1);">
                     <p>Nous recommandons de conserver les bouteilles debout, à l'abri de la lumière et à une température fraîche et constante (entre 10°C et 15°C).</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="py-5">
-        <div class="container footer-bottom text-center">
-            <p>&copy; 2024 Auzem'Beers & Sons. L'abus d'alcool est dangereux pour la santé.</p>
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-logo">
+                <div class="logo-text" style="color: var(--primary-light);">Auzem'Beers & Sons</div>
+                <p>Brasserie artisanale landaise. 551 Route de Cap de Lelane, 40260 Taller.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits.html">Produits</a></li>
+                    <li><a href="compte.html">Mon Compte</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom" style="width: 100%; grid-column: span 4;">
+                <p>© 2026 Auzem'Beers & Sons. Consommez avec modération.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        
-        const savedTheme = localStorage.getItem('theme') || 'light-theme';
-        body.className = savedTheme;
-        updateIcon(savedTheme);
-
-        themeToggle?.addEventListener('click', () => {
-            const currentTheme = body.className;
-            const newTheme = currentTheme === 'light-theme' ? 'dark-theme' : 'light-theme';
-            body.className = newTheme;
-            localStorage.setItem('theme', newTheme);
-            updateIcon(newTheme);
-        });
-
-        function updateIcon(theme) {
-            const icon = themeToggle?.querySelector('i');
-            if (icon) {
-                icon.className = theme === 'light-theme' ? 'fas fa-moon' : 'fas fa-sun';
+        function toggleTheme() {
+            const body = document.body;
+            const theme = body.getAttribute('data-theme');
+            const icon = document.querySelector('#theme-toggle i');
+            if (theme === 'dark') {
+                body.removeAttribute('data-theme');
+                if(icon) icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                if(icon) icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
             }
         }
 
-        document.querySelectorAll('.faq-question').forEach(item => {
-            item.addEventListener('click', () => {
-                const answer = item.nextElementSibling;
-                const icon = item.querySelector('i');
-                const isOpen = answer.style.display === 'block';
-                document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
-                document.querySelectorAll('.faq-question i').forEach(i => i.className = 'fas fa-chevron-down');
-                if (!isOpen) {
-                    answer.style.display = 'block';
-                    icon.className = 'fas fa-chevron-up';
-                }
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                const icon = document.querySelector('#theme-toggle i');
+                if(icon) icon.className = 'fas fa-sun';
+            }
+            
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle?.addEventListener('click', toggleTheme);
+
+            // FAQ Accordion
+            document.querySelectorAll('.faq-question').forEach(item => {
+                item.addEventListener('click', () => {
+                    const answer = item.nextElementSibling;
+                    const icon = item.querySelector('i');
+                    const isOpen = answer.style.display === 'block';
+                    
+                    document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+                    document.querySelectorAll('.faq-question i').forEach(i => i.className = 'fas fa-chevron-down');
+                    
+                    if (!isOpen) {
+                        answer.style.display = 'block';
+                        icon.className = 'fas fa-chevron-up';
+                    }
+                });
             });
         });
     </script>
