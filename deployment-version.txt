@@ -1,0 +1,5 @@
+BEEEER seven-page redesign
+Expected source merge: 23985bb62d588dcef0dd78d590e391f99fecb1dc
+Pages: index.html, produits.html, service.html, commandes.html, FAQ.html, Avis.html, compte.html
+Shared assets: styles.css, site.js
+Diagnostic marker: static-publish-check-1
