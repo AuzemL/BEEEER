@@ -1,83 +1,57 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Les bières — Auzem’Beers &amp; Sons</title>
-  <meta name="description" content="La carte des bières Auzem’Beers & Sons. Découvrez les notes de dégustation et renseignez-vous sur les brassins disponibles.">
-  <link rel="stylesheet" href="styles.css">
-  <script src="site.js" defer></script>
-  <style>
-    .product-visual { position:relative; isolation:isolate; background:#e5ddcc; }
-    .product-visual img { transition:transform .35s ease; }
-    .tasting-hint { position:absolute; bottom:14px; left:14px; padding:7px 12px; background:var(--paper); color:var(--ink); font-size:11px; letter-spacing:.07em; pointer-events:none; }
-    .tasting-panel { position:relative; padding:24px; background:var(--ink); color:var(--paper); }
-    .tasting-panel h3 { margin:8px 0 15px; color:var(--paper); font-size:28px; }
-    .product .tasting-panel p { font-size:14px; line-height:1.65; margin:12px 0; }
-    .product .tasting-panel .eyebrow { font-size:10px; }
-    .tasting-meta { border-top:1px solid #f2eddf60; padding-top:12px; }
-    .tasting-hint { display:none; }
-    @media(hover:hover) and (pointer:fine) {
-      .product-visual { overflow:hidden; }
-      .tasting-hint { display:block; }
-      .tasting-panel { position:absolute; inset:0; overflow:auto; opacity:0; visibility:hidden; transform:translateY(12px); transition:opacity .25s ease,transform .25s ease,visibility .25s; }
-      .product-visual:not(.dismissed):hover .tasting-panel, .product-visual:not(.dismissed):focus-within .tasting-panel { opacity:1; visibility:visible; transform:translateY(0); }
-      .product-visual:not(.dismissed):hover img, .product-visual:not(.dismissed):focus-within img { transform:scale(1.035); }
-      .product-visual:not(.dismissed):hover .tasting-hint, .product-visual:not(.dismissed):focus-within .tasting-hint { opacity:0; }
-    }
-    @media(prefers-reduced-motion:reduce) { .product-visual img,.tasting-panel { transition:none; transform:none!important; } }
-  </style>
-  <script defer>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.product-visual').forEach(visual => {
-        visual.addEventListener('keydown', event => { if(event.key === 'Escape') { visual.classList.add('dismissed'); event.stopPropagation(); } });
-        visual.addEventListener('pointerleave', () => { if(!visual.contains(document.activeElement)) visual.classList.remove('dismissed'); });
-        visual.addEventListener('focusout', () => requestAnimationFrame(() => { if(!visual.matches(':hover') && !visual.contains(document.activeElement)) visual.classList.remove('dismissed'); }));
-        visual.addEventListener('pointerenter', () => visual.classList.remove('dismissed'));
-        visual.addEventListener('focusin', () => visual.classList.remove('dismissed'));
-      });
-    });
-  </script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Les bières — Auzem’Beers &amp; Sons</title>
+<meta name="description" content="Découvrez les huit bières présentées au catalogue Auzem’Beers & Sons : 3,50 € l’unité ou 15 € le pack de six.">
+<link rel="stylesheet" href="styles.css"><script src="site.js" defer></script>
+<style>
+.product-visual{position:relative;isolation:isolate;background:#e5ddcc}.product-visual img{transition:transform .35s ease}.tasting-hint{position:absolute;bottom:14px;left:14px;padding:7px 12px;background:var(--paper);color:var(--ink);font-size:11px;letter-spacing:.07em;pointer-events:none;display:none}.tasting-panel{position:relative;padding:24px;background:var(--ink);color:var(--paper)}.tasting-panel h3{margin:8px 0 15px;color:var(--paper);font-size:28px}.product .tasting-panel p{font-size:14px;line-height:1.65;margin:12px 0}.product .tasting-panel .eyebrow{font-size:10px}.tasting-meta{border-top:1px solid #f2eddf60;padding-top:12px}.product .product-prices{font-size:15px;color:var(--rust);border-top:1px solid var(--line);padding-top:12px}
+@media(hover:hover) and (pointer:fine){.product-visual{overflow:hidden}.tasting-hint{display:block}.tasting-panel{position:absolute;inset:0;overflow:auto;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s ease,transform .25s ease,visibility .25s}.product-visual:not(.dismissed):hover .tasting-panel,.product-visual:not(.dismissed):focus-within .tasting-panel{opacity:1;visibility:visible;transform:translateY(0)}.product-visual:not(.dismissed):hover img,.product-visual:not(.dismissed):focus-within img{transform:scale(1.035)}.product-visual:not(.dismissed):hover .tasting-hint,.product-visual:not(.dismissed):focus-within .tasting-hint{opacity:0}}
+@media(prefers-reduced-motion:reduce){.product-visual img,.tasting-panel{transition:none;transform:none!important}}
+</style>
+<script defer>
+document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.product-visual').forEach(visual=>{visual.addEventListener('keydown',event=>{if(event.key==='Escape'){visual.classList.add('dismissed');event.stopPropagation()}});visual.addEventListener('pointerleave',()=>{if(!visual.contains(document.activeElement))visual.classList.remove('dismissed')});visual.addEventListener('focusout',()=>requestAnimationFrame(()=>{if(!visual.matches(':hover')&&!visual.contains(document.activeElement))visual.classList.remove('dismissed')}));visual.addEventListener('pointerenter',()=>visual.classList.remove('dismissed'));visual.addEventListener('focusin',()=>visual.classList.remove('dismissed'))})});
+</script>
 </head>
 <body>
-  <a class="skip" href="#main">Passer au contenu</a>
-  <header><a href="index.html">Accueil</a> · <a href="commandes.html">Commander</a></header>
-  <main id="main">
-    <section class="page-head wrap"><p class="eyebrow">La carte / Auzem’Beers &amp; Sons</p><h1>À chacun<br>son <em>caractère.</em></h1><p class="intro">Découvrez la gamme et ses notes de dégustation. Pour les disponibilités du moment, échangez directement avec le brasseur.</p></section>
-    <section class="section wrap" aria-label="Les bières">
-      <div class="grid">
-        <article class="product">
-          <div class="product-visual" tabindex="0" role="group" aria-label="Notes de dégustation de Citri’K" aria-describedby="notes-citrik">
-            <img src="Citrik.jpg" alt="Visuel Citrik" loading="lazy"><span class="tasting-hint" aria-hidden="true">Survoler pour découvrir ↗</span>
-            <div class="tasting-panel" id="notes-citrik"><p class="eyebrow">Notes de dégustation</p><h3>Citri’K</h3><p>Une Kveik IPA au profil fruité, portée par les notes d’agrumes. Son amertume équilibrée accompagne ce caractère frais et expressif.</p><p class="tasting-meta">Kveik IPA · 5,5 % vol.<br>Profil : agrumes, fruité, amertume équilibrée.</p></div>
-          </div>
-          <h2>Citri’K</h2><p>Kveik IPA · 5,5 % vol.</p><p>IPA fruitée aux agrumes, à l’amertume équilibrée.</p><a href="commandes.html">Se renseigner ↗</a>
-        </article>
-        <article class="product">
-          <div class="product-visual" tabindex="0" role="group" aria-label="Notes de dégustation de Carmes Deri’k" aria-describedby="notes-carmes">
-            <img src="Carmes%20Derik.jpeg" alt="Visuel Carmes Deri’k" loading="lazy"><span class="tasting-hint" aria-hidden="true">Survoler pour découvrir ↗</span>
-            <div class="tasting-panel" id="notes-carmes"><p class="eyebrow">Notes de dégustation</p><h3>Carmes Deri’k</h3><p>Des notes de fruits secs et d’épices douces dessinent le profil de cette création. Deux familles aromatiques à retrouver au fil de la dégustation.</p><p class="tasting-meta">7,4 % vol.<br>Profil : fruits secs, épices douces.</p></div>
-          </div>
-          <h2>Carmes Deri’k</h2><p>7,4 % vol.</p><p>Notes de fruits secs et d’épices douces.</p><a href="commandes.html">Se renseigner ↗</a>
-        </article>
-        <article class="product">
-          <div class="product-visual" tabindex="0" role="group" aria-label="Notes de dégustation de Spicy Machine" aria-describedby="notes-spicy">
-            <img src="Houblon.jpg" alt="Houblon — photographie d’ambiance, pas le produit Spicy Machine" loading="lazy"><span class="tasting-hint" aria-hidden="true">Survoler pour découvrir ↗</span>
-            <div class="tasting-panel" id="notes-spicy"><p class="eyebrow">Notes de dégustation</p><h3>Spicy Machine</h3><p>Un stout qui associe des notes de cacao au piment d’Espelette. Cette rencontre entre cacao et piment fait toute la singularité de son profil.</p><p class="tasting-meta">Stout au piment · 9,9 % vol.<br>Profil : cacao, piment d’Espelette.</p></div>
-          </div>
-          <h2>Spicy Machine</h2><p>Stout au piment · 9,9 % vol.</p><p>Notes de cacao et piment d’Espelette.</p><a href="commandes.html">Se renseigner ↗</a>
-        </article>
-        <article class="product">
-          <div class="product-visual" tabindex="0" role="group" aria-label="Présentation de Whiti’k" aria-describedby="notes-whitik">
-            <img src="Brassin.jpg" alt="Photographie de la brasserie — pas le produit Whiti’k" loading="lazy"><span class="tasting-hint" aria-hidden="true">Survoler pour découvrir ↗</span>
-            <div class="tasting-panel" id="notes-whitik"><p class="eyebrow">À découvrir</p><h3>Whiti’k</h3><p>La bière blanche de la gamme, à découvrir directement auprès du brasseur. Éric pourra vous présenter ses arômes et vous conseiller pour la dégustation.</p><p class="tasting-meta">Blanche · 6,9 % vol.<br>Notes détaillées : à préciser avec le brasseur.</p></div>
-          </div>
-          <h2>Whiti’k</h2><p>Blanche · 6,9 % vol.</p><p>Une bière blanche à découvrir auprès du brasseur.</p><a href="commandes.html">Se renseigner ↗</a>
-        </article>
-      </div>
-      <p class="note">Les photographies de houblon et de brassage sont des images d’ambiance. Les disponibilités ne sont pas synchronisées avec un stock en temps réel.</p>
-    </section>
-  </main>
-  <footer><a href="service.html">Services</a> · <a href="FAQ.html">FAQ</a></footer>
-</body>
-</html>
+<a class="skip" href="#main">Passer au contenu</a>
+<header><a href="index.html">Accueil</a> · <a href="commandes.html">Commander</a></header>
+<main id="main">
+<section class="page-head wrap"><p class="eyebrow">La carte / Auzem’Beers &amp; Sons</p><h1>À chacun<br>son <em>caractère.</em></h1><p class="intro">Huit bières à découvrir en images. Retrouvez les notes disponibles et échangez avec le brasseur pour les détails et disponibilités du moment.</p><p class="note">Toutes nos bières : 3,50 € l’unité · 15 € le pack de six.</p></section>
+<section class="section wrap" aria-label="Les bières"><div class="grid">
+<article class="product">
+<div class="product-visual" tabindex="0" role="group" aria-label="Notes de dégustation de Citri’K" aria-describedby="notes-citrik"><img src="Citrik.jpg" alt="Visuel Citrik" loading="lazy"><span class="tasting-hint" aria-hidden="true">Survoler pour découvrir ↗</span><div class="tasting-panel" id="notes-citrik"><p class="eyebrow">Notes de dégustation</p><h3>Citri’K</h3><p>Une Kveik IPA au profil fruité, portée par les notes d’agrumes. Son amertume équilibrée accompagne ce caractère frais et expressif.</p><p class="tasting-meta">Kveik IPA · 5,5 % vol.<br>Profil : agrumes, fruité, amertume équilibrée.</p></div></div>
+<h2>Citri’K</h2><p>Kveik IPA · 5,5 % vol.</p><p>IPA fruitée aux agrumes, à l’amertume équilibrée.</p><p class="product-prices">3,50 € l’unité · 15 € les six</p><a href="commandes.html">Se renseigner ↗</a>
+</article>
+<article class="product">
+<div class="product-visual" tabindex="0" role="group" aria-label="Notes de dégustation de Carmes Deri’k" aria-describedby="notes-carmes"><img src="Carmes%20Derik.jpeg" alt="Visuel Carmes Deri’k" loading="lazy"><span class="tasting-hint" aria-hidden="true">Survoler pour découvrir ↗</span><div class="tasting-panel" id="notes-carmes"><p class="eyebrow">Notes de dégustation</p><h3>Carmes Deri’k</h3><p>Des notes de fruits secs et d’épices douces dessinent le profil de cette création. Deux familles aromatiques à retrouver au fil de la dégustation.</p><p class="tasting-meta">7,4 % vol.<br>Profil : fruits secs, épices douces.</p></div></div>
+<h2>Carmes Deri’k</h2><p>7,4 % vol.</p><p>Notes de fruits secs et d’épices douces.</p><p class="product-prices">3,50 € l’unité · 15 € les six</p><a href="commandes.html">Se renseigner ↗</a>
+</article>
+<article class="product">
+<div class="product-visual" tabindex="0" role="group" aria-label="Présentation de Ch’ti Landais" aria-describedby="notes-chti"><img src="Ch%27ti%20Landais%20etq.jpeg" alt="Étiquette Ch’ti Landais" loading="lazy"><span class="tasting-hint" aria-hidden="true">Survoler pour découvrir ↗</span><div class="tasting-panel" id="notes-chti"><p class="eyebrow">À découvrir</p><h3>Ch’ti Landais</h3><p>Découvrez cette référence à travers son étiquette et sa photographie. Pour connaître son profil de dégustation et le brassin disponible, échangez avec Éric.</p><p class="tasting-meta">Style, degré d’alcool et notes détaillées : à confirmer avec le brasseur.</p></div></div>
+<h2>Ch’ti Landais</h2><p>Découvrez l’étiquette et la photo de cette référence.</p><p><a href="Ch%27ti%20Landais.jpeg" target="_blank" rel="noopener noreferrer">Voir l’autre photo ↗</a></p><p class="product-prices">3,50 € l’unité · 15 € les six</p><a href="commandes.html">Se renseigner ↗</a>
+</article>
+<article class="product">
+<div class="product-visual" tabindex="0" role="group" aria-label="Présentation de Harvest sauvage" aria-describedby="notes-harvest"><img src="Harvest%20sauvage.jpeg" alt="Visuel Harvest sauvage" loading="lazy"><span class="tasting-hint" aria-hidden="true">Survoler pour découvrir ↗</span><div class="tasting-panel" id="notes-harvest"><p class="eyebrow">À découvrir</p><h3>Harvest sauvage</h3><p>Une autre référence à explorer dans le catalogue de la brasserie. Demandez à Éric de vous présenter ce brassin, ses caractéristiques et ses disponibilités.</p><p class="tasting-meta">Style, degré d’alcool et notes détaillées : à confirmer avec le brasseur.</p></div></div>
+<h2>Harvest sauvage</h2><p>Profil et disponibilités à découvrir auprès du brasseur.</p><p class="product-prices">3,50 € l’unité · 15 € les six</p><a href="commandes.html">Se renseigner ↗</a>
+</article>
+<article class="product">
+<div class="product-visual" tabindex="0" role="group" aria-label="Présentation de Lou Bruc" aria-describedby="notes-loubruc"><img src="Lou%20Bruc.jpeg" alt="Visuel Lou Bruc" loading="lazy"><span class="tasting-hint" aria-hidden="true">Survoler pour découvrir ↗</span><div class="tasting-panel" id="notes-loubruc"><p class="eyebrow">À découvrir</p><h3>Lou Bruc</h3><p>Retrouvez Lou Bruc parmi les références présentées par la brasserie. Le brasseur pourra vous renseigner sur sa recette et vous guider pour la dégustation.</p><p class="tasting-meta">Style, degré d’alcool et notes détaillées : à confirmer avec le brasseur.</p></div></div>
+<h2>Lou Bruc</h2><p>Découvrez cette référence et ses caractéristiques avec Éric.</p><p class="product-prices">3,50 € l’unité · 15 € les six</p><a href="commandes.html">Se renseigner ↗</a>
+</article>
+<article class="product">
+<div class="product-visual" tabindex="0" role="group" aria-label="Présentation de Porterik" aria-describedby="notes-porterik"><img src="Porterik.jpeg" alt="Visuel Porterik" loading="lazy"><span class="tasting-hint" aria-hidden="true">Survoler pour découvrir ↗</span><div class="tasting-panel" id="notes-porterik"><p class="eyebrow">À découvrir</p><h3>Porterik</h3><p>Découvrez Porterik à travers son visuel. Pour en savoir plus sur son profil aromatique, ses formats et sa disponibilité, contactez directement le brasseur.</p><p class="tasting-meta">Style, degré d’alcool et notes détaillées : à confirmer avec le brasseur.</p></div></div>
+<h2>Porterik</h2><p>Profil et formats à préciser avec le brasseur.</p><p class="product-prices">3,50 € l’unité · 15 € les six</p><a href="commandes.html">Se renseigner ↗</a>
+</article>
+<article class="product">
+<div class="product-visual" tabindex="0" role="group" aria-label="Notes de dégustation de Spicy Machine" aria-describedby="notes-spicy"><img src="Houblon.jpg" alt="Houblon — photographie d’ambiance, pas le produit Spicy Machine" loading="lazy"><span class="tasting-hint" aria-hidden="true">Survoler pour découvrir ↗</span><div class="tasting-panel" id="notes-spicy"><p class="eyebrow">Notes de dégustation</p><h3>Spicy Machine</h3><p>Un stout qui associe des notes de cacao au piment d’Espelette. Cette rencontre entre cacao et piment fait toute la singularité de son profil.</p><p class="tasting-meta">Stout au piment · 9,9 % vol.<br>Profil : cacao, piment d’Espelette.</p></div></div>
+<h2>Spicy Machine</h2><p>Stout au piment · 9,9 % vol.</p><p>Notes de cacao et piment d’Espelette.</p><p class="product-prices">3,50 € l’unité · 15 € les six</p><a href="commandes.html">Se renseigner ↗</a>
+</article>
+<article class="product">
+<div class="product-visual" tabindex="0" role="group" aria-label="Présentation de Whiti’k" aria-describedby="notes-whitik"><img src="Brassin.jpg" alt="Photographie de la brasserie — pas le produit Whiti’k" loading="lazy"><span class="tasting-hint" aria-hidden="true">Survoler pour découvrir ↗</span><div class="tasting-panel" id="notes-whitik"><p class="eyebrow">À découvrir</p><h3>Whiti’k</h3><p>La bière blanche de la gamme, à découvrir directement auprès du brasseur. Éric pourra vous présenter ses arômes et vous conseiller pour la dégustation.</p><p class="tasting-meta">Blanche · 6,9 % vol.<br>Notes détaillées : à préciser avec le brasseur.</p></div></div>
+<h2>Whiti’k</h2><p>Blanche · 6,9 % vol.</p><p>Une bière blanche à découvrir auprès du brasseur.</p><p class="product-prices">3,50 € l’unité · 15 € les six</p><a href="commandes.html">Se renseigner ↗</a>
+</article>
+</div><p class="note">Les photographies de houblon et de brassage sont des images d’ambiance pour Spicy Machine et Whiti’k. Les disponibilités ne sont pas synchronisées avec un stock en temps réel. Les caractéristiques des références nouvellement présentées restent à confirmer avec le brasseur.</p></section>
+</main><footer><a href="service.html">Services</a> · <a href="FAQ.html">FAQ</a></footer>
+</body></html>
