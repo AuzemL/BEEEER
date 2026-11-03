@@ -1,0 +1,24 @@
+.home .page-head { position: relative; isolation: isolate; overflow: hidden; }
+.home .page-head > :not(.hover-word) { position: relative; z-index: 1; }
+.home .hover-word { position: absolute; right: 0; bottom: 0; z-index: 0; max-width: 100%; font: bold clamp(55px,11vw,155px)/1 Georgia,serif; letter-spacing: -.06em; color: var(--ink); opacity: 0; pointer-events: none; user-select: none; transform: translate(var(--pointer-x,0px),calc(18px + var(--pointer-y,0px))) rotate(-3deg); transition: opacity .18s ease, transform .35s ease; }
+.home .hover-word.visible { opacity: .085; transform: translate(var(--pointer-x,0px),var(--pointer-y,0px)) rotate(-3deg); }
+.home header nav .links { position: relative; isolation: isolate; }
+.home header nav .links > a { position: relative; transition: color .2s, transform .2s; text-decoration: none; }
+.home header nav .links > a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 5px; height: 1px; background: var(--rust); transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+.home header nav .links > a:focus-visible { color: var(--rust); }
+.home header nav .links > a:focus-visible::after { transform: scaleX(1); }
+.home .menu-highlight { position: absolute; left: 0; top: 0; z-index: -1; background: #243c3210; border: 1px solid #243c3214; border-radius: 3px; pointer-events: none; opacity: 0; transition: transform .28s, width .28s, height .28s, opacity .2s; }
+.home .menu-highlight.visible { opacity: 1; }
+.home .practical { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 30px; padding: 28px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 20px; }
+.home .practical p { margin: 8px 0; }
+.home .practical a { font-size: 13px; }
+@media (hover:hover) and (pointer:fine) {
+  .home header nav .links > a:hover { color: var(--rust); transform: translateY(-2px); }
+  .home header nav .links > a:hover::after { transform: scaleX(1); }
+}
+@media (max-width:760px) { .home .practical { grid-template-columns: 1fr; gap: 20px; } .home .practical > div + div { padding-top: 15px; border-top: 1px solid var(--line); } }
+@media (prefers-reduced-motion:reduce) {
+  .home .hover-word, .home .menu-highlight { display: none; }
+  .home header nav .links > a { transform: none !important; transition: none; }
+  .home header nav .links > a::after { transition: none; }
+}
