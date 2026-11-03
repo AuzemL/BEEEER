@@ -11,13 +11,12 @@
     .services-map-hero { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); align-items:center; gap:clamp(28px,4vw,64px); }
     .services-map-hero h1 { font-size:clamp(48px,6.2vw,96px); }
     .services-map { min-width:0; margin:0; }
-    .services-map-frame { position:relative; isolation:isolate; width:100%; max-width:540px; height:clamp(440px,40vw,560px); margin:0 auto; padding:95px 13% 80px; }
-    .pint-outline { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
-    .services-map iframe { position:relative; z-index:1; display:block; width:100%; height:100%; border:1px solid #243c3250; background:#e5ddcc; }
+    .services-map-frame { width:100%; aspect-ratio:4/3; min-height:320px; border:2px solid #fff; border-radius:20px; overflow:hidden; background:#e5ddcc; }
+    .services-map iframe { display:block; width:100%; height:100%; border:0; }
     .services-map figcaption { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px 16px; margin-top:12px; font-size:12px; line-height:1.6; }
     .services-map figcaption a { white-space:nowrap; }
-    @media(max-width:900px) { .services-map-hero { grid-template-columns:1fr; } .services-map-hero h1 { font-size:clamp(48px,9vw,80px); } .services-map-frame { height:500px; } }
-    @media(max-width:480px) { .services-map-frame { height:440px; padding-top:80px; padding-bottom:70px; } }
+    @media(max-width:900px) { .services-map-hero { grid-template-columns:1fr; } .services-map-hero h1 { font-size:clamp(48px,9vw,80px); } .services-map-frame { aspect-ratio:16/10; min-height:300px; } }
+    @media(max-width:480px) { .services-map-frame { aspect-ratio:1; border-radius:12px; } }
   </style>
 </head>
 <body>
@@ -32,13 +31,6 @@
       </div>
       <figure class="services-map" aria-label="Localisation de la brasserie">
         <div class="services-map-frame">
-          <svg class="pint-outline" viewBox="0 0 500 540" preserveAspectRatio="none" fill="none" aria-hidden="true" focusable="false">
-            <path d="M18 68H482L440 488Q250 528 60 488Z" fill="#d6a44c" fill-opacity=".24" stroke="#243c32" stroke-width="5" stroke-linejoin="round"/>
-            <path d="M63 468Q250 506 437 468" stroke="#243c32" stroke-width="4"/>
-            <path d="M42 113L73 435M458 113L427 435" stroke="#fffdf5" stroke-width="6" stroke-linecap="round"/>
-            <path d="M18 78C2 68 6 39 26 32C39 8 74 9 90 26C110 5 147 7 163 26C185 8 217 7 239 25C262 4 299 8 317 27C340 9 374 10 391 29C416 11 450 17 461 37C488 33 500 59 482 78C462 91 446 83 426 84H74C49 88 33 90 18 78Z" fill="#fffdf5" stroke="#243c32" stroke-width="4" stroke-linejoin="round"/>
-            <path d="M91 50Q106 39 122 50M277 44Q293 34 308 45M395 58Q410 49 424 58" stroke="#d8d1bf" stroke-width="3" stroke-linecap="round"/>
-          </svg>
           <iframe title="Google Maps : brasserie, 551 Route de Cap de Lelane, 40260 Taller" src="https://maps.google.com/maps?q=551%20Route%20de%20Cap%20de%20Lelane%2C%2040260%20Taller%2C%20France&amp;z=15&amp;hl=fr&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
         <figcaption><span>551 Route de Cap de Lelane · 40260 Taller</span><a href="https://www.google.com/maps/dir/?api=1&amp;destination=551%20Route%20de%20Cap%20de%20Lelane%2C%2040260%20Taller%2C%20France" target="_blank" rel="noopener noreferrer">Itinéraire ↗</a><span>Carte interactive fournie par Google Maps.</span></figcaption>
