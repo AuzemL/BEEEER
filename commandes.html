@@ -1,1 +1,83 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Commander — Auzem’Beers &amp; Sons</title><meta name="description" content="Préparez votre demande de bières ou de location de tireuse et contactez le brasseur directement."><link rel="stylesheet" href="styles.css"><script src="site.js" defer></script></head><body><a class="skip" href="#main">Passer au contenu</a><header><a href="index.html">Accueil</a> · <a href="produits.html">Les bières</a></header><main id="main"><section class="page-head wrap"><p class="eyebrow">En direct avec le brasseur</p><h1>Parlons de votre<br>prochain <em>brassin.</em></h1><p class="intro">Une bière, un coffret ou une tireuse : préparez votre demande, puis contactez Éric.</p></section><section class="wrap section narrow"><h2>Préparer une demande</h2><p>Tarif des bières : 3,50 € l’unité ou 15 € le pack de six.</p><p class="note">Aucune commande ni aucun paiement n’est effectué sur ce site. Votre demande doit être envoyée au brasseur, qui confirmera les disponibilités, les tarifs et le retrait.</p><label for="request">Votre demande concerne</label><select id="request"><option>Citri’K</option><option>Carmes Deri’k</option><option>Ch’ti Landais</option><option>Harvest sauvage</option><option>Lou Bruc</option><option>Porterik</option><option>Spicy Machine</option><option>Whiti’k</option><option>Une location de tireuse</option><option>Une autre demande</option></select><button class="button" id="prepare" hidden>Préparer un texte à copier</button><div id="draft" hidden><label for="message">Copiez et adaptez ce texte pour votre message Instagram</label><textarea id="message"></textarea><p class="muted">Ce texte reste dans cette page. Rien n’a été envoyé.</p></div><p><a class="button" href="https://www.instagram.com/ericauzemery/" target="_blank" rel="noopener noreferrer">Contacter Éric sur Instagram ↗</a></p><p>Vous pouvez également vous renseigner à la brasserie : <a href="service.html">adresse et dégustations</a>.</p></section></main><footer><a href="service.html">Services</a> · <a href="FAQ.html">FAQ</a></footer></body></html>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Commander — Auzem’Beers &amp; Sons</title>
+  <meta name="description" content="Envoyez votre demande de bières ou de location de tireuse par formulaire. Le brasseur confirmera les disponibilités et le retrait.">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+  <style>
+    .enquiry-form { max-width:850px; }
+    .enquiry-form fieldset { margin:30px 0; padding:24px; border:1px solid var(--line); min-width:0; }
+    .enquiry-form legend { padding:0 10px; font:26px Georgia,serif; }
+    .enquiry-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 24px; }
+    .enquiry-form input:not([type=checkbox]) { display:block; width:100%; padding:14px; background:transparent; color:var(--ink); border:1px solid var(--ink); border-radius:0; }
+    .enquiry-form .acknowledgement { display:flex; align-items:flex-start; gap:12px; font-size:14px; line-height:1.6; }
+    .enquiry-form input[type=checkbox] { width:20px; height:20px; flex:0 0 20px; margin-top:3px; }
+    .enquiry-form .honeypot { display:none!important; }
+    @media(max-width:600px) { .enquiry-fields { grid-template-columns:1fr; } .enquiry-form fieldset { padding:18px; } }
+  </style>
+  <script defer>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const select=document.querySelector('#request');
+      const selected=new URLSearchParams(location.search).get('demande');
+      if(selected&&Array.from(select.options).some(option=>option.value===selected))select.value=selected;
+    });
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Passer au contenu</a>
+  <header><a href="index.html">Accueil</a> · <a href="produits.html">Les bières</a></header>
+  <main id="main">
+    <section class="page-head wrap">
+      <p class="eyebrow">En direct avec la brasserie</p>
+      <h1>Parlons de votre<br>prochain <em>brassin.</em></h1>
+      <p class="intro">Remplissez le formulaire pour envoyer votre demande par e-mail. Aucun compte Instagram n’est nécessaire.</p>
+    </section>
+    <section class="wrap section narrow" aria-labelledby="form-title">
+      <h2 id="form-title">Envoyer une demande</h2>
+      <p>Tarif des bières : 3,50 € l’unité ou 15 € le pack de six.</p>
+      <p class="note">Il s’agit d’une demande, pas d’une commande confirmée. Aucun paiement n’est effectué ici. La brasserie confirmera les disponibilités, les conditions et le retrait par e-mail.</p>
+      <p class="muted">Les champs marqués d’un astérisque (*) sont obligatoires.</p>
+      <form class="enquiry-form" action="https://formsubmit.co/auzemerylucas@gmail.com" method="POST" accept-charset="UTF-8" aria-describedby="data-notice">
+        <input type="hidden" name="_subject" value="Nouvelle demande — Auzem’Beers & Sons">
+        <input type="hidden" name="_template" value="table">
+        <input class="honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <fieldset>
+          <legend>Vos coordonnées</legend>
+          <label for="customer-name">Nom complet *</label>
+          <input id="customer-name" name="name" type="text" autocomplete="name" required maxlength="120">
+          <div class="enquiry-fields">
+            <div><label for="customer-email">Adresse e-mail *</label><input id="customer-email" name="email" type="email" autocomplete="email" required maxlength="254"></div>
+            <div><label for="customer-phone">Téléphone (facultatif)</label><input id="customer-phone" name="telephone" type="tel" autocomplete="tel" maxlength="40"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Votre demande</legend>
+          <label for="request">Bière ou service *</label>
+          <select id="request" name="produit_ou_service" required>
+            <option value="">Choisir une bière ou un service</option>
+            <option>Citri’K</option><option>Carmes Deri’k</option><option>Ch’ti Landais</option><option>Harvest sauvage</option><option>Lou Bruc</option><option>Porterik</option><option>Spicy Machine</option><option>Whiti’k</option><option>Une location de tireuse</option><option>Une autre demande</option>
+          </select>
+          <div class="enquiry-fields">
+            <div><label for="format">Format *</label><select id="format" name="format" required><option value="">Choisir un format</option><option value="Unité — 3,50 EUR">À l’unité — 3,50 €</option><option value="Pack de six — 15 EUR">Pack de six — 15 €</option><option value="Service ou demande à préciser">Service / autre demande</option></select></div>
+            <div><label for="quantity">Nombre d’unités ou de packs *</label><input id="quantity" name="quantite" type="number" min="1" max="1000" step="1" value="1" required aria-describedby="quantity-help"></div>
+          </div>
+          <p id="quantity-help" class="muted">Indiquez le nombre correspondant au format choisi. Pour une location ou plusieurs références, précisez votre besoin dans le message.</p>
+          <label for="preferred-date">Date de retrait ou d’événement souhaitée (facultatif)</label>
+          <input id="preferred-date" name="date_souhaitee" type="date">
+          <label for="message">Message et précisions *</label>
+          <textarea id="message" name="message" rows="6" maxlength="5000" required placeholder="Précisez les quantités par bière, vos questions ou les détails de votre événement."></textarea>
+        </fieldset>
+        <p id="data-notice" class="muted">Les informations saisies seront transmises via FormSubmit à auzemerylucas@gmail.com pour traiter votre demande et vous répondre. Ne saisissez pas de données bancaires ou sensibles. FormSubmit indique conserver les soumissions pendant 30 jours. <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">Confidentialité du prestataire ↗</a></p>
+        <label class="acknowledgement" for="acknowledge"><input id="acknowledge" name="information_transmission" type="checkbox" value="Transmission à la brasserie via FormSubmit comprise" required><span>J’ai compris que mes informations seront transmises à la brasserie via FormSubmit pour le traitement de ma demande. *</span></label>
+        <button class="button" type="submit">Envoyer ma demande ↗</button>
+        <p class="muted">Vous serez redirigé vers FormSubmit pour la vérification anti-spam et le résultat de l’envoi. La réception de la demande ne vaut pas confirmation de commande.</p>
+      </form>
+      <p>Pour préparer votre venue : <a href="service.html">adresse et dégustations</a>.</p>
+    </section>
+  </main>
+  <footer><a href="service.html">Services</a> · <a href="FAQ.html">FAQ</a></footer>
+</body>
+</html>
