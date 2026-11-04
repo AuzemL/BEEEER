@@ -1,8 +1,9 @@
 (() => {
-  if (!document.body.classList.contains('home')) return;
   const nav = document.querySelector('header nav .links');
   const hero = document.querySelector('.page-head');
-  if (!nav || !hero) return;
+  if (!nav || !hero || nav.dataset.motionReady) return;
+  nav.dataset.motionReady = 'true';
+  document.body.classList.add('nav-motion');
   const reduced = matchMedia('(prefers-reduced-motion:reduce)');
   const fine = matchMedia('(hover:hover) and (pointer:fine)');
   const highlight = document.createElement('span');
@@ -78,5 +79,7 @@
   reduced.addEventListener('change', reset);
   fine.addEventListener('change', reset);
   window.addEventListener('resize', () => { if (active && !nav.hidden) show(active); else hide(); });
+  window.addEventListener('pagehide', reset);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) reset(); });
   new MutationObserver(() => { if (nav.hidden) hide(); }).observe(nav, { attributes:true, attributeFilter:['hidden'] });
 })();

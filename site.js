@@ -149,3 +149,20 @@ if (request && prepare) {
   });
   start();
 })();
+
+/* Share the existing navigation effects without loading them twice on home. */
+(() => {
+  const scriptExists = Array.from(document.scripts).some(script => script.src && new URL(script.src).pathname.endsWith('/home.js'));
+  const stylesheetExists = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(link => new URL(link.href).pathname.endsWith('/home.css'));
+  if (!stylesheetExists) {
+    const stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = 'home.css?v=3';
+    document.head.append(stylesheet);
+  }
+  if (!scriptExists) {
+    const script = document.createElement('script');
+    script.src = 'home.js?v=3';
+    document.head.append(script);
+  }
+})();
