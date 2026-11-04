@@ -4,10 +4,26 @@
 .home .motion-word { display:inline-block; }
 .home .motion-sr-only { position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }
 .home .brewery-film video { display:block; width:100%; aspect-ratio:16/9; object-fit:contain; background:var(--ink); }
+.home .hero-with-logo { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(0,1fr); align-items:center; gap:clamp(30px,4vw,70px); }
+.home .hero-copy { min-width:0; }
+.home .hero-with-logo h1 { font-size:clamp(48px,6.1vw,96px); }
+.home .hero-emblem { width:100%; max-width:440px; justify-self:center; padding:18px; perspective:1000px; }
+.home .hero-emblem-surface { position:relative; overflow:hidden; isolation:isolate; border-radius:18px; border:1px solid var(--line); background:#fff; box-shadow:0 18px 48px #243c321c; transform:rotateX(var(--logo-rx,0deg)) rotateY(var(--logo-ry,0deg)); transition:transform .4s var(--motion-ease); }
+.home .hero-emblem img { display:block; width:100%; height:auto; }
+.home .logo-light,.home .logo-sheen { position:absolute; inset:0; pointer-events:none; }
+.home .logo-light { background:radial-gradient(circle at var(--logo-x,35%) var(--logo-y,25%),#fff6 0%,#edc47b20 32%,transparent 64%); mix-blend-mode:soft-light; }
+.home .logo-sheen { opacity:0; background:linear-gradient(115deg,transparent 30%,#fff5 47%,#e9bd6633 53%,transparent 70%); transform:translateX(-120%); }
+.home .hero-emblem.logo-ready .logo-sheen { animation:logo-sheen 3.6s var(--motion-ease) .2s 1; }
+@keyframes logo-sheen { 0% { opacity:0; transform:translateX(-120%); } 20% { opacity:.65; } 75% { opacity:.65; } 100% { opacity:0; transform:translateX(120%); } }
 @media (min-width:1000px) and (min-height:700px) {
   .home .brewery-story { align-items:start; }
   .home .brewery-story .story-photo { position:sticky; top:32px; max-height:calc(100vh - 64px); }
   .home .brewery-story > div { padding:35px 0 110px; }
+}
+@media (max-width:900px) {
+  .home .hero-with-logo { grid-template-columns:1fr; gap:25px; }
+  .home .hero-with-logo h1 { font-size:clamp(48px,8vw,80px); }
+  .home .hero-emblem { max-width:280px; padding:8px; }
 }
 @media (hover:hover) and (pointer:fine) {
   .home .button { transition:background .2s, border-color .2s, transform .3s var(--motion-ease); }
@@ -20,4 +36,6 @@
   .home .brewery-story .story-photo { position:static; }
   .home .button:hover { transform:none; }
   .home .rows > a:hover { padding-left:0; }
+  .home .hero-emblem-surface { transform:none!important; transition:none; }
+  .home .logo-light,.home .logo-sheen { display:none; animation:none!important; }
 }

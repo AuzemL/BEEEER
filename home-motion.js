@@ -11,6 +11,8 @@
   const title = document.querySelector('[data-motion-title]');
   const photo = document.querySelector('[data-motion-photo]');
   const frameBox = photo?.closest('.motion-photo-frame');
+  const emblem = document.querySelector('[data-logo-light]');
+  let logoFrame = 0;
   const seen = new WeakSet();
   const canAnimate = typeof Element.prototype.animate === 'function';
   function animate(element, keyframes, options) {
@@ -21,6 +23,8 @@
   }
   function titleEntrance() {
     titlePending = false;
+    if (document.querySelector('dialog[open]')) { startTitle(); return; }
+    emblem?.classList.add('logo-ready');
     if (!title || titlePlayed || reduced.matches || !canAnimate) return;
     titlePlayed = true;
     const label = document.createElement('span');
@@ -45,10 +49,10 @@
     visual.querySelectorAll('.motion-word').forEach((word, index) => animate(word, [
       { opacity:0, transform:'translateY(18px)' },
       { opacity:1, transform:'translateY(0)' }
-    ], { duration:650, delay:index * 65, easing:'cubic-bezier(.22,1,.36,1)', fill:'backwards' }));
+    ], { duration:1100, delay:120 + index * 180, easing:'cubic-bezier(.22,1,.36,1)', fill:'backwards' }));
   }
   function startTitle() {
-    if (titlePlayed || titlePending || reduced.matches) return;
+    if (titlePlayed || titlePending) return;
     const gate = document.querySelector('dialog[open]');
     if (gate) { titlePending = true; gate.addEventListener('close', titleEntrance, { once:true }); }
     else titleEntrance();
@@ -77,17 +81,37 @@
     photo.style.setProperty('--photo-scale', '1.09');
   }
   function schedulePhoto() { if (!frame && !reduced.matches && desktop.matches) frame = requestAnimationFrame(drawPhoto); }
+  function resetLogo() {
+    cancelAnimationFrame(logoFrame); logoFrame = 0;
+    ['--logo-x','--logo-y','--logo-rx','--logo-ry'].forEach(property => emblem?.style.removeProperty(property));
+  }
+  emblem?.addEventListener('pointermove', event => {
+    if (reduced.matches || !desktop.matches || document.querySelector('dialog[open]')) return;
+    cancelAnimationFrame(logoFrame);
+    logoFrame = requestAnimationFrame(() => {
+      logoFrame = 0;
+      const rect = emblem.getBoundingClientRect();
+      const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+      const y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+      emblem.style.setProperty('--logo-x', `${x * 100}%`);
+      emblem.style.setProperty('--logo-y', `${y * 100}%`);
+      emblem.style.setProperty('--logo-rx', `${(.5 - y) * 6}deg`);
+      emblem.style.setProperty('--logo-ry', `${(x - .5) * 6}deg`);
+    });
+  });
+  emblem?.addEventListener('pointerleave', resetLogo);
   function reset() {
     animations.forEach(animation => animation.cancel());
     animations.clear();
     cancelAnimationFrame(frame); frame = 0;
+    resetLogo();
     photo?.style.removeProperty('--photo-shift');
     photo?.style.removeProperty('--photo-scale');
     setupReveals(); startTitle(); schedulePhoto();
   }
   window.addEventListener('scroll', schedulePhoto, { passive:true });
   window.addEventListener('resize', schedulePhoto, { passive:true });
-  document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(frame); frame = 0; } else schedulePhoto(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(frame); frame = 0; resetLogo(); } else schedulePhoto(); });
   reduced.addEventListener('change', reset);
   desktop.addEventListener('change', reset);
   startTitle(); setupReveals(); schedulePhoto();
