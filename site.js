@@ -67,19 +67,22 @@ if (request && prepare) {
   });
 }
 
-/* Inner-page headlines: one accessible entrance, 2100 ms total. */
+/* Inner-page headlines: one 2100 ms entrance per navigation, not on scroll. */
 (() => {
   const heading = document.querySelector('main .page-head h1');
   if (!heading || heading.hasAttribute('data-motion-title') || typeof heading.animate !== 'function') return;
+  const originalMarkup = heading.innerHTML;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let played = false;
   let waitingForGate = false;
-  let observer;
   let animations = [];
+  function stop() {
+    animations.forEach(animation => animation.cancel());
+    animations = [];
+  }
   function play() {
     if (played || reduced.matches || document.hidden || document.querySelector('dialog[open]')) return;
     played = true;
-    observer?.disconnect();
     const clone = heading.cloneNode(true);
     clone.querySelectorAll('br').forEach(br => br.replaceWith(' '));
     const accessible = document.createElement('span');
@@ -109,11 +112,12 @@ if (request && prepare) {
     });
     heading.append(accessible, visual);
     const stagger = words.length > 1 ? 880 / (words.length - 1) : 0;
-    animations = words.map((word, index) => word.animate([
+    const batch = words.map((word, index) => word.animate([
       { opacity:0, transform:'translateY(18px)' },
       { opacity:1, transform:'translateY(0)' }
     ], { duration:1100, delay:120 + index * stagger, easing:'cubic-bezier(.22,1,.36,1)', fill:'backwards' }));
-    Promise.allSettled(animations.map(animation => animation.finished)).then(() => { animations = []; });
+    animations = batch;
+    Promise.allSettled(batch.map(animation => animation.finished)).then(() => { if (animations === batch) animations = []; });
   }
   function start() {
     if (played || reduced.matches || document.hidden) return;
@@ -125,26 +129,23 @@ if (request && prepare) {
       }
       return;
     }
-    if (!('IntersectionObserver' in window)) { play(); return; }
-    observer?.disconnect();
-    observer = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting && entry.intersectionRatio >= .25)) play();
-    }, { threshold:[0,.25] });
-    observer.observe(heading);
+    play();
   }
   reduced.addEventListener('change', () => {
-    if (reduced.matches) {
-      observer?.disconnect();
-      animations.forEach(animation => animation.cancel());
-      animations = [];
-    } else start();
+    if (reduced.matches) stop();
+    else start();
   });
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      observer?.disconnect();
-      animations.forEach(animation => animation.cancel());
-      animations = [];
-    } else start();
+    if (document.hidden) stop();
+    else start();
+  });
+  window.addEventListener('pagehide', stop);
+  window.addEventListener('pageshow', event => {
+    if (!event.persisted) return;
+    stop();
+    heading.innerHTML = originalMarkup;
+    played = false;
+    start();
   });
   start();
 })();
