@@ -7,8 +7,10 @@
   <meta name="description" content="Bières artisanales à Taller dans les Landes. Découvrez Auzem’Beers & Sons et préparez votre visite à la brasserie.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="home.css?v=2">
+  <link rel="stylesheet" href="home-motion.css?v=1">
   <script src="site.js?v=2" defer></script>
   <script src="home.js?v=2" defer></script>
+  <script src="home-motion.js?v=1" defer></script>
 </head>
 <body class="home">
   <a class="skip" href="#main">Passer au contenu</a>
@@ -16,7 +18,7 @@
   <main id="main">
     <section class="wrap page-head">
       <p class="eyebrow">Auzem’Beers &amp; Sons / Taller, 40260</p>
-      <h1>Du caractère.<br>Et des <em>Landes.</em></h1>
+      <h1 data-motion-title>Du caractère.<br>Et des <em>Landes.</em></h1>
       <p class="intro">Des bières artisanales, un brasseur et un coin des Landes. Faites comme chez vous.</p>
       <a class="button" href="produits.html">Découvrir les bières ↗</a>
       <a href="#visiter">Préparer une visite</a>
@@ -26,12 +28,18 @@
       <div><p class="eyebrow">L’adresse</p><p>551 Route de Cap de Lelane<br>40260 Taller, Landes</p><a href="https://www.google.com/maps/dir/?api=1&amp;destination=551%20Route%20de%20Cap%20de%20Lelane%2040260%20Taller%20France" target="_blank" rel="noopener noreferrer">Itinéraire ↗</a></div>
       <div><p class="eyebrow">Vos événements</p><p>Location de tireuses<br>Prévoir dix jours d’avance</p><a href="commandes.html?demande=Une%20location%20de%20tireuse">Demander une tireuse ↗</a></div>
     </section>
-    <div class="wrap section"><img class="hero-photo" src="Bar2.jpeg" alt="L’intérieur de la brasserie Auzem’Beers & Sons" fetchpriority="high"><p class="caption">TALLER, LANDES · L’ADRESSE DES BRASSINS</p></div>
-    <section class="wrap split section">
-      <img src="Brassin.jpg" alt="À la brasserie" loading="lazy">
-      <div><p class="eyebrow">Derrière les brassins</p><h2>Une brasserie.<br>Pas une usine.</h2><p>À Taller, Éric Auzémery fait vivre Auzem’Beers &amp; Sons. L’histoire commence dans une cuisine, avant de prendre place à la brasserie.</p><p>Basilic, piment d’Espelette, asperges, figues : ses créations explorent aussi des ingrédients inattendus.</p><a href="produits.html">Explorer la carte ↗</a></div>
+    <div class="wrap section" data-motion-reveal><div class="motion-photo-frame"><img class="hero-photo" data-motion-photo src="Bar2.jpeg" alt="L’intérieur de la brasserie Auzem’Beers & Sons" fetchpriority="high"></div><p class="caption">TALLER, LANDES · L’ADRESSE DES BRASSINS</p></div>
+    <section class="wrap split section brewery-story">
+      <img class="story-photo" src="Brassin.jpg" alt="À la brasserie" loading="lazy">
+      <div data-motion-reveal><p class="eyebrow">Derrière les brassins</p><h2>Une brasserie.<br>Pas une usine.</h2><p>À Taller, Éric Auzémery fait vivre Auzem’Beers &amp; Sons. L’histoire commence dans une cuisine, avant de prendre place à la brasserie.</p><p>Basilic, piment d’Espelette, asperges, figues : ses créations explorent aussi des ingrédients inattendus.</p><a href="produits.html">Explorer la carte ↗</a></div>
     </section>
-    <section class="dark"><div class="wrap split"><div><p class="eyebrow">On se retrouve ?</p><h2>La bière, c’est aussi un point de rencontre.</h2></div><div class="rows"><a href="service.html">Passer à la brasserie ↗</a><a href="commandes.html?demande=Une%20location%20de%20tireuse">Louer une tireuse ↗</a><a href="commandes.html">Préparer une commande ↗</a></div></div></section>
+    <section class="wrap section brewery-film" id="film-brasserie" aria-labelledby="film-title" hidden>
+      <p class="eyebrow">Un aperçu de la brasserie</p>
+      <h2 id="film-title">Bienvenue à Taller.</h2>
+      <video controls playsinline preload="none" poster="Bar2.jpeg" aria-label="Présentation de la brasserie Auzem’Beers et Sons" data-brewery-video="media/brasserie-promo.mp4"></video>
+      <p class="caption">Auzem’Beers &amp; Sons · Taller, Landes. Bar ouvert le premier vendredi du mois, de 18 h à 21 h. <a href="service.html">Préparer une visite ↗</a></p>
+    </section>
+    <section class="dark"><div class="wrap split"><div data-motion-reveal><p class="eyebrow">On se retrouve ?</p><h2>La bière, c’est aussi un point de rencontre.</h2></div><div class="rows"><a href="service.html">Passer à la brasserie ↗</a><a href="commandes.html?demande=Une%20location%20de%20tireuse">Louer une tireuse ↗</a><a href="commandes.html">Préparer une commande ↗</a></div></div></section>
   </main>
   <footer><a href="FAQ.html">FAQ</a> · <a href="Avis.html">Avis</a> · <a href="compte.html">Compte</a></footer>
 </body>
